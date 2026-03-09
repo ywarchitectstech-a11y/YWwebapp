@@ -17,7 +17,7 @@ import Structure from "./pages/Projects/Structure";
 import Documents from "./pages/Projects/Documents";
 
 import Postsale from "./pages/postsale/addnew.jsx";
-import AllPostSales from "./pages/postsale/AllPostSales.jsx";
+import AllPostSales from "./pages/postsale/AllPostsales.jsx";
 import ViewPostSale from "./pages/postsale/ViewPostSale.jsx";
 
 import AddPresale from "./pages/presale/AddPresale.jsx";
