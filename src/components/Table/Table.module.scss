@@ -1,0 +1,196 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.tableWrapper {
+  overflow-x: auto;
+  @include custom-scrollbar;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.thead {
+  background: linear-gradient(180deg, $color-gray-50 0%, $color-gray-100 100%);
+}
+
+.th {
+  padding: $spacing-md $spacing-lg;
+  text-align: left;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  border-bottom: 1px solid $color-gray-200;
+  
+  &:first-child {
+    border-radius: $radius-lg 0 0 0;
+  }
+  
+  &:last-child {
+    border-radius: 0 $radius-lg 0 0;
+  }
+}
+
+.tbody {
+  tr {
+    transition: background-color $transition-fast;
+    
+    &:hover {
+      background-color: rgba($color-primary, 0.02);
+    }
+    
+    &:nth-child(even) {
+      background-color: $color-gray-50;
+      
+      &:hover {
+        background-color: rgba($color-primary, 0.04);
+      }
+    }
+  }
+}
+
+.td {
+  padding: $spacing-md $spacing-lg;
+  font-size: $font-size-sm;
+  color: $color-gray-700;
+  border-bottom: 1px solid $color-gray-100;
+  
+  &.actions {
+    text-align: right;
+    white-space: nowrap;
+  }
+}
+
+.actionButton {
+  @include flex-start;
+  gap: $spacing-xs;
+  padding: $spacing-xs $spacing-sm;
+  font-size: $font-size-sm;
+  color: $color-gray-600;
+  background: transparent;
+  border: none;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: all $transition-fast;
+  
+  &:hover {
+    color: $color-primary;
+    background: rgba($color-primary, 0.08);
+  }
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  padding: $spacing-xs $spacing-sm;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  border-radius: $radius-full;
+  
+  &.completed {
+    background: rgba($color-success, 0.1);
+    color: $color-success;
+  }
+  
+  &.ongoing {
+    background: rgba($color-info, 0.1);
+    color: $color-info;
+  }
+  
+  &.pending {
+    background: rgba($color-warning, 0.1);
+    color: $color-warning;
+  }
+  
+  &.cancelled {
+    background: rgba($color-danger, 0.1);
+    color: $color-danger;
+  }
+}
+
+.pagination {
+  @include flex-between;
+  padding: $spacing-lg;
+  border-top: 1px solid $color-gray-100;
+  
+  @include sm {
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+}
+
+.paginationInfo {
+  font-size: $font-size-sm;
+  color: $color-gray-500;
+}
+
+.paginationControls {
+  @include flex-start;
+  gap: $spacing-xs;
+}
+
+.pageButton {
+  min-width: 36px;
+  height: 36px;
+  @include flex-center;
+  padding: 0 $spacing-sm;
+  font-size: $font-size-sm;
+  color: $color-gray-600;
+  background: $color-white;
+  border: 1px solid $color-gray-200;
+  border-radius: $radius-lg;
+  cursor: pointer;
+  transition: all $transition-fast;
+  
+  &:hover:not(:disabled) {
+    background: $color-gray-50;
+    border-color: $color-gray-300;
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  &.active {
+    background: $color-primary;
+    color: $color-white;
+    border-color: $color-primary;
+  }
+}
+
+.ellipsis {
+  @include flex-center;
+  padding: 0 $spacing-xs;
+  color: $color-gray-400;
+}
+
+.emptyState {
+  padding: $spacing-3xl;
+  text-align: center;
+  color: $color-gray-500;
+  
+  .emptyIcon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto $spacing-md;
+    color: $color-gray-300;
+  }
+  
+  .emptyText {
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    color: $color-gray-600;
+    margin-bottom: $spacing-xs;
+  }
+  
+  .emptySubtext {
+    font-size: $font-size-sm;
+    color: $color-gray-400;
+  }
+}

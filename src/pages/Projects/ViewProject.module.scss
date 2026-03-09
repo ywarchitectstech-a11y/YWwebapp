@@ -1,0 +1,1574 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// ─── Page Shell ───────────────────────────────────────────────────────────────
+.pageWrapper {
+  padding: $spacing-xl $spacing-2xl;
+  min-height: 100vh;
+  background: $gradient-background;
+  border-radius: $radius-xl;
+
+  @include md {
+    padding: $spacing-lg $spacing-md;
+  }
+
+  @include sm {
+    padding: $spacing-md $spacing-sm;
+  }
+}
+
+// ─── Breadcrumb ───────────────────────────────────────────────────────────────
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+  margin-bottom: $spacing-lg;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.breadLink {
+  color: $color-gray-500;
+  cursor: pointer;
+  transition: color $transition-fast;
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.sep {
+  color: $color-gray-300;
+}
+
+// ─── Hero ─────────────────────────────────────────────────────────────────────
+.hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-xl;
+  background: $color-white;
+  border-radius: $radius-2xl;
+  padding: $spacing-xl $spacing-xl;
+  margin-bottom: $spacing-lg;
+  border: 1px solid rgba($color-gray-200, 0.6);
+  box-shadow: $shadow-card;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, $color-primary 0%, $color-info 100%);
+    border-radius: $radius-xl 0 0 $radius-xl;
+  }
+
+  @include md {
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+}
+
+.heroLeft {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-lg;
+  flex: 1;
+  min-width: 0;
+
+  @include sm {
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+}
+
+.heroLogo {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: $radius-xl;
+  overflow: hidden;
+  border: 2px solid $color-gray-200;
+  background: linear-gradient(135deg, $color-primary 0%, $color-info 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  span {
+    font-family: $font-family-heading;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+  }
+}
+
+.heroMeta {
+  flex: 1;
+  min-width: 0;
+}
+
+.heroTitle {
+  font-family: $font-family-heading;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  letter-spacing: -0.02em;
+  margin: 0 0 $spacing-sm;
+  @include text-truncate;
+}
+
+.heroChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  margin-bottom: $spacing-xs;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: $radius-full;
+  background: $color-gray-100;
+  color: $color-gray-600;
+  font-size: $font-size-xs;
+  font-family: monospace;
+  border: none;
+  font-weight: $font-weight-medium;
+}
+
+.heroDetails {
+  font-size: $font-size-sm;
+  color: $color-gray-500;
+  line-height: $line-height-relaxed;
+  margin: $spacing-xs 0 0;
+  @include line-clamp(2);
+}
+
+.heroRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: $spacing-sm;
+  flex-shrink: 0;
+
+  @include md {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+}
+
+.heroDate {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  font-size: $font-size-xs;
+
+  span {
+    color: $color-gray-400;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  strong {
+    color: $color-gray-800;
+    font-size: $font-size-sm;
+  }
+
+  @include md {
+    align-items: flex-start;
+  }
+}
+
+// ─── Status Badge ─────────────────────────────────────────────────────────────
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+// ─── Tabs ─────────────────────────────────────────────────────────────────────
+.tabsWrap {
+  background: $color-white;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-card;
+  border: 1px solid rgba($color-gray-200, 0.6);
+  margin-bottom: $spacing-lg;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    height: 2px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $color-gray-200;
+    border-radius: 2px;
+  }
+}
+
+.tabs {
+  display: flex;
+  padding: $spacing-xs;
+  gap: 4px;
+  min-width: max-content;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-lg;
+  border: none;
+  background: transparent;
+  color: $color-gray-500;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  transition: all $transition-fast;
+  white-space: nowrap;
+
+  &:hover {
+    background: $color-gray-50;
+    color: $color-gray-700;
+  }
+}
+
+.tabActive {
+  background: $color-primary !important;
+  color: $color-white !important;
+  box-shadow: 0 2px 8px rgba($color-primary, 0.3);
+}
+
+.tabIcon {
+  font-size: 15px;
+}
+
+.tabLabel {
+  @include sm {
+    display: none;
+  }
+}
+
+.tabBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: rgba($color-gray-500, 0.15);
+  color: inherit;
+  font-size: 0.65rem;
+  font-weight: $font-weight-bold;
+
+  .tabActive & {
+    background: rgba(255, 255, 255, 0.25);
+    color: $color-white;
+  }
+}
+
+// ─── Tab Content ──────────────────────────────────────────────────────────────
+.tabContent {
+  animation: fadeUp 0.2s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ─── Overview Grid ────────────────────────────────────────────────────────────
+.overviewGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-md;
+
+  @include md {
+    grid-template-columns: 1fr;
+  }
+}
+
+.overCard {
+  @include card-base;
+  padding: $spacing-lg;
+}
+
+.statsCard {
+  @include card-base;
+  padding: $spacing-lg;
+  grid-column: 1 / -1;
+
+  @include md {
+    grid-column: auto;
+  }
+}
+
+.overCardHead {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: $spacing-md;
+  padding-bottom: $spacing-sm;
+  border-bottom: 1px solid $color-gray-100;
+}
+
+// Info Field
+.infoField {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-md;
+  padding: $spacing-xs 0;
+  border-bottom: 1px solid rgba($color-gray-100, 0.7);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.infoLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  font-weight: $font-weight-medium;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 100px;
+}
+
+.infoValue {
+  font-size: $font-size-sm;
+  color: $color-gray-700;
+  text-align: right;
+  font-weight: $font-weight-medium;
+  word-break: break-word;
+}
+
+// Timeline
+.timelineList {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: $color-gray-200;
+  }
+}
+
+.tlRow {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-md;
+  padding: $spacing-sm 0;
+  position: relative;
+  z-index: 1;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+}
+
+.tlDot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid $color-white;
+  box-shadow: 0 0 0 2px $color-gray-200;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.tlLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: $font-weight-medium;
+}
+
+.tlVal {
+  font-size: $font-size-sm;
+  color: $color-gray-800;
+  font-weight: $font-weight-semibold;
+}
+
+// Stats
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-md;
+
+  @include sm {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.statTile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $spacing-md;
+  border-radius: $radius-lg;
+  background: $color-gray-50;
+  border: 1px solid $color-gray-100;
+  text-align: center;
+}
+
+.statVal {
+  font-family: $font-family-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  margin-top: 4px;
+  font-weight: $font-weight-medium;
+}
+
+// ─── Stages ───────────────────────────────────────────────────────────────────
+.stagesSummary {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xl;
+  background: $color-white;
+  border: 1px solid rgba($color-gray-200, 0.6);
+  border-radius: $radius-xl;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-card;
+  flex-wrap: wrap;
+
+  @include sm {
+    gap: $spacing-md;
+  }
+}
+
+.stageSumItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stageSumVal {
+  font-family: $font-family-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+  line-height: 1;
+}
+
+.stageSumLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  white-space: nowrap;
+}
+
+.stageSumProgress {
+  flex: 1;
+  min-width: 160px;
+}
+
+.stageSumProgressLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+  font-weight: $font-weight-semibold;
+  display: block;
+  margin-bottom: 6px;
+}
+
+// Progress Bar
+.progressBar {
+  height: 8px;
+  background: $color-gray-200;
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, $color-primary, $color-info);
+  border-radius: 999px;
+  transition: width 0.5s ease;
+}
+
+.progressLabel {
+  position: absolute;
+  right: 0;
+  font-size: 0.6rem;
+  color: $color-gray-500;
+  transform: translateX(calc(100% + 4px));
+}
+
+// Stage Tree
+.stageTree {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.stageGroup {
+  display: flex;
+  gap: $spacing-md;
+  background: $color-white;
+  border-radius: $radius-xl;
+  border: 1px solid rgba($color-gray-200, 0.6);
+  padding: $spacing-lg;
+  box-shadow: $shadow-card;
+}
+
+.stageGroupNum {
+  width: 28px;
+  height: 28px;
+  border-radius: $radius-full;
+  background: $color-primary;
+  color: $color-white;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.stageGroupContent {
+  flex: 1;
+  min-width: 0;
+}
+
+// Stage Node
+.stageNode {
+  border-radius: $radius-lg;
+  overflow: hidden;
+  margin-left: calc(var(--depth, 0) * 0px);
+}
+
+.stageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  padding: $spacing-sm $spacing-sm;
+  border-radius: $radius-lg;
+  transition: background $transition-fast;
+  gap: $spacing-sm;
+
+  &:hover {
+    background: $color-gray-50;
+  }
+}
+
+.stageExpandable {
+  cursor: pointer;
+}
+
+.stageLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex: 1;
+  min-width: 0;
+}
+
+.stageChevron {
+  font-size: 18px;
+  color: $color-gray-400;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  width: 20px;
+}
+
+.stageDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-left: 6px;
+}
+
+.stageInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.stageName {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-800;
+  @include text-truncate;
+}
+
+.mandatory {
+  color: $color-danger;
+  margin-left: 2px;
+  font-size: $font-size-xs;
+}
+
+.stageType {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+}
+
+.stageRight {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.stageProgress {
+  width: 60px;
+  height: 4px;
+  background: $color-gray-200;
+  border-radius: 999px;
+  overflow: hidden;
+
+  @include sm {
+    display: none;
+  }
+}
+
+.stageProgressFill {
+  height: 100%;
+  background: linear-gradient(90deg, $color-primary, $color-info);
+  border-radius: 999px;
+}
+
+.docsBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: $radius-full;
+  background: rgba($color-info, 0.1);
+  color: $color-info;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  border: 1px solid rgba($color-info, 0.2);
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba($color-info, 0.2);
+  }
+}
+
+.mediaBadge,
+.tasksBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+}
+
+.mediaBadge {
+  background: rgba($color-success, 0.1);
+  color: $color-success;
+  border: 1px solid rgba($color-success, 0.2);
+}
+
+.tasksBadge {
+  background: rgba($color-warning, 0.1);
+  color: $color-warning;
+  border: 1px solid rgba($color-warning, 0.2);
+}
+
+.stageChildren {
+  padding-left: $spacing-lg;
+  border-left: 2px solid $color-gray-100;
+  margin-left: $spacing-sm;
+  margin-top: 4px;
+
+  @include sm {
+    padding-left: $spacing-md;
+  }
+}
+
+.stageDocsList {
+  padding: $spacing-xs $spacing-sm $spacing-sm;
+  background: rgba($color-gray-50, 0.6);
+  border-radius: $radius-lg;
+  margin: 4px 0 4px $spacing-lg;
+  border: 1px solid $color-gray-100;
+}
+
+.docRow {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: 6px $spacing-xs;
+  border-radius: $radius-md;
+  cursor: pointer;
+  font-size: $font-size-xs;
+  transition: background $transition-fast;
+  border-bottom: 1px solid $color-gray-100;
+
+  &:last-child {
+    border-bottom: none;
+  }
+  &:hover {
+    background: $color-white;
+  }
+}
+
+.docRowIcon {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.docRowName {
+  flex: 1;
+  font-weight: $font-weight-medium;
+  color: $color-gray-700;
+  @include text-truncate;
+}
+.docRowType {
+  color: $color-gray-400;
+  white-space: nowrap;
+}
+.docRowStatus {
+  font-weight: $font-weight-semibold;
+  white-space: nowrap;
+}
+.docRowOpen {
+  color: $color-primary;
+  font-weight: $font-weight-semibold;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+// ─── Documents Table ──────────────────────────────────────────────────────────
+.docsTable {
+  background: $color-white;
+  border-radius: $radius-xl;
+  border: 1px solid rgba($color-gray-200, 0.6);
+  box-shadow: $shadow-card;
+  overflow-x: auto;
+}
+
+.docsTableHead {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1fr 0.8fr 1fr 0.6fr;
+  padding: $spacing-sm $spacing-lg;
+  background: $color-gray-50;
+  border-bottom: 1px solid $color-gray-200;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-400;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  min-width: 600px;
+
+  span {
+    padding: 0 $spacing-xs;
+  }
+}
+
+.docsTableRow {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1fr 0.8fr 1fr 0.6fr;
+  padding: $spacing-sm $spacing-lg;
+  border-bottom: 1px solid rgba($color-gray-100, 0.7);
+  align-items: center;
+  font-size: $font-size-sm;
+  color: $color-gray-600;
+  transition: background $transition-fast;
+  min-width: 600px;
+
+  &:last-child {
+    border-bottom: none;
+  }
+  &:hover {
+    background: $color-gray-50;
+  }
+
+  span {
+    padding: 0 $spacing-xs;
+  }
+}
+
+.docFileName {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  font-weight: $font-weight-medium;
+  color: $color-gray-800;
+  @include text-truncate;
+}
+
+.docStage {
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+}
+
+.docType {
+  font-size: $font-size-xs;
+}
+
+.openDocBtn {
+  padding: 4px 10px;
+  border-radius: $radius-md;
+  background: $color-primary;
+  color: $color-white;
+  border: none;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: $color-primary-dark;
+  }
+}
+
+// ─── Employees ────────────────────────────────────────────────────────────────
+.empGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: $spacing-md;
+}
+
+.empCard {
+  @include card-base;
+  padding: $spacing-lg;
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  transition: all $transition-fast;
+
+  &:hover {
+    transform: translateY(-2px);
+    // box-shadow: $shadow-hover;
+  }
+}
+
+.empAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: $radius-full;
+  background: linear-gradient(135deg, $color-primary, $color-info);
+  color: $color-white;
+  font-family: $font-family-heading;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-base;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.empInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.empName {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-800;
+  @include text-truncate;
+}
+
+.empEmail,
+.empPhone {
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+  @include text-truncate;
+}
+
+.empRole {
+  display: inline-flex;
+  padding: 2px 8px;
+  border-radius: $radius-full;
+  background: rgba($color-primary, 0.1);
+  color: $color-primary;
+  font-size: 0.65rem;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+  width: fit-content;
+}
+
+// ─── Site Visits ──────────────────────────────────────────────────────────────
+.svList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.svCard {
+  @include card-base;
+  padding: $spacing-lg;
+}
+
+.svHeader {
+  @include flex-between;
+  margin-bottom: $spacing-md;
+  padding-bottom: $spacing-sm;
+  border-bottom: 1px solid $color-gray-100;
+}
+
+.svNum {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  color: $color-gray-600;
+}
+
+.svBody {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $spacing-xs;
+}
+
+// ─── Structures ───────────────────────────────────────────────────────────────
+.structList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: $spacing-md;
+}
+
+.structCard {
+  @include card-base;
+  padding: $spacing-lg;
+}
+
+.structHeader {
+  @include flex-between;
+  margin-bottom: $spacing-md;
+  padding-bottom: $spacing-sm;
+  border-bottom: 1px solid $color-gray-100;
+}
+
+.structName {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  color: $color-gray-800;
+}
+
+.structType {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  background: $color-gray-100;
+  padding: 2px 8px;
+  border-radius: $radius-full;
+}
+
+.structBody {
+}
+
+// ─── Empty State ──────────────────────────────────────────────────────────────
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-2xl * 2;
+  background: $color-white;
+  border-radius: $radius-xl;
+  border: 1px dashed $color-gray-300;
+  text-align: center;
+
+  span:first-child {
+    font-size: 2.5rem;
+  }
+
+  p {
+    font-size: $font-size-base;
+    color: $color-gray-500;
+    font-weight: $font-weight-medium;
+    margin: 0;
+  }
+}
+
+.emptyHint {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  max-width: 300px;
+}
+
+// ─── Error State ──────────────────────────────────────────────────────────────
+.errorState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-2xl * 2;
+  text-align: center;
+
+  span {
+    font-size: 2.5rem;
+  }
+
+  h3 {
+    font-size: $font-size-xl;
+    color: $color-gray-800;
+    margin: 0;
+  }
+
+  p {
+    color: $color-gray-500;
+    margin: 0;
+  }
+}
+
+.errBtn {
+  @include button-primary;
+  margin-top: $spacing-md;
+}
+
+// ─── Skeleton ─────────────────────────────────────────────────────────────────
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+%skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: $radius-xl;
+}
+
+.skeletonWrap {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+.skeletonHero {
+  @extend %skeleton;
+  height: 120px;
+}
+.skeletonTabs {
+  @extend %skeleton;
+  height: 54px;
+}
+.skeletonBody {
+  @extend %skeleton;
+  height: 300px;
+}
+
+// ─── Document Popup ───────────────────────────────────────────────────────────
+.popupOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: $spacing-md;
+  animation: fadeIn 0.15s ease;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .popupBox {
+    background: $color-white;
+    border-radius: $radius-2xl;
+    width: 100%;
+    max-width: 860px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
+    animation: slideUp 0.2s ease;
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @include sm {
+      border-radius: $radius-xl;
+      max-height: 95vh;
+    }
+  }
+
+  .popupHeader {
+    @include flex-between;
+    padding: $spacing-lg $spacing-xl;
+    border-bottom: 1px solid $color-gray-200;
+    gap: $spacing-md;
+    flex-shrink: 0;
+  }
+
+  .popupTitle {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-md;
+
+    h3 {
+      font-size: $font-size-base;
+      font-weight: $font-weight-bold;
+      color: $color-gray-800;
+      margin: 0;
+      @include text-truncate;
+      max-width: 400px;
+    }
+
+    p {
+      font-size: $font-size-xs;
+      color: $color-gray-400;
+      margin: 2px 0 0;
+    }
+  }
+
+  .popupIcon {
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .popupClose {
+    width: 32px;
+    height: 32px;
+    border-radius: $radius-full;
+    border: 1px solid $color-gray-200;
+    background: transparent;
+    color: $color-gray-500;
+    font-size: $font-size-sm;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all $transition-fast;
+    flex-shrink: 0;
+
+    &:hover {
+      background: $color-gray-100;
+      color: $color-gray-800;
+    }
+  }
+
+  .popupMeta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+    padding: $spacing-sm $spacing-xl;
+    border-bottom: 1px solid $color-gray-100;
+    flex-shrink: 0;
+  }
+
+  .popupTag {
+    padding: 3px 10px;
+    border-radius: $radius-full;
+    background: $color-gray-100;
+    color: $color-gray-600;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+  }
+
+  .popupContent {
+    flex: 1;
+    overflow: auto;
+    padding: $spacing-md;
+    min-height: 280px;
+  }
+
+  .docFrame {
+    width: 100%;
+    height: 500px;
+    border: none;
+    border-radius: $radius-lg;
+
+    @include sm {
+      height: 300px;
+    }
+  }
+
+  .docImg {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: $radius-lg;
+    background: $color-gray-50;
+  }
+
+  .docNoPreview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-md;
+    height: 250px;
+    text-align: center;
+  }
+
+  .docBigIcon {
+    font-size: 3.5rem;
+  }
+
+  .docHint {
+    font-size: $font-size-xs;
+    color: $color-gray-400;
+    max-width: 280px;
+    line-height: 1.6;
+  }
+
+  .docDownload {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: $spacing-sm $spacing-lg;
+    border-radius: $radius-lg;
+    background: $color-primary;
+    color: $color-white;
+    text-decoration: none;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    transition: all $transition-fast;
+
+    &:hover {
+      background: $color-primary-dark;
+    }
+  }
+
+  .popupFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    padding: $spacing-md $spacing-xl;
+    border-top: 1px solid $color-gray-100;
+    background: $color-gray-50;
+    border-radius: 0 0 $radius-2xl $radius-2xl;
+    flex-shrink: 0;
+
+    @include sm {
+      border-radius: 0 0 $radius-xl $radius-xl;
+    }
+  }
+
+  .popupMeta2 {
+    font-size: $font-size-xs;
+    color: $color-gray-500;
+
+    strong {
+      color: $color-gray-700;
+    }
+  }
+
+  .downloadBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $radius-lg;
+    background: $color-primary;
+    color: $color-white;
+    text-decoration: none;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    transition: all $transition-fast;
+
+    &:hover {
+      background: $color-primary-dark;
+      transform: translateY(-1px);
+    }
+  }
+}
+
+.viewerOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+}
+
+.viewerImage {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.viewerClose {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 28px;
+  border: none;
+  background: none;
+  color: white;
+  cursor: pointer;
+}
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: $spacing-sm;
+}
+
+.galleryItem {
+  width: 100%;
+  height: 120px;
+  border-radius: $radius-lg;
+  // overflow: hidden;
+  cursor: pointer;
+  background: $color-gray-100;
+  transition: transform 0.2s ease;
+
+  img {
+    border-radius: $radius-lg;
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+  }
+  p {
+    font-size: 14px;
+    color: #fff;
+    margin: 0;
+    text-align: center;
+  }
+  h5 {
+    font-size: 16px;
+    color: #fff;
+    margin: 0;
+    text-align: center;
+  }
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+.galleryOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1100;
+  padding: 40px;
+}
+
+.galleryClose {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 28px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.galleryItem {
+  border-radius: 10px;
+  // overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// ─── ADD THESE to ViewProject.module.scss ────────────────────────────────────
+// Paste anywhere inside the file (e.g. after the existing .svDocs block)
+
+// Site visit card date
+.svDate {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  font-weight: $font-weight-medium;
+}
+
+// Row that holds the photo + document buttons
+.svMediaRow {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+  padding-top: $spacing-sm;
+  border-top: 1px solid $color-gray-100;
+  margin-top: $spacing-xs;
+}
+
+// Shared base for both buttons
+%svBtnBase {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  border: none;
+  border-radius: $radius-lg;
+  padding: 6px $spacing-md;
+  font-family: $font-family-primary;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition:
+    opacity $transition-fast,
+    transform $transition-fast,
+    box-shadow $transition-fast;
+
+  &:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Photos button — primary tint
+.svMediaBtn {
+  @extend %svBtnBase;
+  background: rgba($color-primary, 0.08);
+  color: $color-primary;
+  border: 1px solid rgba($color-primary, 0.18);
+
+  &:hover {
+    background: rgba($color-primary, 0.14);
+    box-shadow: 0 2px 8px rgba($color-primary, 0.15);
+  }
+}
+
+// Documents button — info tint
+.svDocBtn {
+  @extend %svBtnBase;
+  background: rgba($color-info, 0.08);
+  color: $color-info;
+  border: 1px solid rgba($color-info, 0.18);
+
+  &:hover {
+    background: rgba($color-info, 0.14);
+    box-shadow: 0 2px 8px rgba($color-info, 0.15);
+  }
+}
+
+.svMediaIcon {
+  font-size: 0.9rem;
+  line-height: 1;
+}
+// ─── Section Header ───────────────────────────────────────────────────────────
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+  flex-wrap: wrap;
+
+  h3 {
+    font-family: $font-family-heading;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $color-gray-900;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+}
+
+// ─── Primary Button ───────────────────────────────────────────────────────────
+.primaryBtn {
+  @include button-primary; // uses your existing mixin
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba($color-primary, 0.25);
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba($color-primary, 0.35);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba($color-primary, 0.2);
+  }
+}

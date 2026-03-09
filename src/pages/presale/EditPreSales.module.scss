@@ -1,0 +1,111 @@
+.pageWrapper {
+  padding: 32px;
+  min-height: 100vh;
+  background: var(--bg-main);
+}
+
+.breadcrumb {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.pageTitle {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 28px;
+}
+
+.card {
+  background: var(--bg-card);
+  padding: 28px;
+  border-radius: 16px;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 24px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.gridTwo {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.input {
+  padding: 11px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border-light);
+  background: white;
+  font-size: 14px;
+  color: var(--text-primary);
+  transition: 0.2s ease;
+}
+
+.input:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+.textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.actionRow {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.buttonPrimary {
+  background: var(--primary);
+  color: white;
+  padding: 10px 22px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+}
+
+.buttonPrimary:hover {
+  background: var(--primary-hover);
+}
+
+.buttonSecondary {
+  background: var(--bg-muted);
+  color: var(--text-primary);
+  padding: 10px 22px;
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+}
+
+.loading {
+  padding: 40px;
+  text-align: center;
+}
+.datePreview {
+  font-size: 12px;
+  margin-top: 6px;
+  color: var(--text-secondary);
+}

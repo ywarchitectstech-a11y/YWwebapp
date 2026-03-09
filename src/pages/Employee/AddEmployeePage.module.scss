@@ -1,0 +1,84 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.pageWrapper {
+  padding: 32px;
+  min-height: 100vh;
+  background: var(--bg-main);
+}
+
+.breadcrumb {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.pageTitle {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 28px;
+}
+
+.card {
+  background: var(--bg-card);
+  padding: 28px;
+  border-radius: 16px;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 24px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.input {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border-light);
+  font-size: 14px;
+}
+
+.textarea {
+  min-height: 100px;
+}
+
+.actionRow {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.buttonPrimary {
+  background: var(--primary);
+  color: white;
+  padding: 10px 24px;
+  border-radius: 12px;
+  border: none;
+}
+
+.buttonSecondary {
+  background: var(--bg-muted);
+  border: 1px solid var(--border-light);
+  padding: 10px 24px;
+  border-radius: 12px;
+}

@@ -1,0 +1,30 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+}
+
+.mainWrapper {
+  flex: 1;
+  margin-left: $sidebar-width;
+  transition: margin-left $transition-base;
+  
+  &.sidebarCollapsed {
+    margin-left: $sidebar-collapsed-width;
+  }
+  
+  @include md {
+    margin-left: 0;
+  }
+}
+
+.mainContent {
+  padding: calc($header-height + $spacing-lg) $spacing-xl $spacing-xl;
+  min-height: 100vh;
+  
+  @include md {
+    padding: calc($header-height + $spacing-md) $spacing-md $spacing-md;
+  }
+}

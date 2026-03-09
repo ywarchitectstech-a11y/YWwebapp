@@ -1,0 +1,101 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.select {
+  position: relative;
+  display: inline-block;
+}
+
+.selectButton {
+  @include flex-between;
+  gap: $spacing-md;
+  min-width: 160px;
+  padding: $spacing-sm $spacing-md;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-gray-700;
+  background: $color-white;
+  border: 1px solid $color-gray-300;
+  border-radius: $radius-lg;
+  cursor: pointer;
+  transition: all $transition-fast;
+  
+  &:hover {
+    border-color: $color-gray-400;
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+  }
+  
+  &.open {
+    border-color: $color-primary;
+  }
+}
+
+.selectIcon {
+  display: flex;
+  align-items: center;
+  color: $color-gray-400;
+}
+
+.chevron {
+  transition: transform $transition-fast;
+  
+  &.open {
+    transform: rotate(180deg);
+  }
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + $spacing-xs);
+  left: 0;
+  right: 0;
+  background: $color-white;
+  border: 1px solid $color-gray-200;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-lg;
+  z-index: $z-dropdown;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all $transition-fast;
+  
+  &.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+.option {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  font-size: $font-size-sm;
+  color: $color-gray-700;
+  text-align: left;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all $transition-fast;
+  
+  &:first-child {
+    border-radius: $radius-lg $radius-lg 0 0;
+  }
+  
+  &:last-child {
+    border-radius: 0 0 $radius-lg $radius-lg;
+  }
+  
+  &:hover {
+    background: $color-gray-50;
+  }
+  
+  &.selected {
+    background: rgba($color-primary, 0.08);
+    color: $color-primary;
+  }
+}

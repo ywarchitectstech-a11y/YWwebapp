@@ -1,0 +1,152 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.lineChart {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  
+  @include sm {
+    height: 220px;
+  }
+}
+
+.chartContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chartArea {
+  flex: 1;
+  position: relative;
+  margin-left: 40px;
+  margin-bottom: 30px;
+}
+
+.yAxis {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 30px;
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-right: $spacing-sm;
+}
+
+.yLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+}
+
+.xAxis {
+  position: absolute;
+  bottom: 0;
+  left: 40px;
+  right: 0;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: $spacing-sm;
+}
+
+.xLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+}
+
+.chartSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.gridLine {
+  stroke: $color-gray-100;
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+
+.dataLine {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  
+  &.today {
+    stroke: $chart-today;
+  }
+  
+  &.pending {
+    stroke: $chart-pending;
+  }
+  
+  &.upcoming {
+    stroke: $chart-upcoming;
+  }
+}
+
+.dataPoint {
+  fill: $color-white;
+  stroke-width: 2;
+  cursor: pointer;
+  transition: r $transition-fast;
+  
+  &.today {
+    stroke: $chart-today;
+  }
+  
+  &.pending {
+    stroke: $chart-pending;
+  }
+  
+  &.upcoming {
+    stroke: $chart-upcoming;
+  }
+  
+  &:hover {
+    r: 6;
+  }
+}
+
+.legend {
+  display: flex;
+  justify-content: flex-end;
+  gap: $spacing-lg;
+  margin-bottom: $spacing-md;
+  
+  @include sm {
+    justify-content: center;
+    gap: $spacing-md;
+  }
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  font-size: $font-size-sm;
+  color: $color-gray-600;
+}
+
+.legendDot {
+  width: 12px;
+  height: 12px;
+  border-radius: $radius-sm;
+  
+  &.today {
+    background: $chart-today;
+  }
+  
+  &.pending {
+    background: $chart-pending;
+  }
+  
+  &.upcoming {
+    background: $chart-upcoming;
+  }
+}

@@ -1,0 +1,52 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.card {
+  @include card-base;
+  padding: $spacing-lg;
+  
+  &.noPadding {
+    padding: 0;
+  }
+  
+  &.hoverable {
+    @include card-hover;
+  }
+}
+
+.cardHeader {
+  @include flex-between;
+  margin-bottom: $spacing-lg;
+  
+  &.noBorder {
+    margin-bottom: $spacing-md;
+  }
+}
+
+.cardTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-900;
+}
+
+.cardSubtitle {
+  font-size: $font-size-sm;
+  color: $color-gray-500;
+  margin-top: $spacing-xs;
+}
+
+.cardActions {
+  @include flex-start;
+  gap: $spacing-sm;
+}
+
+.cardContent {
+  // Default styles
+}
+
+.cardFooter {
+  margin-top: $spacing-lg;
+  padding-top: $spacing-lg;
+  border-top: 1px solid $color-gray-100;
+  @include flex-between;
+}

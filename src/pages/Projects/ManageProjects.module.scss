@@ -1,0 +1,157 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.projectsPage {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+}
+
+.pageHeader {
+  @include flex-between;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+}
+
+.pageTitle {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+}
+
+.headerActions {
+  @include flex-start;
+  gap: $spacing-md;
+  
+  @include sm {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+.addButton {
+  @include button-primary;
+  padding: $spacing-sm $spacing-lg;
+  
+  @include sm {
+    width: 100%;
+  }
+}
+
+.filterButton {
+  @include button-secondary;
+  padding: $spacing-sm $spacing-lg;
+  
+  @include sm {
+    width: 100%;
+  }
+}
+
+.tableCard {
+  @include card-base;
+  overflow: hidden;
+}
+
+.actionButton {
+  @include flex-start;
+  gap: $spacing-xs;
+  padding: $spacing-xs $spacing-sm;
+  font-size: $font-size-sm;
+  color: $color-gray-600;
+  background: transparent;
+  border: none;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: all $transition-fast;
+  
+  &:hover {
+    color: $color-primary;
+    background: rgba($color-primary, 0.08);
+  }
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-lg $spacing-xl;
+  border-bottom: 1px solid $color-gray-100;
+  
+  @include sm {
+    flex-direction: column;
+    padding: $spacing-md;
+  }
+}
+
+.searchInputWrapper {
+  position: relative;
+  flex: 1;
+  max-width: 400px;
+  
+  @include sm {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.searchIconWrapper {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: $color-gray-400;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.searchInput {
+  @include input-base;
+  padding-left: 40px;
+}
+
+.filterTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}
+
+.filterTag {
+  @include flex-center;
+  gap: $spacing-xs;
+  padding: $spacing-xs $spacing-md;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  color: $color-gray-600;
+  background: $color-gray-100;
+  border-radius: $radius-full;
+  border: none;
+  cursor: pointer;
+  transition: all $transition-fast;
+  
+  &:hover {
+    background: $color-gray-200;
+  }
+  
+  &.active {
+    background: rgba($color-primary, 0.1);
+    color: $color-primary;
+  }
+}
+
+.statusCell {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  
+  &.completed { background: $color-success; }
+  &.ongoing { background: $color-info; }
+  &.pending { background: $color-warning; }
+  &.cancelled { background: $color-danger; }
+}

@@ -1,0 +1,836 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
+.page {
+  min-height: 100vh;
+  background: $gradient-background;
+  padding: $spacing-lg $spacing-xl;
+  font-family: $font-family-primary;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+
+  @include md {
+    padding: $spacing-md;
+    gap: $spacing-md;
+  }
+}
+
+// ─── Breadcrumb ───────────────────────────────────────────────────────────────
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $color-gray-500;
+}
+
+.breadItem {
+  color: $color-gray-500;
+  cursor: pointer;
+  transition: color $transition-fast;
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.breadSep {
+  color: $color-gray-300;
+}
+
+.breadCurrent {
+  color: $color-gray-700;
+  font-weight: $font-weight-semibold;
+}
+
+// ─── Hero Card ────────────────────────────────────────────────────────────────
+.heroCard {
+  @include card-base;
+  overflow: hidden;
+}
+
+.heroTopBar {
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    $color-primary 0%,
+    $color-secondary 50%,
+    $color-info 100%
+  );
+}
+
+.heroContent {
+  @include flex-between;
+  padding: $spacing-lg $spacing-xl;
+  gap: $spacing-lg;
+
+  @include sm {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: $spacing-md;
+    gap: $spacing-md;
+  }
+}
+
+.heroLeft {
+  @include flex-start;
+  gap: $spacing-md;
+}
+
+.heroIconWrap {
+  width: 52px;
+  height: 52px;
+  background: $color-primary;
+  color: $color-white;
+  border-radius: $radius-xl;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba($color-primary, 0.3);
+}
+
+.heroTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  margin: 0 0 $spacing-xs 0;
+  line-height: $line-height-tight;
+}
+
+.heroSub {
+  font-size: $font-size-sm;
+  color: $color-gray-500;
+  margin: 0;
+}
+
+.heroRight {
+  @include flex-start;
+  gap: $spacing-sm;
+
+  @include sm {
+    width: 100%;
+  }
+}
+
+// Search
+.searchWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  @include sm {
+    flex: 1;
+  }
+}
+
+.searchIcon {
+  position: absolute;
+  left: 0.75rem;
+  color: $color-gray-400;
+  pointer-events: none;
+}
+
+.searchInput {
+  @include input-base;
+  padding-left: 2.25rem;
+  width: 220px;
+  font-size: $font-size-sm;
+  border-radius: $radius-lg;
+  background: $color-gray-50;
+
+  &:focus {
+    background: $color-white;
+  }
+
+  @include sm {
+    width: 100%;
+  }
+}
+
+.uploadBtn {
+  @include button-primary;
+  background: $color-primary;
+  font-size: $font-size-sm;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &:hover:not(:disabled) {
+    background: darken(#7c5e0b, 8%);
+    box-shadow: $shadow-md;
+  }
+}
+
+// ─── Stats Row ────────────────────────────────────────────────────────────────
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-md;
+
+  @include lg {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include sm {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include xs {
+    grid-template-columns: 1fr;
+  }
+}
+
+.statCard {
+  @include card-base;
+  @include flex-start;
+  gap: $spacing-md;
+  padding: $spacing-md $spacing-lg;
+  transition:
+    transform $transition-fast,
+    box-shadow $transition-fast;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-lg;
+  }
+}
+
+.statIcon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.statValue {
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  line-height: $line-height-tight;
+}
+
+.statLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+  font-weight: $font-weight-medium;
+  margin-top: 2px;
+}
+
+// ─── Section Head ─────────────────────────────────────────────────────────────
+.sectionHead {
+  @include flex-start;
+  gap: $spacing-sm;
+}
+
+.sectionTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-800;
+  margin: 0;
+}
+
+.sectionCount {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  padding: 2px $spacing-sm;
+  border-radius: $radius-full;
+  background: rgba($color-primary, 0.1);
+  color: $color-primary;
+}
+
+// ─── Empty State ──────────────────────────────────────────────────────────────
+.empty {
+  @include flex-column;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-3xl;
+  text-align: center;
+  color: $color-gray-400;
+  font-size: $font-size-sm;
+}
+
+.emptyIcon {
+  font-size: 3rem;
+  opacity: 0.4;
+}
+
+// ─── Folder Grid ──────────────────────────────────────────────────────────────
+.folderGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $spacing-lg;
+
+  @include md {
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: $spacing-md;
+  }
+  @include xs {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-sm;
+  }
+}
+
+// ─── Folder Card ──────────────────────────────────────────────────────────────
+.folderCard {
+  @include card-base;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: $spacing-xl $spacing-lg $spacing-md;
+  gap: $spacing-md;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  animation: fadeSlideIn 0.4s ease both;
+  transition:
+    transform $transition-base,
+    box-shadow $transition-base;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-xl;
+
+    .folderSvg {
+      transform: scale(1.06) translateY(-2px);
+    }
+    .folderArrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .folderInfo {
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.folderIconArea {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: $spacing-xs;
+}
+
+.folderSvg {
+  width: 90px;
+  height: 72px;
+  transition: transform $transition-base;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+}
+
+.folderBadge {
+  position: absolute;
+  top: -4px;
+  right: 20px;
+  min-width: 22px;
+  height: 22px;
+  border-radius: $radius-full;
+  color: $color-white;
+  font-size: 10px;
+  font-weight: $font-weight-bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid $color-white;
+}
+
+.folderInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  transition: opacity $transition-fast;
+}
+
+.folderName {
+  font-family: $font-family-heading;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-800;
+  line-height: $line-height-tight;
+  @include text-truncate;
+  max-width: 100%;
+}
+
+.folderMeta {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  font-weight: $font-weight-normal;
+}
+
+.folderArrow {
+  position: absolute;
+  bottom: $spacing-md;
+  right: $spacing-md;
+  color: $color-gray-300;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all $transition-base;
+}
+
+// ─── Overlay ──────────────────────────────────────────────────────────────────
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba($color-gray-900, 0.55);
+  backdrop-filter: blur(6px);
+  z-index: $z-modal-backdrop;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-lg;
+  animation: fadeIn 0.2s ease;
+
+  @include sm {
+    padding: $spacing-sm;
+    align-items: flex-end;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// ─── Gallery Modal ────────────────────────────────────────────────────────────
+.modal {
+  background: $color-white;
+  border-radius: $radius-2xl;
+  width: 100%;
+  max-width: 860px;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow:
+    $shadow-xl,
+    0 0 0 1px rgba($color-gray-200, 0.5);
+  animation: slideUp 0.25s ease;
+
+  @include sm {
+    border-radius: $radius-2xl $radius-2xl 0 0;
+    max-height: 90vh;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modalHead {
+  @include flex-between;
+  padding: $spacing-lg $spacing-xl;
+  border-bottom: 1px solid rgba($color-gray-200, 0.6);
+  flex-shrink: 0;
+
+  @include sm {
+    padding: $spacing-md;
+  }
+}
+
+.modalHeadLeft {
+  @include flex-start;
+  gap: $spacing-md;
+}
+
+.modalFolderIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: $radius-lg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.modalTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  margin: 0 0 3px 0;
+  line-height: $line-height-tight;
+}
+
+.modalSub {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  margin: 0;
+}
+
+.closeBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: $radius-lg;
+  border: 1px solid $color-gray-200;
+  background: $color-gray-50;
+  color: $color-gray-500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all $transition-fast;
+  flex-shrink: 0;
+
+  &:hover {
+    background: $color-danger;
+    border-color: $color-danger;
+    color: $color-white;
+  }
+}
+
+.modalAccent {
+  height: 3px;
+  flex-shrink: 0;
+}
+
+// ─── Image Grid inside Modal ───────────────────────────────────────────────────
+.modalBody {
+  overflow-y: auto;
+  flex: 1;
+  padding: $spacing-lg;
+
+  @include custom-scrollbar;
+  @include sm {
+    padding: $spacing-sm;
+  }
+}
+
+.imageGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $spacing-md;
+
+  @include sm {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-sm;
+  }
+  @include xs {
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-xs;
+  }
+}
+
+.imgThumb {
+  position: relative;
+  aspect-ratio: 4/3;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  background: $color-gray-100;
+  animation: fadeSlideIn 0.35s ease both;
+  transition:
+    transform $transition-base,
+    box-shadow $transition-base;
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: $shadow-lg;
+
+    .thumbOverlay {
+      opacity: 1;
+    }
+    .thumbCaption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.thumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.thumbImgLoaded {
+  opacity: 1;
+}
+
+.thumbOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba($color-gray-900, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity $transition-base;
+}
+
+.thumbCaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: $spacing-sm;
+  background: linear-gradient(transparent, rgba($color-gray-900, 0.75));
+  color: $color-white;
+  font-size: 10px;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-tight;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all $transition-base;
+}
+
+// ─── Lightbox ─────────────────────────────────────────────────────────────────
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba($color-gray-900, 0.96);
+  z-index: $z-modal;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.2s ease;
+}
+
+// Lightbox Top Bar
+.lbBar {
+  @include flex-between;
+  padding: $spacing-md $spacing-xl;
+  background: rgba($color-gray-900, 0.8);
+  border-bottom: 1px solid rgba($color-white, 0.08);
+  flex-shrink: 0;
+
+  @include sm {
+    padding: $spacing-sm $spacing-md;
+  }
+}
+
+.lbBarLeft {
+  @include flex-start;
+  gap: $spacing-md;
+}
+
+.lbBack {
+  width: 36px;
+  height: 36px;
+  border-radius: $radius-lg;
+  border: 1px solid rgba($color-white, 0.15);
+  background: rgba($color-white, 0.07);
+  color: $color-white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all $transition-fast;
+  flex-shrink: 0;
+
+  &:hover {
+    background: rgba($color-white, 0.15);
+    border-color: rgba($color-white, 0.3);
+  }
+}
+
+.lbFolderName {
+  font-size: $font-size-xs;
+  color: rgba($color-white, 0.5);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: $font-weight-medium;
+}
+
+.lbCaption {
+  font-family: $font-family-heading;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $color-white;
+  margin-top: 2px;
+}
+
+.lbCounter {
+  font-size: $font-size-sm;
+  color: rgba($color-white, 0.5);
+  font-weight: $font-weight-medium;
+  font-variant-numeric: tabular-nums;
+}
+
+// Image area
+.lbImgArea {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-lg 80px;
+  overflow: hidden;
+
+  @include sm {
+    padding: $spacing-md 56px;
+  }
+}
+
+.lbImgWrap {
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lbImg {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: $radius-lg;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  animation: lbFadeIn 0.25s ease;
+}
+
+@keyframes lbFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Arrow buttons
+.lbArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: $radius-full;
+  border: 1px solid rgba($color-white, 0.15);
+  background: rgba($color-white, 0.07);
+  color: $color-white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all $transition-fast;
+  z-index: 2;
+
+  &:hover {
+    background: rgba($color-white, 0.18);
+    border-color: rgba($color-white, 0.35);
+    transform: translateY(-50%) scale(1.08);
+  }
+
+  @include sm {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+.lbArrowLeft {
+  left: $spacing-lg;
+  @include sm {
+    left: $spacing-sm;
+  }
+}
+.lbArrowRight {
+  right: $spacing-lg;
+  @include sm {
+    right: $spacing-sm;
+  }
+}
+
+// Thumbnail strip
+.lbStrip {
+  display: flex;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-xl;
+  background: rgba($color-gray-900, 0.8);
+  border-top: 1px solid rgba($color-white, 0.08);
+  overflow-x: auto;
+  flex-shrink: 0;
+  justify-content: center;
+
+  &::-webkit-scrollbar {
+    height: 3px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba($color-white, 0.05);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba($color-white, 0.2);
+    border-radius: $radius-full;
+  }
+
+  @include sm {
+    padding: $spacing-xs $spacing-md;
+    gap: $spacing-xs;
+    justify-content: flex-start;
+  }
+}
+
+.lbStripThumb {
+  width: 60px;
+  height: 44px;
+  border-radius: $radius-md;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  padding: 0;
+  flex-shrink: 0;
+  opacity: 0.5;
+  transition: all $transition-fast;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &:hover {
+    opacity: 0.85;
+    transform: scale(1.05);
+  }
+
+  @include sm {
+    width: 46px;
+    height: 34px;
+  }
+}
+
+.lbStripThumbActive {
+  opacity: 1 !important;
+  transform: scale(1.08);
+  box-shadow: 0 0 0 1px rgba($color-white, 0.3);
+}

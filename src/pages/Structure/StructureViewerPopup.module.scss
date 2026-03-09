@@ -1,0 +1,113 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup {
+  width: 90%;
+  max-width: 1200px;
+  background: white;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.closeBtn {
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 24px;
+  padding: 20px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  background: #fafafa;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+
+  span {
+    font-size: 12px;
+    color: #777;
+  }
+}
+
+.levelList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.levelRow {
+  display: grid;
+  grid-template-columns: 20px 1fr 120px 60px;
+  align-items: center;
+  padding: 10px;
+  background: white;
+  border-radius: 6px;
+}
+
+.levelDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.building {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.floor {
+  width: 200px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-top: 5px solid;
+  text-align: center;
+  background: white;
+}
+
+.foundation {
+  width: 220px;
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 6px;
+}

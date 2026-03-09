@@ -1,0 +1,825 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+// ─── Page ─────────────────────────────────────────────────────────────────────
+.page {
+  min-height: 100vh;
+  background: $gradient-background;
+  padding: $spacing-lg $spacing-xl;
+  font-family: $font-family-primary;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+
+  @include md {
+    padding: $spacing-md;
+  }
+}
+
+// ─── Breadcrumb ───────────────────────────────────────────────────────────────
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $color-gray-500;
+}
+
+.breadItem {
+  color: $color-gray-500;
+  cursor: pointer;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.breadSep {
+  color: $color-gray-300;
+  font-size: 0.8rem;
+}
+
+.breadCurrent {
+  color: $color-gray-700;
+  font-weight: $font-weight-semibold;
+}
+
+// ─── Hero Card ────────────────────────────────────────────────────────────────
+.heroCard {
+  @include card-base;
+  overflow: hidden;
+  position: relative;
+}
+
+.heroTopBar {
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    $color-primary 0%,
+    $color-secondary 50%,
+    $color-info 100%
+  );
+}
+
+.heroContent {
+  @include flex-between;
+  padding: $spacing-lg $spacing-xl;
+  gap: $spacing-lg;
+
+  @include md {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: $spacing-md;
+  }
+}
+
+.heroLeft {
+  @include flex-start;
+  gap: $spacing-lg;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  background: $color-primary;
+  color: $color-white;
+  border-radius: $radius-xl;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  flex-shrink: 0;
+}
+
+.heroTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  margin: 0 0 $spacing-xs 0;
+  line-height: $line-height-tight;
+}
+
+.heroMeta {
+  font-size: $font-size-sm;
+  color: $color-gray-500;
+  margin-bottom: $spacing-sm;
+  min-height: 1.25rem;
+}
+
+.heroBadges {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.badge {
+  @include badge($color-primary, $color-primary);
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-xs;
+  background: rgba($color-primary, 0.1);
+  color: $color-primary;
+  border-radius: $radius-full;
+  padding: 3px $spacing-sm;
+}
+
+.badgeOutline {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px $spacing-sm;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  border-radius: $radius-full;
+  border: 1px solid $color-gray-200;
+  color: $color-gray-600;
+  background: $color-gray-50;
+}
+
+.heroActions {
+  @include flex-start;
+  gap: $spacing-sm;
+  flex-shrink: 0;
+}
+
+.btnBack {
+  @include button-secondary;
+  font-size: $font-size-sm;
+}
+
+.btnPrimary {
+  @include button-primary;
+  background: $color-primary;
+  font-size: $font-size-sm;
+
+  &:hover:not(:disabled) {
+    background: darken(#7c5e0b, 8%);
+    box-shadow: $shadow-md;
+  }
+}
+
+// ─── Tab Bar ──────────────────────────────────────────────────────────────────
+.tabBar {
+  @include card-base;
+  display: flex;
+  padding: $spacing-xs;
+  gap: $spacing-xs;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.tabBtn {
+  @include button-base;
+  background: transparent;
+  color: $color-gray-500;
+  font-size: $font-size-sm;
+  border-radius: $radius-lg;
+  padding: $spacing-sm $spacing-md;
+  gap: $spacing-xs;
+  white-space: nowrap;
+  border: none;
+
+  &:hover {
+    background: $color-gray-50;
+    color: $color-gray-700;
+  }
+}
+
+.tabActive {
+  background: $color-primary !important;
+  color: $color-white !important;
+  box-shadow: $shadow-sm;
+}
+
+.tabCount {
+  background: rgba($color-white, 0.25);
+  color: inherit;
+  font-size: 10px;
+  padding: 1px 7px;
+  border-radius: $radius-full;
+  font-weight: $font-weight-semibold;
+
+  .tabActive & {
+    background: rgba($color-white, 0.3);
+  }
+}
+
+// ─── Body Grid ────────────────────────────────────────────────────────────────
+.grid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: $spacing-lg;
+  align-items: start;
+
+  @include lg {
+    grid-template-columns: 1fr;
+  }
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.right {
+  position: sticky;
+  top: $spacing-lg;
+}
+
+// ─── Card ─────────────────────────────────────────────────────────────────────
+.card {
+  @include card-base;
+  overflow: hidden;
+}
+
+.cardHead {
+  @include flex-start;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-lg;
+  border-bottom: 1px solid rgba($color-gray-200, 0.6);
+  background: $color-gray-50;
+}
+
+.cardIcon {
+  font-size: 1rem;
+  color: $color-primary;
+}
+
+.cardTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-800;
+  margin: 0;
+  flex: 1;
+  line-height: $line-height-tight;
+}
+
+.cardBody {
+  padding: $spacing-lg;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px $spacing-sm;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  border-radius: $radius-full;
+  background: rgba($color-primary, 0.1);
+  color: $color-primary;
+}
+
+.cancelBtn {
+  @include button-base;
+  background: transparent;
+  border: 1px solid $color-gray-200;
+  color: $color-gray-500;
+  font-size: $font-size-xs;
+  padding: $spacing-xs $spacing-sm;
+  margin-left: auto;
+
+  &:hover:not(:disabled) {
+    border-color: $color-danger;
+    color: $color-danger;
+  }
+}
+
+// ─── Form Fields ──────────────────────────────────────────────────────────────
+.fieldGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+
+  @include sm {
+    grid-template-columns: 1fr;
+  }
+}
+
+.input {
+  @include input-base;
+  box-sizing: border-box;
+}
+
+.select {
+  @include input-base;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239ca3af' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2rem;
+  cursor: pointer;
+
+  option {
+    color: $color-gray-800;
+    background: $color-white;
+  }
+}
+
+.range {
+  width: 100%;
+  accent-color: $color-primary;
+  margin-bottom: $spacing-sm;
+  cursor: pointer;
+}
+
+.progressTrack {
+  height: 6px;
+  background: $color-gray-100;
+  border-radius: $radius-full;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, $color-primary, $color-secondary);
+  border-radius: $radius-full;
+  transition: width 0.2s ease;
+}
+
+// ─── Levels List ──────────────────────────────────────────────────────────────
+.levelRows {
+  display: flex;
+  flex-direction: column;
+}
+
+.levelRow {
+  @include flex-start;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-lg;
+  border-bottom: 1px solid rgba($color-gray-100, 0.8);
+  transition: background $transition-fast;
+
+  &:last-child {
+    border-bottom: none;
+  }
+  &:hover {
+    background: $color-gray-50;
+  }
+}
+
+.levelDot {
+  width: 8px;
+  height: 8px;
+  border-radius: $radius-full;
+  flex-shrink: 0;
+}
+
+.levelInfo {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.levelName {
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-sm;
+  color: $color-gray-800;
+}
+
+.levelTypeBadge {
+  font-size: 10px;
+  font-weight: $font-weight-medium;
+  padding: 2px $spacing-sm;
+  border-radius: $radius-full;
+  letter-spacing: 0.04em;
+}
+
+.levelMeta {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+}
+
+.miniTrack {
+  width: 60px;
+  height: 3px;
+  background: $color-gray-100;
+  border-radius: $radius-full;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.miniFill {
+  height: 100%;
+  border-radius: $radius-full;
+  transition: width 0.2s;
+}
+
+.rowActions {
+  display: flex;
+  gap: $spacing-xs;
+}
+
+.iconBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: $radius-md;
+  border: 1px solid $color-gray-200;
+  background: $color-white;
+  color: $color-gray-500;
+  cursor: pointer;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: $color-primary;
+    color: $color-primary;
+    background: rgba($color-primary, 0.05);
+  }
+}
+
+.iconBtnDanger {
+  &:hover {
+    border-color: $color-danger;
+    color: $color-danger;
+    background: rgba($color-danger, 0.05);
+  }
+}
+
+// ─── Building Viz ─────────────────────────────────────────────────────────────
+.emptyViz {
+  @include flex-column;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-3xl $spacing-xl;
+  gap: $spacing-sm;
+  text-align: center;
+}
+
+.emptyIcon {
+  font-size: 3.5rem;
+  opacity: 0.25;
+  line-height: 1;
+}
+
+.emptyTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-600;
+  margin: 0;
+}
+
+.emptyHint {
+  font-size: $font-size-sm;
+  color: $color-gray-400;
+  max-width: 260px;
+  line-height: $line-height-relaxed;
+  margin: 0;
+}
+
+.vizWrap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.vizInner {
+  flex: 1;
+  padding: $spacing-xl $spacing-xl $spacing-md;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    rgba($color-info, 0.02) 0%,
+    transparent 40%
+  );
+}
+
+.sky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(
+    180deg,
+    rgba($color-info, 0.05) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.buildingWrap {
+  display: flex;
+  flex-direction: column;
+  padding: 0 80px 0 60px; // right = label space, left = dimension space
+  gap: 0;
+}
+
+// ─── Floor Block ──────────────────────────────────────────────────────────────
+.floor {
+  position: relative;
+  height: 68px;
+  cursor: pointer;
+  transition: transform $transition-fast;
+  flex-shrink: 0;
+
+  &:hover {
+    transform: translateX(3px);
+    z-index: 2;
+  }
+}
+
+.floorBase {
+  height: 80px;
+}
+.floorTerrace {
+  height: 40px;
+}
+.floorHov {
+  transform: translateX(5px) !important;
+  z-index: 3;
+}
+
+// Front face
+.face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 16px;
+  border: 1px solid $color-gray-200;
+  border-top-width: 3px;
+  border-radius: $radius-sm $radius-sm 0 0;
+  overflow: hidden;
+  background: $color-white;
+  transition: all $transition-fast;
+  box-shadow: $shadow-sm;
+
+  .floorHov & {
+    box-shadow: $shadow-md;
+  }
+}
+
+.topSlab {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  opacity: 0.7;
+}
+
+// Pillars
+.pillars {
+  position: absolute;
+  top: 6px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: stretch;
+  padding: 0 8%;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.pillar {
+  width: 5px;
+  background: $color-gray-400;
+  border-radius: 1px;
+  transition: opacity $transition-fast;
+}
+
+// Windows
+.windows {
+  position: absolute;
+  top: 14px;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0 14%;
+  pointer-events: none;
+}
+
+.win {
+  width: 18px;
+  height: calc(100% - 4px);
+  border: 1px solid $color-gray-200;
+  border-radius: 2px;
+  background: rgba(219, 234, 254, 0.4);
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.6) 0%,
+      transparent 100%
+    );
+  }
+}
+
+// Basement hatch
+.hatch {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+// Terrace parapet
+.parapet {
+  position: absolute;
+  top: 8px;
+  left: 10%;
+  right: 10%;
+  height: 14px;
+  border: 2px solid $color-gray-300;
+  border-bottom: none;
+  border-radius: 2px 2px 0 0;
+}
+
+// Progress bar
+.floorProg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: $color-gray-100;
+}
+
+.floorProgFill {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+// 3D Right side
+.side {
+  position: absolute;
+  top: 2px;
+  right: -12px;
+  width: 12px;
+  bottom: 16px;
+  border: 1px solid $color-gray-200;
+  border-left: none;
+  clip-path: polygon(0 0, 100% 6px, 100% 100%, 0 100%);
+  transition: all $transition-fast;
+}
+
+// 3D Top face
+.topFace {
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  right: -12px;
+  height: 11px;
+  background: $color-gray-50;
+  border: 1px solid $color-gray-200;
+  clip-path: polygon(0 100%, 12px 0, 100% 0, 88% 100%);
+  transition: all $transition-fast;
+}
+
+// Right label
+.floorLbl {
+  position: absolute;
+  right: -88px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  width: 84px;
+}
+
+.lblLine {
+  width: 14px;
+  height: 1px;
+  background: $color-gray-300;
+  flex-shrink: 0;
+  transition: background $transition-fast;
+}
+
+.lblName {
+  font-size: 11px;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-700;
+  line-height: $line-height-tight;
+  transition: color $transition-fast;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: $font-family-primary;
+}
+
+.lblSub {
+  font-size: 9px;
+  color: $color-gray-400;
+  font-family: $font-family-primary;
+}
+
+// Left dimension
+.dim {
+  position: absolute;
+  left: -54px;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  pointer-events: none;
+}
+
+.dimTick {
+  width: 1px;
+  flex: 1;
+  max-height: 10px;
+}
+
+.dimVal {
+  font-size: 8px;
+  color: $color-gray-400;
+  font-family: $font-family-primary;
+  writing-mode: vertical-rl;
+  letter-spacing: 0.05em;
+}
+
+// Foundation
+.foundation {
+  height: 18px;
+  background: linear-gradient(180deg, $color-gray-200 0%, $color-gray-100 100%);
+  border: 1px solid $color-gray-300;
+  border-top: 3px solid $color-gray-400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 $radius-sm $radius-sm;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    right: -12px;
+    width: 12px;
+    bottom: -3px;
+    background: $color-gray-200;
+    border: 1px solid $color-gray-300;
+    border-left: none;
+    clip-path: polygon(0 0, 100% 6px, 100% 100%, 0 100%);
+  }
+}
+
+.foundationTxt {
+  font-size: 9px;
+  color: $color-gray-500;
+  letter-spacing: 0.1em;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  font-family: $font-family-primary;
+}
+
+// Legend
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  padding: $spacing-md $spacing-lg;
+  border-top: 1px solid rgba($color-gray-200, 0.6);
+  background: $color-gray-50;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px $spacing-sm;
+  border-radius: $radius-full;
+  border: 1px solid;
+  font-size: 10px;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.04em;
+}
+
+.chipDot {
+  width: 6px;
+  height: 6px;
+  border-radius: $radius-full;
+  flex-shrink: 0;
+}

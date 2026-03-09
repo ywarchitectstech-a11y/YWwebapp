@@ -1,0 +1,139 @@
+.pageWrapper {
+  padding: 32px;
+  min-height: 100vh;
+  background: var(--bg-main);
+}
+
+.breadcrumb {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.pageTitle {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 28px;
+  color: var(--text-primary);
+}
+
+.card {
+  background: var(--bg-card);
+  padding: 28px;
+  border-radius: 16px;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 24px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* ===============================
+   RESPONSIVE GRID
+=============================== */
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.fullWidth {
+  grid-column: span 2;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.input {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border-light);
+  font-size: 14px;
+  background: white;
+  transition: 0.2s ease;
+}
+
+.input:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+.textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.actionRow {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.buttonPrimary {
+  background: var(--primary);
+  color: white;
+  padding: 10px 24px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+}
+
+.buttonPrimary:hover {
+  background: var(--primary-hover);
+}
+
+.buttonSecondary {
+  background: var(--bg-muted);
+  border: 1px solid var(--border-light);
+  padding: 10px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* ===============================
+   MOBILE RESPONSIVE
+=============================== */
+
+@media (max-width: 1024px) {
+  .pageWrapper {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .fullWidth {
+    grid-column: span 1;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .actionRow {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .buttonPrimary,
+  .buttonSecondary {
+    width: 100%;
+  }
+}

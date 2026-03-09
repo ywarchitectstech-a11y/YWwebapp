@@ -1,0 +1,561 @@
+@use "../../styles/variables" as *;
+
+// ── Page Layout ───────────────────────────────────────────────
+.pageWrapper {
+  padding: $spacing-2xl;
+  background: var(--bg-main, $color-gray-50);
+  min-height: 100vh;
+  font-family: $font-family-primary;
+
+  @media (max-width: $breakpoint-md) {
+    padding: $spacing-md;
+  }
+}
+
+.breadcrumb {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  margin-bottom: $spacing-md;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-weight: $font-weight-medium;
+}
+
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: $spacing-xl;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+}
+
+.pageTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  letter-spacing: -0.02em;
+  margin: 0 0 $spacing-xs 0;
+}
+
+.pageSubtitle {
+  font-size: $font-size-sm;
+  color: $color-gray-400;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.countBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba($color-success, 0.12);
+  color: $color-success;
+  border-radius: $radius-full;
+  padding: 1px 8px;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  letter-spacing: 0.02em;
+}
+
+.addBtn {
+  background: $color-primary;
+  color: $color-white;
+  border: none;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-lg;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition:
+    background $transition-fast,
+    transform $transition-fast,
+    box-shadow $transition-fast;
+  box-shadow: 0 4px 12px rgba($color-primary, 0.3);
+  white-space: nowrap;
+
+  &:hover {
+    background: darken($color-primary, 8%);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba($color-primary, 0.4);
+  }
+}
+
+// ── State Boxes ───────────────────────────────────────────────
+.stateBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-md;
+  padding: $spacing-3xl;
+  color: $color-gray-400;
+  font-size: $font-size-sm;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid $color-gray-200;
+  border-top-color: $color-primary;
+  border-radius: $radius-full;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.errorText {
+  color: $color-danger;
+  font-weight: $font-weight-medium;
+}
+
+// ── Empty State ───────────────────────────────────────────────
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $spacing-3xl;
+  background: $color-white;
+  border-radius: $radius-2xl;
+  border: 1px solid $color-gray-200;
+  gap: $spacing-sm;
+}
+
+.emptyIcon {
+  font-size: 3rem;
+}
+.emptyTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-700;
+}
+.emptyText {
+  font-size: $font-size-sm;
+  color: $color-gray-400;
+}
+
+// ── Table ─────────────────────────────────────────────────────
+.tableWrapper {
+  background: $color-white;
+  border-radius: $radius-2xl;
+  overflow: hidden;
+  border: 1px solid $color-gray-200;
+  box-shadow: $shadow-sm;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  @media (max-width: $breakpoint-md) {
+    display: none;
+  }
+
+  th {
+    background: $color-gray-50;
+    padding: $spacing-md;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    color: $color-gray-500;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid $color-gray-200;
+  }
+
+  td {
+    padding: $spacing-md;
+    border-top: 1px solid $color-gray-100;
+    font-size: $font-size-sm;
+    color: $color-gray-700;
+    vertical-align: middle;
+  }
+
+  tr:hover td {
+    background: $color-gray-50;
+  }
+}
+
+.indexCell {
+  color: $color-gray-400 !important;
+  font-size: $font-size-xs !important;
+  width: 40px;
+}
+.emailCell {
+  color: $color-gray-500 !important;
+  font-size: $font-size-xs !important;
+}
+
+// ── Active Pill ───────────────────────────────────────────────
+.activePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba($color-success, 0.12);
+  color: $color-success;
+  border-radius: $radius-full;
+  padding: 3px 10px;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  &::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: $radius-full;
+    background: $color-success;
+  }
+}
+
+// ── Role Chip ─────────────────────────────────────────────────
+.roleChip {
+  display: inline-block;
+  background: rgba($color-primary, 0.08);
+  color: $color-primary;
+  border-radius: $radius-full;
+  padding: 2px $spacing-sm;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  white-space: nowrap;
+}
+
+// ── Action Buttons ────────────────────────────────────────────
+.actionButtons {
+  display: flex;
+  gap: $spacing-xs;
+  flex-wrap: wrap;
+}
+
+%actionBase {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: none;
+  padding: 5px 10px;
+  border-radius: $radius-md;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition:
+    opacity $transition-fast,
+    transform $transition-fast;
+  white-space: nowrap;
+
+  &:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+  }
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.viewBtn {
+  @extend %actionBase;
+  background: rgba($color-info, 0.1);
+  color: $color-info;
+}
+.editBtn {
+  @extend %actionBase;
+  background: rgba($color-primary, 0.1);
+  color: $color-primary;
+}
+.deactivateBtn {
+  @extend %actionBase;
+  background: rgba($color-danger, 0.1);
+  color: $color-danger;
+}
+
+// ── Mobile Cards ──────────────────────────────────────────────
+.mobileCards {
+  display: none;
+  flex-direction: column;
+  @media (max-width: $breakpoint-md) {
+    display: flex;
+  }
+}
+
+.mobileCard {
+  padding: $spacing-md;
+  border-top: 1px solid $color-gray-100;
+  &:first-child {
+    border-top: none;
+  }
+}
+
+.mobileCardHeader {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-sm;
+}
+
+.mobileCardMeta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  strong {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: $color-gray-800;
+  }
+}
+
+.mobileCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: $spacing-sm;
+  span {
+    font-size: $font-size-xs;
+    color: $color-gray-500;
+  }
+}
+
+.mobileCardActions {
+  display: flex;
+  gap: $spacing-xs;
+  flex-wrap: wrap;
+}
+
+// ── Modal Overlay (shared) ────────────────────────────────────
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba($color-gray-900, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: $z-modal;
+  padding: $spacing-md;
+  backdrop-filter: blur(3px);
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ── Deactivate Modal ──────────────────────────────────────────
+.modalBox {
+  background: $color-white;
+  padding: $spacing-2xl;
+  border-radius: $radius-2xl;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: $shadow-xl;
+  animation: slideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modalIcon {
+  font-size: 2.5rem;
+  margin-bottom: $spacing-md;
+}
+
+.modalTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  margin: 0 0 $spacing-sm 0;
+}
+
+.modalText {
+  font-size: $font-size-sm;
+  color: $color-gray-500;
+  line-height: $line-height-relaxed;
+  margin: 0 0 $spacing-xl 0;
+
+  strong {
+    color: $color-gray-800;
+  }
+}
+
+.modalActions {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-sm;
+}
+
+.cancelBtn {
+  background: $color-gray-100;
+  color: $color-gray-600;
+  border: 1px solid $color-gray-200;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-lg;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  transition: background $transition-fast;
+  &:hover {
+    background: $color-gray-200;
+  }
+}
+
+.confirmBtn {
+  background: $color-danger;
+  color: $color-white;
+  border: none;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-lg;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba($color-danger, 0.3);
+  transition:
+    background $transition-fast,
+    box-shadow $transition-fast;
+  &:hover {
+    background: darken($color-danger, 8%);
+    box-shadow: 0 6px 16px rgba($color-danger, 0.4);
+  }
+}
+
+// ── View Detail Modal ─────────────────────────────────────────
+.viewModal {
+  background: $color-white;
+  border-radius: $radius-2xl;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: $shadow-xl;
+  animation: slideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.viewModalHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-md;
+  padding: $spacing-xl $spacing-xl $spacing-lg;
+  border-bottom: 1px solid $color-gray-100;
+  position: relative;
+}
+
+.viewModalMeta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.viewModalName {
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  margin: 0;
+  line-height: $line-height-tight;
+}
+
+.viewModalRole {
+  font-size: $font-size-sm;
+  color: $color-gray-500;
+}
+
+.closeBtn {
+  position: absolute;
+  top: $spacing-md;
+  right: $spacing-md;
+  background: $color-gray-100;
+  border: none;
+  border-radius: $radius-md;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: $color-gray-500;
+  transition:
+    background $transition-fast,
+    color $transition-fast;
+  flex-shrink: 0;
+  &:hover {
+    background: $color-gray-200;
+    color: $color-gray-800;
+  }
+}
+
+.viewModalBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.viewSection {
+  border-top: 1px solid $color-gray-100;
+  &:first-child {
+    border-top: none;
+  }
+}
+
+.viewSectionTitle {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: $spacing-md $spacing-lg $spacing-xs;
+  background: rgba($color-primary, 0.03);
+}
+
+.viewModalGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: $color-gray-100;
+  overflow: hidden;
+
+  @media (max-width: $breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.viewField {
+  background: $color-white;
+  padding: $spacing-md $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.viewFieldLabel {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-400;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.viewFieldValue {
+  font-size: $font-size-sm;
+  color: $color-gray-800;
+  font-weight: $font-weight-medium;
+  word-break: break-word;
+}

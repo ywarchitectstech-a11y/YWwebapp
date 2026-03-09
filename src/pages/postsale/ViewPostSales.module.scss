@@ -1,0 +1,964 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// ─── Page Shell ───────────────────────────────────────────────────────────────
+.pageWrapper {
+  padding: $spacing-xl $spacing-2xl;
+  min-height: 100vh;
+  background: $gradient-background;
+  border-radius: $radius-xl;
+
+  @include md {
+    padding: $spacing-lg $spacing-md;
+  }
+
+  @include sm {
+    padding: $spacing-md $spacing-sm;
+  }
+}
+
+// ─── Breadcrumb ───────────────────────────────────────────────────────────────
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+  margin-bottom: $spacing-lg;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.breadLink {
+  color: $color-gray-500;
+  cursor: pointer;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.sep {
+  color: $color-gray-300;
+  font-size: $font-size-base;
+}
+
+// ─── Hero Header ──────────────────────────────────────────────────────────────
+.hero {
+  @include flex-between;
+  gap: $spacing-lg;
+  background: $color-white;
+  border-radius: $radius-2xl;
+  padding: $spacing-xl $spacing-xl;
+  margin-bottom: $spacing-lg;
+  border: 1px solid rgba($color-gray-200, 0.6);
+  box-shadow: $shadow-card;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      $color-primary 0%,
+      $color-secondary 50%,
+      $color-info 100%
+    );
+  }
+
+  @include md {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: $spacing-lg;
+  }
+}
+
+.heroLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  flex: 1;
+  min-width: 0;
+
+  @include sm {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-md;
+  }
+}
+
+.heroLogoWrap {
+  flex-shrink: 0;
+}
+
+.heroLogo {
+  width: 72px;
+  height: 72px;
+  border-radius: $radius-xl;
+  object-fit: cover;
+  border: 2px solid $color-gray-200;
+}
+
+.heroLogoFallback {
+  width: 72px;
+  height: 72px;
+  border-radius: $radius-xl;
+  background: linear-gradient(135deg, $color-primary 0%, $color-secondary 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  font-family: $font-family-heading;
+  letter-spacing: -0.02em;
+}
+
+.heroInfo {
+  min-width: 0;
+  flex: 1;
+}
+
+.heroTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  letter-spacing: -0.02em;
+  margin: 0 0 $spacing-xs;
+  @include text-truncate;
+
+  @include sm {
+    font-size: $font-size-xl;
+  }
+}
+
+.heroMeta {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+  margin-bottom: $spacing-sm;
+  font-weight: $font-weight-medium;
+  font-family: monospace;
+  letter-spacing: 0.04em;
+  flex-wrap: wrap;
+}
+
+.dot {
+  color: $color-gray-300;
+}
+
+.heroBadges {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.heroActions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex-shrink: 0;
+
+  @include md {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+// ─── Badges ───────────────────────────────────────────────────────────────────
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.notifiedPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.03em;
+}
+
+.notifiedOn {
+  background: rgba($color-success, 0.1);
+  color: darken($color-success, 10%);
+}
+
+.notifiedOff {
+  background: rgba($color-warning, 0.12);
+  color: darken($color-warning, 20%);
+}
+
+// ─── Buttons ──────────────────────────────────────────────────────────────────
+.primaryBtn {
+  @include button-primary;
+  font-size: $font-size-sm;
+  padding: $spacing-sm $spacing-lg;
+}
+
+.ghostBtn {
+  @include button-secondary;
+  font-size: $font-size-sm;
+  padding: $spacing-sm $spacing-md;
+}
+
+.actionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  margin-top: $spacing-md;
+  padding: $spacing-sm $spacing-md;
+  background: rgba($color-primary, 0.06);
+  color: $color-primary;
+  border: 1px solid rgba($color-primary, 0.2);
+  border-radius: $radius-lg;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+  letter-spacing: 0.03em;
+
+  &:hover {
+    background: rgba($color-primary, 0.12);
+    border-color: rgba($color-primary, 0.4);
+  }
+}
+
+.editBtn {
+  margin-left: auto;
+  padding: 4px 12px;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  color: $color-gray-600;
+  background: $color-gray-100;
+  border: 1px solid $color-gray-200;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: $color-gray-200;
+  }
+}
+
+.saveBtn {
+  @include button-primary;
+  font-size: $font-size-xs;
+  padding: 6px 16px;
+}
+
+.cancelBtn {
+  @include button-secondary;
+  font-size: $font-size-xs;
+  padding: 6px 16px;
+}
+
+// ─── Tab Bar ──────────────────────────────────────────────────────────────────
+.tabBar {
+  display: flex;
+  gap: 4px;
+  background: $color-white;
+  border-radius: $radius-xl;
+  padding: 6px;
+  margin-bottom: $spacing-lg;
+  border: 1px solid rgba($color-gray-200, 0.6);
+  box-shadow: $shadow-sm;
+  overflow-x: auto;
+  @include custom-scrollbar;
+
+  @include md {
+    gap: 2px;
+    padding: 4px;
+  }
+}
+
+.tabBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border: none;
+  border-radius: $radius-lg;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-gray-500;
+  background: transparent;
+  cursor: pointer;
+  transition: all $transition-fast;
+  white-space: nowrap;
+  font-family: $font-family-primary;
+
+  &:hover {
+    color: $color-gray-800;
+    background: $color-gray-50;
+  }
+
+  @include md {
+    font-size: $font-size-xs;
+    padding: 8px 12px;
+  }
+}
+
+.tabActive {
+  background: $color-primary !important;
+  color: $color-white !important;
+  box-shadow: 0 2px 8px rgba($color-primary, 0.3);
+}
+
+.tabIcon {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.tabCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: $radius-full;
+  font-size: 11px;
+  font-weight: $font-weight-bold;
+  background: rgba(255, 255, 255, 0.25);
+  color: inherit;
+
+  .tabBtn:not(.tabActive) & {
+    background: $color-gray-100;
+    color: $color-gray-600;
+  }
+}
+
+.tabPanel {
+  min-height: 300px;
+}
+
+.tabContent {
+  animation: fadeUp 0.2s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ─── Cards ────────────────────────────────────────────────────────────────────
+.card {
+  @include card-base;
+  padding: $spacing-xl;
+  margin-bottom: $spacing-md;
+
+  @include sm {
+    padding: $spacing-lg;
+  }
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-lg;
+
+  h3 {
+    font-family: $font-family-heading;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    color: $color-gray-800;
+    margin: 0;
+  }
+}
+
+.cardIcon {
+  font-size: 18px;
+  color: $color-primary;
+  line-height: 1;
+}
+
+// ─── Overview Grid ────────────────────────────────────────────────────────────
+.overviewGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-md;
+
+  @include md {
+    grid-template-columns: 1fr;
+  }
+}
+
+.statusCard,
+.datesCard,
+.idsCard,
+.remarkCard {
+  // all use .card base
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.dateList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.dateRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-sm 0;
+  border-bottom: 1px solid $color-gray-100;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  span {
+    font-size: $font-size-sm;
+    color: $color-gray-500;
+  }
+
+  strong {
+    font-size: $font-size-sm;
+    color: $color-gray-800;
+    font-weight: $font-weight-semibold;
+  }
+}
+
+// ─── Info Grid ────────────────────────────────────────────────────────────────
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-md $spacing-xl;
+
+  @include sm {
+    grid-template-columns: 1fr;
+  }
+}
+
+.infoField {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fieldLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.fieldValue {
+  font-size: $font-size-sm;
+  color: $color-gray-800;
+  font-weight: $font-weight-medium;
+}
+
+// ─── Remark ───────────────────────────────────────────────────────────────────
+.remarkText {
+  font-size: $font-size-sm;
+  color: $color-gray-700;
+  line-height: $line-height-relaxed;
+
+  em {
+    color: $color-gray-400;
+  }
+}
+
+.remarkEdit {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.remarkTextarea {
+  @include input-base;
+  resize: vertical;
+  min-height: 100px;
+  font-family: $font-family-primary;
+  line-height: $line-height-relaxed;
+}
+
+.remarkActions {
+  display: flex;
+  gap: $spacing-sm;
+  justify-content: flex-end;
+}
+
+// ─── Client Hero ──────────────────────────────────────────────────────────────
+.clientHero {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  margin-bottom: $spacing-xl;
+  padding-bottom: $spacing-lg;
+  border-bottom: 1px solid $color-gray-100;
+}
+
+.clientAvatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, $color-primary, $color-info);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  font-family: $font-family-heading;
+  flex-shrink: 0;
+}
+
+.clientName {
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  margin: 0 0 4px;
+}
+
+.clientId {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  font-family: monospace;
+  letter-spacing: 0.06em;
+}
+
+// ─── Project Hero ─────────────────────────────────────────────────────────────
+.projectHero {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  margin-bottom: $spacing-xl;
+  padding-bottom: $spacing-lg;
+  border-bottom: 1px solid $color-gray-100;
+}
+
+.projectLogo {
+  width: 60px;
+  height: 60px;
+  border-radius: $radius-lg;
+  object-fit: cover;
+  border: 1px solid $color-gray-200;
+}
+
+.projectLogoPlaceholder {
+  width: 60px;
+  height: 60px;
+  border-radius: $radius-lg;
+  background: linear-gradient(135deg, $color-info, $color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  font-family: $font-family-heading;
+}
+
+.projectName {
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  margin: 0 0 $spacing-sm;
+}
+
+.projectActions {
+  margin-top: $spacing-lg;
+  padding-top: $spacing-lg;
+  border-top: 1px solid $color-gray-100;
+  display: flex;
+  gap: $spacing-sm;
+}
+
+// ─── Invoice Stats ────────────────────────────────────────────────────────────
+.invoiceStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-md;
+  margin-bottom: $spacing-md;
+
+  @include sm {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.statBox {
+  @include card-base;
+  padding: $spacing-md $spacing-lg;
+  text-align: center;
+
+  span {
+    display: block;
+    font-family: $font-family-heading;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-gray-900;
+    letter-spacing: -0.02em;
+  }
+
+  label {
+    font-size: $font-size-xs;
+    color: $color-gray-400;
+    font-weight: $font-weight-medium;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+}
+
+// ─── Invoice Cards ────────────────────────────────────────────────────────────
+.invoiceCard {
+  @include card-base;
+  margin-bottom: $spacing-sm;
+  overflow: hidden;
+  transition: box-shadow $transition-fast;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}
+
+.invoiceOpen {
+  box-shadow: $shadow-lg;
+}
+
+.invoiceHeader {
+  @include flex-between;
+  padding: $spacing-md $spacing-lg;
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    background: $color-gray-50;
+  }
+}
+
+.invoiceLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.invoiceNum {
+  font-family: monospace;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-800;
+  letter-spacing: 0.04em;
+}
+
+.invoiceRight {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  flex-shrink: 0;
+}
+
+.invoiceAmount {
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  font-family: $font-family-heading;
+}
+
+.chevron {
+  font-size: 10px;
+  color: $color-gray-400;
+}
+
+.invoiceBody {
+  padding: 0 $spacing-lg $spacing-lg;
+  border-top: 1px solid $color-gray-100;
+  margin-top: 0;
+}
+
+.invoiceGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-md;
+  padding: $spacing-md 0;
+
+  @include sm {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.paidBadge {
+  padding: 3px 10px;
+  border-radius: $radius-full;
+  font-size: 11px;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.04em;
+}
+
+.paidTrue {
+  background: rgba($color-success, 0.1);
+  color: darken($color-success, 10%);
+}
+
+.paidFalse {
+  background: rgba($color-danger, 0.1);
+  color: darken($color-danger, 10%);
+}
+
+.notifiedMini {
+  padding: 3px 10px;
+  border-radius: $radius-full;
+  font-size: 11px;
+  font-weight: $font-weight-semibold;
+  background: rgba($color-info, 0.1);
+  color: darken($color-info, 10%);
+  letter-spacing: 0.04em;
+}
+
+.amountWords {
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+  padding: $spacing-sm $spacing-md;
+  background: $color-gray-50;
+  border-radius: $radius-md;
+  margin-top: $spacing-sm;
+
+  span {
+    font-weight: $font-weight-semibold;
+    color: $color-gray-600;
+    margin-right: 4px;
+  }
+}
+
+.linkedProforma {
+  font-size: $font-size-xs;
+  color: $color-info;
+  margin-top: $spacing-sm;
+  padding: $spacing-sm $spacing-md;
+  background: rgba($color-info, 0.06);
+  border-radius: $radius-md;
+  font-weight: $font-weight-medium;
+}
+
+// ─── Nested Payments ──────────────────────────────────────────────────────────
+.paymentsNested {
+  margin-top: $spacing-md;
+  border-top: 1px solid $color-gray-100;
+  padding-top: $spacing-md;
+
+  h4 {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    color: $color-gray-500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0 0 $spacing-sm;
+  }
+}
+
+.paymentRow {
+  @include flex-between;
+  padding: $spacing-sm 0;
+  border-bottom: 1px solid $color-gray-100;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.paymentLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.paymentRight {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+
+  strong {
+    font-size: $font-size-sm;
+    color: $color-gray-800;
+    font-weight: $font-weight-semibold;
+  }
+}
+
+.paymentMode {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: $radius-full;
+  background: rgba($color-secondary, 0.1);
+  color: darken($color-secondary, 20%);
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.04em;
+}
+
+.paymentDate {
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+}
+
+.txnId {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: $radius-sm;
+  background: $color-gray-100;
+  color: $color-gray-600;
+  font-family: monospace;
+  letter-spacing: 0.04em;
+}
+
+// ─── Payments Table ───────────────────────────────────────────────────────────
+.payTable {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    @include table-header;
+    padding: $spacing-sm $spacing-md;
+    text-align: left;
+    border-bottom: 1px solid $color-gray-200;
+  }
+
+  td {
+    @include table-cell;
+    padding: $spacing-sm $spacing-md;
+
+    code {
+      font-family: monospace;
+      font-size: $font-size-xs;
+      color: $color-gray-600;
+      background: $color-gray-100;
+      padding: 2px 6px;
+      border-radius: $radius-sm;
+    }
+  }
+
+  tr:hover td {
+    background: $color-gray-50;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+.modeBadge {
+  @include badge($color-secondary, darken($color-secondary, 20%));
+  font-size: 11px;
+}
+
+.remarksCell {
+  max-width: 200px;
+  @include text-truncate;
+  color: $color-gray-500;
+}
+
+// ─── Empty & Error States ─────────────────────────────────────────────────────
+.emptyState {
+  @include flex-center;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-3xl;
+  background: $color-white;
+  border-radius: $radius-xl;
+  border: 1px dashed $color-gray-200;
+  color: $color-gray-400;
+
+  p {
+    font-size: $font-size-sm;
+    margin: 0;
+  }
+}
+
+.emptyIcon {
+  font-size: 40px;
+  opacity: 0.3;
+}
+
+.errorState {
+  @include flex-center;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-3xl;
+  text-align: center;
+
+  span {
+    font-size: 48px;
+    color: $color-danger;
+    opacity: 0.5;
+  }
+
+  h2 {
+    font-family: $font-family-heading;
+    font-size: $font-size-xl;
+    color: $color-gray-800;
+    margin: 0;
+  }
+
+  p {
+    color: $color-gray-500;
+    font-size: $font-size-sm;
+    margin: 0;
+  }
+}
+
+// ─── Skeleton Loaders ─────────────────────────────────────────────────────────
+.skeletonHero,
+.skeletonTabs,
+.skeletonCard {
+  @include skeleton;
+  border-radius: $radius-xl;
+  margin-bottom: $spacing-md;
+}
+
+.skeletonHero {
+  height: 140px;
+}
+
+.skeletonTabs {
+  height: 60px;
+}
+
+.skeletonCard {
+  height: 200px;
+}

@@ -1,0 +1,426 @@
+// ─── ProjectDetailSection.module.scss ────────────────────────────────────────
+// These styles use your existing variables/mixins.
+// Reference as `pStyles` in the component (import pStyles from "./ProjectDetailSection.module.scss")
+
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// ─── Section Wrapper ──────────────────────────────────────────────────────────
+.wrapper {
+  margin-top: $spacing-2xl;
+}
+
+// ─── Divider Label ────────────────────────────────────────────────────────────
+.sectionLabel {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+}
+
+.labelLine {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, $color-gray-200, transparent);
+}
+
+.labelText {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+// ─── Identity Strip ───────────────────────────────────────────────────────────
+.identityStrip {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-lg;
+  background: $color-white;
+  border-radius: $radius-2xl;
+  padding: $spacing-xl;
+  margin-bottom: $spacing-md;
+  border: 1px solid rgba($color-gray-200, 0.6);
+  box-shadow: $shadow-card;
+  position: relative;
+  overflow: hidden;
+
+  // subtle left accent bar
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, $color-primary 0%, $color-info 100%);
+    border-radius: $radius-xl 0 0 $radius-xl;
+  }
+
+  @include md {
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+}
+
+.stripLogo {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: $radius-xl;
+  overflow: hidden;
+  border: 2px solid $color-gray-200;
+  background: linear-gradient(135deg, $color-primary 0%, $color-info 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  span {
+    font-family: $font-family-heading;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+  }
+}
+
+.stripInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.projName {
+  font-family: $font-family-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  letter-spacing: -0.02em;
+  margin: 0 0 $spacing-sm;
+  @include text-truncate;
+
+  @include sm {
+    font-size: $font-size-xl;
+  }
+}
+
+.stripMeta {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  flex-wrap: wrap;
+  margin-bottom: $spacing-sm;
+}
+
+.metaChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: $radius-full;
+  background: $color-gray-100;
+  color: $color-gray-600;
+  font-size: $font-size-xs;
+  font-family: monospace;
+  letter-spacing: 0.04em;
+  font-weight: $font-weight-medium;
+  border: none;
+}
+
+.priorityChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  letter-spacing: 0.06em;
+}
+
+.projDetails {
+  font-size: $font-size-sm;
+  color: $color-gray-500;
+  line-height: $line-height-relaxed;
+  margin: 0;
+  @include line-clamp(2);
+}
+
+.stripStatus {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: $spacing-sm;
+  flex-shrink: 0;
+
+  @include md {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+
+.statusLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.viewBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: $spacing-sm $spacing-md;
+  background: $color-primary;
+  color: $color-white;
+  border: none;
+  border-radius: $radius-lg;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+  letter-spacing: 0.03em;
+  margin-top: $spacing-xs;
+  white-space: nowrap;
+
+  &:hover {
+    background: $color-primary-dark;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba($color-primary, 0.3);
+  }
+}
+
+// ─── Three Column Grid ────────────────────────────────────────────────────────
+.triGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-md;
+
+  @include lg {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include sm {
+    grid-template-columns: 1fr;
+  }
+}
+
+.triCard {
+  @include card-base;
+  padding: $spacing-lg;
+}
+
+.triCardHead {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: $spacing-lg;
+  padding-bottom: $spacing-sm;
+  border-bottom: 1px solid $color-gray-100;
+}
+
+.triIcon {
+  font-size: 16px;
+  color: $color-primary;
+}
+
+// ─── Timeline ─────────────────────────────────────────────────────────────────
+.timelineList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+
+  // vertical connecting line
+  &::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: $color-gray-200;
+    z-index: 0;
+  }
+}
+
+.timelineRow {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-md;
+  padding: $spacing-sm 0;
+  position: relative;
+  z-index: 1;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+}
+
+.tlDot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid $color-white;
+  box-shadow: 0 0 0 2px $color-gray-200;
+  flex-shrink: 0;
+  margin-top: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+.tlLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tlVal {
+  font-size: $font-size-sm;
+  color: $color-gray-800;
+  font-weight: $font-weight-semibold;
+}
+
+// ─── Area Tiles ───────────────────────────────────────────────────────────────
+.areaGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: $spacing-sm;
+}
+
+.areaTile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $spacing-md $spacing-sm;
+  border-radius: $radius-lg;
+  background: rgba(var(--tile-color, #3b82f6), 0.06);
+  border: 1px solid rgba(var(--tile-color, #3b82f6), 0.15);
+  text-align: center;
+  // CSS custom property hack for dynamic rgba
+  // Override: use style prop with hex string on the element
+}
+
+// Since CSS custom properties can't be used in rgba() directly in SCSS,
+// we apply per-tile background via inline style. Override here per variant:
+.areaTile:nth-child(1) {
+  background: rgba(#3b82f6, 0.06);
+  border-color: rgba(#3b82f6, 0.2);
+
+  .areaVal {
+    color: #1d4ed8;
+  }
+}
+
+.areaTile:nth-child(2) {
+  background: rgba(#8b5cf6, 0.06);
+  border-color: rgba(#8b5cf6, 0.2);
+
+  .areaVal {
+    color: #6d28d9;
+  }
+}
+
+.areaTile:nth-child(3) {
+  background: rgba(#10b981, 0.06);
+  border-color: rgba(#10b981, 0.2);
+
+  .areaVal {
+    color: #065f46;
+  }
+}
+
+.areaVal {
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.areaUnit {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  font-weight: $font-weight-medium;
+  margin-top: 2px;
+}
+
+.areaLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+  font-weight: $font-weight-medium;
+  margin-top: $spacing-xs;
+  text-align: center;
+  line-height: 1.3;
+}
+
+// ─── Location ─────────────────────────────────────────────────────────────────
+.locationBody {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.locRow {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-sm;
+}
+
+.locIcon {
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.locVal {
+  font-size: $font-size-sm;
+  color: $color-gray-700;
+  line-height: $line-height-normal;
+}
+
+.coords {
+  font-size: $font-size-xs;
+  font-family: monospace;
+  color: $color-gray-600;
+  background: $color-gray-100;
+  padding: 3px 8px;
+  border-radius: $radius-sm;
+  letter-spacing: 0.04em;
+}
+
+.mapsLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: $spacing-xs;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-info;
+  text-decoration: none;
+  border: 1px solid rgba($color-info, 0.25);
+  padding: 5px 12px;
+  border-radius: $radius-full;
+  background: rgba($color-info, 0.05);
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba($color-info, 0.12);
+    border-color: rgba($color-info, 0.4);
+  }
+}

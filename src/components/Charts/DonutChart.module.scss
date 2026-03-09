@@ -1,0 +1,94 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.donutChart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-lg;
+}
+
+.chartWrapper {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  
+  @include sm {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+.chartSvg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.segment {
+  fill: none;
+  stroke-width: 35;
+  transition: stroke-width $transition-fast;
+  cursor: pointer;
+  
+  &:hover {
+    stroke-width: 40;
+  }
+}
+
+.centerLabel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.centerValue {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+}
+
+.centerText {
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-lg;
+  flex-wrap: wrap;
+  
+  @include sm {
+    gap: $spacing-md;
+  }
+}
+
+.legendItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.legendLabel {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  
+  &.hot { color: $status-hot; }
+  &.warm { color: $status-warm; }
+  &.cold { color: $status-cold; }
+  &.new { color: $status-new; }
+}
+
+.legendValue {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  
+  &.hot { color: $status-hot; }
+  &.warm { color: $status-warm; }
+  &.cold { color: $status-cold; }
+  &.new { color: $status-new; }
+}

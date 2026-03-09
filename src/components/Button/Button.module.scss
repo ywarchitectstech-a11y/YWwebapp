@@ -1,0 +1,94 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.button {
+  @include button-base;
+  
+  &.primary {
+    background: $color-primary;
+    color: $color-white;
+    
+    &:hover:not(:disabled) {
+      background: $color-primary-dark;
+    }
+  }
+  
+  &.secondary {
+    background: $color-white;
+    color: $color-gray-700;
+    border: 1px solid $color-gray-300;
+    
+    &:hover:not(:disabled) {
+      background: $color-gray-50;
+      border-color: $color-gray-400;
+    }
+  }
+  
+  &.ghost {
+    background: transparent;
+    color: $color-gray-600;
+    
+    &:hover:not(:disabled) {
+      background: $color-gray-100;
+      color: $color-gray-800;
+    }
+  }
+  
+  &.danger {
+    background: $color-danger;
+    color: $color-white;
+    
+    &:hover:not(:disabled) {
+      background: darken($color-danger, 10%);
+    }
+  }
+  
+  &.success {
+    background: $color-success;
+    color: $color-white;
+    
+    &:hover:not(:disabled) {
+      background: darken($color-success, 10%);
+    }
+  }
+  
+  // Sizes
+  &.small {
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-size-xs;
+  }
+  
+  &.medium {
+    padding: $spacing-sm $spacing-lg;
+    font-size: $font-size-sm;
+  }
+  
+  &.large {
+    padding: $spacing-md $spacing-xl;
+    font-size: $font-size-base;
+  }
+  
+  // Full width
+  &.fullWidth {
+    width: 100%;
+  }
+  
+  // Icon only
+  &.iconOnly {
+    padding: $spacing-sm;
+    
+    &.small {
+      padding: $spacing-xs;
+    }
+    
+    &.large {
+      padding: $spacing-md;
+    }
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

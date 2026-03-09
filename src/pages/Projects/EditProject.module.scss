@@ -1,0 +1,1222 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// ─── Page Shell ───────────────────────────────────────────────────────────────
+.pageWrapper {
+  padding: $spacing-xl $spacing-2xl;
+  min-height: 100vh;
+  background: $gradient-background;
+  border-radius: $radius-xl;
+  padding-bottom: 90px; // room for sticky bar
+
+  @include md {
+    padding: $spacing-lg $spacing-md $spacing-xl;
+  }
+  @include sm {
+    padding: $spacing-md $spacing-sm $spacing-xl;
+  }
+}
+
+// ─── Breadcrumb ───────────────────────────────────────────────────────────────
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+  margin-bottom: $spacing-lg;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.breadLink {
+  color: $color-gray-500;
+  cursor: pointer;
+  transition: color $transition-fast;
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.sep {
+  color: $color-gray-300;
+}
+
+// ─── Hero ─────────────────────────────────────────────────────────────────────
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-xl;
+  background: $color-white;
+  border-radius: $radius-2xl;
+  padding: $spacing-xl;
+  margin-bottom: $spacing-lg;
+  border: 1px solid rgba($color-gray-200, 0.6);
+  box-shadow: $shadow-card;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, $color-warning 0%, $color-primary 100%);
+    border-radius: $radius-xl 0 0 $radius-xl;
+  }
+
+  @include md {
+    flex-direction: column;
+    align-items: stretch;
+    gap: $spacing-md;
+  }
+}
+
+.heroLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  flex: 1;
+  min-width: 0;
+
+  @include sm {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-md;
+  }
+}
+
+.heroLogo {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: $radius-xl;
+  overflow: hidden;
+  border: 2px solid $color-gray-200;
+  background: linear-gradient(135deg, $color-warning, $color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  span {
+    font-family: $font-family-heading;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+  }
+}
+
+.heroMeta {
+  flex: 1;
+  min-width: 0;
+}
+
+.heroEditBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-warning;
+  background: rgba($color-warning, 0.1);
+  padding: 3px 10px;
+  border-radius: $radius-full;
+  margin-bottom: $spacing-xs;
+  letter-spacing: 0.04em;
+}
+
+.heroTitle {
+  font-family: $font-family-heading;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  letter-spacing: -0.02em;
+  margin: 0 0 $spacing-sm;
+  @include text-truncate;
+}
+
+.heroPlaceholder {
+  color: $color-gray-300;
+  font-style: italic;
+}
+
+.heroChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: $radius-full;
+  background: $color-gray-100;
+  color: $color-gray-600;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  border: none;
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.heroActions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex-shrink: 0;
+
+  @include md {
+    justify-content: flex-end;
+  }
+}
+
+.cancelBtn {
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-lg;
+  border: 1px solid $color-gray-300;
+  background: $color-white;
+  color: $color-gray-600;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: $color-gray-50;
+    border-color: $color-gray-400;
+  }
+}
+
+.saveBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-xl;
+  border-radius: $radius-lg;
+  border: none;
+  background: $color-primary;
+  color: $color-white;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+  box-shadow: 0 2px 8px rgba($color-primary, 0.35);
+
+  &:hover:not(:disabled) {
+    background: $color-primary-dark;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba($color-primary, 0.4);
+  }
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.savingSpinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+// ─── Toast ────────────────────────────────────────────────────────────────────
+.toast {
+  position: fixed;
+  top: $spacing-xl;
+  right: $spacing-xl;
+  z-index: 2000;
+  padding: $spacing-md $spacing-lg;
+  border-radius: $radius-xl;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  animation: slideInRight 0.3s ease;
+
+  @include sm {
+    top: $spacing-sm;
+    right: $spacing-sm;
+    left: $spacing-sm;
+  }
+
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}
+
+.toast_saving {
+  background: #fef9c3;
+  color: #713f12;
+  border: 1px solid #fde68a;
+}
+.toast_saved {
+  background: #dcfce7;
+  color: #14532d;
+  border: 1px solid #bbf7d0;
+}
+.toast_error {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
+// ─── Tabs ─────────────────────────────────────────────────────────────────────
+.tabsWrap {
+  background: $color-white;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-card;
+  border: 1px solid rgba($color-gray-200, 0.6);
+  margin-bottom: $spacing-lg;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    height: 2px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $color-gray-200;
+    border-radius: 2px;
+  }
+}
+
+.tabs {
+  display: flex;
+  padding: $spacing-xs;
+  gap: 4px;
+  min-width: max-content;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-lg;
+  border: none;
+  background: transparent;
+  color: $color-gray-500;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  transition: all $transition-fast;
+  white-space: nowrap;
+  position: relative;
+
+  &:hover {
+    background: $color-gray-50;
+    color: $color-gray-700;
+  }
+}
+
+.tabActive {
+  background: $color-primary !important;
+  color: $color-white !important;
+  box-shadow: 0 2px 8px rgba($color-primary, 0.3);
+}
+
+.tabError {
+  color: $color-danger !important;
+  &:not(.tabActive) {
+    background: rgba($color-danger, 0.06) !important;
+  }
+}
+
+.tabIcon {
+  font-size: 15px;
+}
+.tabLabel {
+  @include sm {
+    display: none;
+  }
+}
+
+.tabErrorDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: $color-danger;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+
+  .tabActive & {
+    background: $color-white;
+  }
+}
+
+// ─── Tab Content ──────────────────────────────────────────────────────────────
+.tabContent {
+  animation: fadeUp 0.18s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ─── Section Layout ───────────────────────────────────────────────────────────
+.sectionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-md;
+
+  @include md {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sectionCard {
+  @include card-base;
+  padding: $spacing-lg;
+}
+
+.sectionHead {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: $spacing-md;
+  padding-bottom: $spacing-sm;
+  border-bottom: 1px solid $color-gray-100;
+}
+
+.sectionHeadRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-md;
+  padding-bottom: $spacing-sm;
+  border-bottom: 1px solid $color-gray-100;
+
+  .sectionHead {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+}
+
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+
+  @include sm {
+    grid-template-columns: 1fr;
+  }
+}
+
+.threeCol {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-md;
+
+  @include md {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include sm {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ─── Form Fields ──────────────────────────────────────────────────────────────
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: $spacing-md;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.formFieldError {
+  .input,
+  .textarea,
+  .select {
+    border-color: $color-danger !important;
+    background: rgba($color-danger, 0.03);
+  }
+}
+
+.formLabel {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-600;
+  letter-spacing: 0.03em;
+}
+
+.required {
+  color: $color-danger;
+  margin-left: 2px;
+}
+
+.formHint {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  line-height: 1.4;
+}
+
+.formError {
+  font-size: $font-size-xs;
+  color: $color-danger;
+  font-weight: $font-weight-medium;
+}
+
+// ─── Inputs ───────────────────────────────────────────────────────────────────
+.input {
+  width: 100%;
+  padding: 9px $spacing-md;
+  border-radius: $radius-lg;
+  border: 1.5px solid $color-gray-200;
+  background: $color-white;
+  font-size: $font-size-sm;
+  color: $color-gray-800;
+  //   font-family: $font-family-body;
+  transition: all $transition-fast;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.12);
+  }
+
+  &::placeholder {
+    color: $color-gray-300;
+  }
+}
+
+.textarea {
+  @extend .input;
+  resize: vertical;
+  line-height: $line-height-relaxed;
+  min-height: 70px;
+}
+
+.select {
+  @extend .input;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239ca3af' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right $spacing-md center;
+  padding-right: $spacing-2xl;
+  cursor: pointer;
+}
+
+// ─── Status & Priority Chips ──────────────────────────────────────────────────
+.statusGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+}
+
+.statusChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: $radius-full;
+  border: 1.5px solid $color-gray-200;
+  background: $color-white;
+  color: $color-gray-500;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: $color-gray-400;
+    background: $color-gray-50;
+  }
+}
+
+.statusChipActive {
+  border-width: 2px !important;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.priorityGrid {
+  display: flex;
+  gap: $spacing-sm;
+}
+
+.priorityChip {
+  flex: 1;
+  padding: 10px;
+  border-radius: $radius-lg;
+  border: 1.5px solid $color-gray-200;
+  background: $color-white;
+  color: $color-gray-500;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+  text-align: center;
+
+  &:hover {
+    border-color: $color-gray-400;
+    background: $color-gray-50;
+  }
+}
+
+.priorityChipActive {
+  border-width: 2px !important;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+// ─── Location ────────────────────────────────────────────────────────────────
+.mapPreview {
+  margin-top: $spacing-sm;
+  padding: $spacing-sm $spacing-md;
+  background: $color-gray-50;
+  border-radius: $radius-lg;
+  border: 1px solid $color-gray-200;
+}
+
+.mapLink {
+  font-size: $font-size-sm;
+  color: $color-primary;
+  text-decoration: none;
+  font-weight: $font-weight-medium;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// ─── Area Summary ─────────────────────────────────────────────────────────────
+.areaSummary {
+  margin-top: $spacing-lg;
+  padding: $spacing-md $spacing-lg;
+  background: $color-gray-50;
+  border-radius: $radius-xl;
+  border: 1px solid $color-gray-200;
+}
+
+.areaSummaryHead {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-400;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: $spacing-md;
+}
+
+.areaBarWrap {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.areaBarRow {
+  display: grid;
+  grid-template-columns: 80px 1fr 120px;
+  align-items: center;
+  gap: $spacing-md;
+  font-size: $font-size-xs;
+  color: $color-gray-600;
+
+  span:first-child {
+    color: $color-gray-500;
+    font-weight: $font-weight-medium;
+  }
+  span:last-child {
+    text-align: right;
+    font-weight: $font-weight-semibold;
+    color: $color-gray-700;
+  }
+
+  @include sm {
+    grid-template-columns: 60px 1fr 80px;
+  }
+}
+
+.areaBarTrack {
+  height: 10px;
+  background: $color-gray-200;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.areaBarFill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.areaEfficiency {
+  margin-top: $spacing-md;
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+  text-align: right;
+
+  strong {
+    color: $color-gray-700;
+  }
+}
+
+// ─── Timeline ─────────────────────────────────────────────────────────────────
+.timelineGrid {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 11px;
+    top: 12px;
+    bottom: 12px;
+    width: 1px;
+    background: $color-gray-200;
+    z-index: 0;
+  }
+}
+
+.tlEditRow {
+  display: flex;
+  gap: $spacing-md;
+  position: relative;
+  z-index: 1;
+}
+
+.tlEditDot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 3px solid $color-white;
+  box-shadow: 0 0 0 2px currentColor;
+  flex-shrink: 0;
+  margin-top: 22px;
+}
+
+.tlEditContent {
+  flex: 1;
+  min-width: 0;
+
+  .formField {
+    margin-bottom: 0;
+  }
+}
+
+.tlBarSection {
+  margin-top: $spacing-lg;
+  padding: $spacing-md $spacing-lg;
+  background: $color-gray-50;
+  border-radius: $radius-xl;
+  border: 1px solid $color-gray-200;
+}
+
+.tlBarLabel {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-400;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: $spacing-sm;
+}
+
+.tlBarRow {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.tlBarDate {
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+  white-space: nowrap;
+}
+
+.tlBarTrack {
+  height: 10px;
+  background: $color-gray-200;
+  border-radius: 999px;
+  overflow: visible;
+  position: relative;
+}
+
+.tlBarFill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.5s ease;
+}
+
+.tlBarNow {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: $color-white;
+  border: 3px solid $color-warning;
+  box-shadow: 0 0 0 3px rgba($color-warning, 0.2);
+}
+
+// ─── Structures ───────────────────────────────────────────────────────────────
+.addBtn {
+  padding: 6px 14px;
+  border-radius: $radius-lg;
+  border: 1.5px dashed $color-primary;
+  background: rgba($color-primary, 0.05);
+  color: $color-primary;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba($color-primary, 0.1);
+  }
+}
+
+.addBtnLarge {
+  padding: $spacing-sm $spacing-xl;
+  border-radius: $radius-lg;
+  border: 1.5px dashed $color-primary;
+  background: rgba($color-primary, 0.05);
+  color: $color-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba($color-primary, 0.12);
+  }
+}
+
+.emptyStructures {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-2xl;
+  text-align: center;
+
+  span {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: $font-size-sm;
+    color: $color-gray-400;
+    margin: 0;
+  }
+}
+
+.structuresList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.structureCard {
+  border: 1.5px solid $color-gray-200;
+  border-radius: $radius-xl;
+  padding: $spacing-lg;
+  transition: border-color $transition-fast;
+
+  &:hover {
+    border-color: $color-gray-300;
+  }
+}
+
+.structureCardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-md;
+  padding-bottom: $spacing-sm;
+  border-bottom: 1px solid $color-gray-100;
+}
+
+.structureNum {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  color: $color-gray-700;
+}
+
+.removeBtn {
+  padding: 4px 10px;
+  border-radius: $radius-md;
+  border: 1px solid rgba($color-danger, 0.3);
+  background: rgba($color-danger, 0.05);
+  color: $color-danger;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba($color-danger, 0.12);
+    border-color: $color-danger;
+  }
+}
+
+.structureGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-md;
+
+  @include md {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include sm {
+    grid-template-columns: 1fr;
+  }
+
+  .formField {
+    margin-bottom: 0;
+  }
+}
+
+// ─── Logo Upload ──────────────────────────────────────────────────────────────
+.logoSection {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: $spacing-xl;
+  align-items: start;
+
+  @include md {
+    grid-template-columns: 1fr;
+  }
+}
+
+.logoPreviewWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.logoPreviewBox {
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+
+.logoPreviewImg {
+  width: 140px;
+  height: 140px;
+  border-radius: $radius-xl;
+  object-fit: cover;
+  border: 2px solid $color-gray-200;
+}
+
+.logoNewBadge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: $color-primary;
+  color: $color-white;
+  font-size: 0.65rem;
+  font-weight: $font-weight-bold;
+  padding: 2px 8px;
+  border-radius: $radius-full;
+  letter-spacing: 0.04em;
+}
+
+.logoPlaceholder {
+  width: 140px;
+  height: 140px;
+  border-radius: $radius-xl;
+  background: linear-gradient(135deg, $color-warning, $color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed $color-gray-300;
+
+  span {
+    font-family: $font-family-heading;
+    font-size: 3.5rem;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+  }
+}
+
+.logoPreviewMeta {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.logoFileName {
+  font-size: $font-size-xs;
+  color: $color-gray-600;
+  font-weight: $font-weight-medium;
+  margin: 0;
+  word-break: break-all;
+}
+
+.logoFileSize {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  margin: 0;
+}
+
+.logoNoFile {
+  font-size: $font-size-xs;
+  color: $color-gray-300;
+  font-style: italic;
+  margin: 0;
+}
+
+.removeLogo {
+  padding: 4px 12px;
+  border-radius: $radius-full;
+  border: 1px solid rgba($color-danger, 0.3);
+  background: rgba($color-danger, 0.05);
+  color: $color-danger;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+  margin-top: 4px;
+
+  &:hover {
+    background: rgba($color-danger, 0.12);
+  }
+}
+
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-2xl;
+  border: 2px dashed $color-gray-300;
+  border-radius: $radius-xl;
+  background: $color-gray-50;
+  cursor: pointer;
+  text-align: center;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: $color-primary;
+    background: rgba($color-primary, 0.03);
+  }
+}
+
+.dropzoneIcon {
+  font-size: 2rem;
+}
+
+.dropzoneText {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-600;
+  margin: 0;
+}
+
+.dropzoneHint {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  margin: 0;
+}
+
+.browseBtn {
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-lg;
+  border: 1.5px solid $color-primary;
+  background: $color-white;
+  color: $color-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+  margin-top: $spacing-xs;
+  pointer-events: none; // parent handles click
+
+  .dropzone:hover & {
+    background: $color-primary;
+    color: $color-white;
+  }
+}
+
+.currentLogoInfo {
+  margin-top: $spacing-md;
+  padding: $spacing-sm $spacing-md;
+  background: $color-gray-50;
+  border-radius: $radius-lg;
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+  display: flex;
+  align-items: baseline;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+
+  strong {
+    color: $color-gray-600;
+  }
+}
+
+.logoUrl {
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: $color-gray-500;
+  word-break: break-all;
+}
+
+// ─── Sticky Bottom Bar ────────────────────────────────────────────────────────
+.bottomBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-md $spacing-2xl;
+  background: $color-white;
+  border-top: 1px solid $color-gray-200;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.08);
+
+  @include sm {
+    padding: $spacing-sm $spacing-md;
+  }
+}
+
+.bottomBarLeft {
+}
+
+.unsavedDot {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-warning;
+}
+
+.bottomBarRight {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.cancelBtnSm {
+  @extend .cancelBtn;
+  padding: 7px $spacing-md;
+  font-size: $font-size-xs;
+}
+
+.saveBtnSm {
+  @extend .saveBtn;
+  padding: 7px $spacing-lg;
+  font-size: $font-size-xs;
+}
+
+// ─── Error / Skeleton ─────────────────────────────────────────────────────────
+.errorState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-2xl * 2;
+  text-align: center;
+
+  span {
+    font-size: 2.5rem;
+  }
+  h3 {
+    font-size: $font-size-xl;
+    color: $color-gray-800;
+    margin: 0;
+  }
+  p {
+    color: $color-gray-500;
+    margin: 0;
+  }
+}
+
+.errBtn {
+  @include button-primary;
+  margin-top: $spacing-md;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+%skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: $radius-xl;
+}
+
+.skeletonWrap {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+.skeletonHero {
+  @extend %skeleton;
+  height: 120px;
+}
+.skeletonTabs {
+  @extend %skeleton;
+  height: 54px;
+}
+.skeletonBody {
+  @extend %skeleton;
+  height: 400px;
+}
