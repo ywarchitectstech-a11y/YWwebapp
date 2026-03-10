@@ -145,3 +145,7 @@ export const setProjectDates = (
    GET ALL PROJECTS (PAGINATION)
 ================================ */
 
+
+export const addUsersToProject = (projectId, userIds) => {
+  return api.put(`/projects/addusers/${projectId}`, userIds);
+};

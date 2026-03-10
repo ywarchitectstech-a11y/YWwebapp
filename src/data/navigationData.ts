@@ -35,7 +35,7 @@
 //     label: 'Pre Sales',
 //     icon: 'preSales',
 //     children: [
-//       { id: 'presales-new', label: 'New', path: '/presales/new', 
+//       { id: 'presales-new', label: 'New', path: '/presales/new',
 //         // badge: 5
 
 //        },
@@ -114,7 +114,7 @@
 //   },
 // ];
 
-import type { UserRole } from '../store/userStore'; // adjust path as needed
+import type { UserRole } from "../store/userStore"; // adjust path as needed
 
 export interface NavSubItem {
   id: string;
@@ -134,90 +134,154 @@ export interface NavItem {
 // ── Permission Map ────────────────────────────────────────────
 // "ALL" = every role can see it
 // Array = only those roles can see it
-const NAV_PERMISSIONS: Record<string, UserRole[] | 'ALL'> = {
+const NAV_PERMISSIONS: Record<string, UserRole[] | "ALL"> = {
   // Dashboard
-  dashboard: 'ALL',
+  dashboard: "ALL",
 
   // Projects
-  'manage-projects': ['ADMIN', 'CO_FOUNDER', 'SR_ARCHITECT', 'JR_ARCHITECT', 'SR_ENGINEER'],
-  'add-project':     ['ADMIN', 'CO_FOUNDER', 'SR_ARCHITECT'],
-  'all-quotations':  ['ADMIN', 'CO_FOUNDER', 'SR_ARCHITECT', 'JR_ARCHITECT'],
+  "manage-projects": [
+    "ADMIN",
+    "CO_FOUNDER",
+    "SR_ARCHITECT",
+    "JR_ARCHITECT",
+    "SR_ENGINEER",
+  ],
+  "add-project": ["ADMIN", "CO_FOUNDER", "SR_ARCHITECT"],
+  "all-quotations": ["ADMIN", "CO_FOUNDER", "SR_ARCHITECT", "JR_ARCHITECT"],
 
   // Pre Sales
-  'presales-new': ['ADMIN', 'CO_FOUNDER', 'SR_ARCHITECT', 'LIAISON_MANAGER', 'LIAISON_OFFICER', 'LIAISON_ASSISTANT', 'HR'],
-  'presales-all': ['ADMIN', 'CO_FOUNDER', 'SR_ARCHITECT', 'LIAISON_MANAGER', 'LIAISON_OFFICER', 'HR'],
+  "presales-new": [
+    "ADMIN",
+    "CO_FOUNDER",
+    "SR_ARCHITECT",
+    "LIAISON_MANAGER",
+    "LIAISON_OFFICER",
+    "LIAISON_ASSISTANT",
+    "HR",
+  ],
+  "presales-all": [
+    "ADMIN",
+    "CO_FOUNDER",
+    "SR_ARCHITECT",
+    "LIAISON_MANAGER",
+    "LIAISON_OFFICER",
+    "HR",
+  ],
 
   // Post Sales
-  'postsales-new':      ['ADMIN', 'CO_FOUNDER', 'SR_ARCHITECT', 'HR'],
-  'postsales-all':      ['ADMIN', 'CO_FOUNDER', 'SR_ARCHITECT', 'JR_ARCHITECT', 'HR'],
-  'postsales-invoices': ['ADMIN', 'CO_FOUNDER', 'HR'],
+  "postsales-new": ["ADMIN", "CO_FOUNDER", "SR_ARCHITECT", "HR"],
+  "postsales-all": [
+    "ADMIN",
+    "CO_FOUNDER",
+    "SR_ARCHITECT",
+    "JR_ARCHITECT",
+    "HR",
+  ],
+  "postsales-invoices": ["ADMIN", "CO_FOUNDER", "HR"],
 
   // Clients
-  'manage-clients': ['ADMIN', 'CO_FOUNDER', 'SR_ARCHITECT', 'JR_ARCHITECT', 'LIAISON_MANAGER', 'LIAISON_OFFICER' , 'HR'],
-  'add-new-client': ['ADMIN', 'CO_FOUNDER', 'SR_ARCHITECT', 'LIAISON_MANAGER' , 'HR'],
+  "manage-clients": [
+    "ADMIN",
+    "CO_FOUNDER",
+    "SR_ARCHITECT",
+    "JR_ARCHITECT",
+    "LIAISON_MANAGER",
+    "LIAISON_OFFICER",
+    "HR",
+  ],
+  "add-new-client": [
+    "ADMIN",
+    "CO_FOUNDER",
+    "SR_ARCHITECT",
+    "LIAISON_MANAGER",
+    "HR",
+  ],
 
   // Reports
-  'inventory-report':    ['ADMIN', 'CO_FOUNDER'],
-  'financial-report':    ['ADMIN', 'CO_FOUNDER'],
-  'heading-wise-report': ['ADMIN', 'CO_FOUNDER', 'SR_ARCHITECT'],
-  'stage-wise-report':   ['ADMIN', 'CO_FOUNDER', 'SR_ARCHITECT', 'JR_ARCHITECT', 'SR_ENGINEER'],
+  "inventory-report": ["ADMIN", "CO_FOUNDER"],
+  "financial-report": ["ADMIN", "CO_FOUNDER"],
+  "heading-wise-report": ["ADMIN", "CO_FOUNDER", "SR_ARCHITECT"],
+  "stage-wise-report": [
+    "ADMIN",
+    "CO_FOUNDER",
+    "SR_ARCHITECT",
+    "JR_ARCHITECT",
+    "SR_ENGINEER",
+  ],
 
   // Accounts
-  'payment-receipts': ['ADMIN', 'CO_FOUNDER'],
-  'payment-vouchers': ['ADMIN', 'CO_FOUNDER'],
-  'bank-accounts':    ['ADMIN', 'CO_FOUNDER'],
+  "payment-receipts": ["ADMIN", "CO_FOUNDER"],
+  "payment-vouchers": ["ADMIN", "CO_FOUNDER"],
+  "bank-accounts": ["ADMIN", "CO_FOUNDER"],
 
   // HR
-  'active-employees':     ['ADMIN', 'CO_FOUNDER', 'HR'],
-  'manage-employees': ['ADMIN', 'CO_FOUNDER', 'HR'],
+  "active-employees": ["ADMIN", "CO_FOUNDER", "HR"],
+  "manage-employees": ["ADMIN", "CO_FOUNDER", "HR"],
   // 'all-employees': ['ADMIN', 'CO_FOUNDER', 'HR'],
-  'add-employee':     ['ADMIN', 'CO_FOUNDER', 'HR'],
+  "add-employee": ["ADMIN", "CO_FOUNDER", "HR"],
 };
 
 // ── Full nav definition ───────────────────────────────────────
 export const navigationData: NavItem[] = [
   {
-    id: 'dashboard',
-    label: 'Dashboard',
-    icon: 'dashboard',
-    path: '/',
+    id: "dashboard",
+    label: "Dashboard",
+    icon: "dashboard",
+    path: "/",
   },
   {
-    id: 'projects',
-    label: 'Projects',
-    icon: 'projects',
+    id: "preSales",
+    label: "Enquiry",
+    icon: "preSales",
     children: [
-      { id: 'manage-projects', label: 'Manage Projects', path: '/projects/manage' },
-      { id: 'add-project',     label: 'Add Projects',    path: '/projects/add' },
-      { id: 'all-quotations',  label: 'All Quotations',  path: '/projects/all-quotations' },
+      { id: "presales-new", label: "New", path: "/presales/new" },
+      {
+        id: "presales-all",
+        label: "All Presales",
+        path: "/presales/allpresales",
+      },
     ],
   },
   {
-    id: 'preSales',
-    label: 'Pre Sales',
-    icon: 'preSales',
+    id: "postSales",
+    label: "Projects",
+    icon: "postSales",
     children: [
-      { id: 'presales-new', label: 'New',          path: '/presales/new' },
-      { id: 'presales-all', label: 'All Presales', path: '/presales/allpresales' },
+      { id: "postsales-new", label: "New", path: "/postsales/new" },
+      { id: "postsales-all", label: "All PostSales", path: "/postsales/all" },
+      {
+        id: "postsales-invoices",
+        label: "Invoices",
+        path: "/postsales/invoices",
+      },
     ],
   },
   {
-    id: 'postSales',
-    label: 'Postsales',
-    icon: 'postSales',
+    id: "projects",
+    label: "Sites",
+    icon: "projects",
     children: [
-      { id: 'postsales-new',      label: 'New',           path: '/postsales/new' },
-      { id: 'postsales-all',      label: 'All PostSales', path: '/postsales/all' },
-      { id: 'postsales-invoices', label: 'Invoices',      path: '/postsales/invoices' },
+      {
+        id: "manage-projects",
+        label: "Manage Projects",
+        path: "/projects/manage",
+      },
+      // { id: 'add-project',     label: 'Add Projects',    path: '/projects/add' },
+      // { id: 'all-quotations',  label: 'All Quotations',  path: '/projects/all-quotations' },
     ],
   },
+
   {
-    id: 'clients',
-    label: 'Clients',
-    icon: 'clients',
+    id: "clients",
+    label: "Clients",
+    icon: "clients",
     children: [
-      { id: 'manage-clients', label: 'Manage Clients', path: '/clients/allclients' },
-      { id: 'add-new-client', label: 'Add New Client', path: '/clients/add' },
+      {
+        id: "manage-clients",
+        label: "Manage Clients",
+        path: "/clients/allclients",
+      },
+      { id: "add-new-client", label: "Add New Client", path: "/clients/add" },
     ],
   },
   // {
@@ -232,23 +296,43 @@ export const navigationData: NavItem[] = [
   //   ],
   // },
   {
-    id: 'accounts',
-    label: 'Accounts',
-    icon: 'accounts',
+    id: "accounts",
+    label: "Accounts",
+    icon: "accounts",
     children: [
-      { id: 'payment-receipts', label: 'Payment Receipts', path: '/accounts/payment-receipts' },
-      { id: 'payment-vouchers', label: 'Payment Vouchers', path: '/accounts/payment-vouchers' },
-      { id: 'bank-accounts',    label: 'Bank Accounts',    path: '/accounts/bank-accounts' },
+      {
+        id: "payment-receipts",
+        label: "Payment Receipts",
+        path: "/accounts/payment-receipts",
+      },
+      {
+        id: "payment-vouchers",
+        label: "Payment Vouchers",
+        path: "/accounts/payment-vouchers",
+      },
+      {
+        id: "bank-accounts",
+        label: "Bank Accounts",
+        path: "/accounts/bank-accounts",
+      },
     ],
   },
   {
-    id: 'hr',
-    label: 'HR',
-    icon: 'hr',
+    id: "hr",
+    label: "HR",
+    icon: "hr",
     children: [
-      { id: 'active-employees', label: 'Active Employees', path: 'employees/active' },
-      { id: 'manage-employees', label: 'Manage Employees', path: 'employees/all' },
-      { id: 'add-employee',     label: 'Add New Employee', path: 'employees/add' },
+      {
+        id: "manage-employees",
+        label: "Manage Employees",
+        path: "employees/all",
+      },
+      {
+        id: "active-employees",
+        label: "Inactive Employees",
+        path: "employees/active",
+      },
+      { id: "add-employee", label: "Add New Employee", path: "employees/add" },
     ],
   },
 ];
@@ -257,7 +341,7 @@ export const navigationData: NavItem[] = [
 function canAccess(itemId: string, role: UserRole): boolean {
   const rule = NAV_PERMISSIONS[itemId];
   if (!rule) return false;
-  if (rule === 'ALL') return true;
+  if (rule === "ALL") return true;
   return (rule as UserRole[]).includes(role);
 }
 
@@ -268,7 +352,7 @@ export function getFilteredNavigation(role: UserRole): NavItem[] {
       return acc;
     }
     const allowedChildren = item.children.filter((child) =>
-      canAccess(child.id, role)
+      canAccess(child.id, role),
     );
     if (allowedChildren.length > 0) {
       acc.push({ ...item, children: allowedChildren });

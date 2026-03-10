@@ -1,0 +1,636 @@
+@use "sass:color";
+
+// ── Variable imports (inline for portability) ──────────────────────────────
+$color-primary: #7c5e0b;
+$color-primary-light: #56b119;
+$color-primary-dark: #d1d1ce;
+$color-secondary: #f59e0b;
+$color-secondary-light: #fcd34d;
+$color-success: #10b981;
+$color-warning: #f59e0b;
+$color-danger: #ef4444;
+$color-info: #3b82f6;
+
+$color-white: #ffffff;
+$color-gray-50: #f9fafb;
+$color-gray-100: #f3f4f6;
+$color-gray-200: #e5e7eb;
+$color-gray-300: #d1d5db;
+$color-gray-400: #9ca3af;
+$color-gray-500: #6b7280;
+$color-gray-600: #4b5563;
+$color-gray-700: #374151;
+$color-gray-800: #1f2937;
+$color-gray-900: #111827;
+
+$gradient-background: linear-gradient(135deg, #eef2ff 0%, #edf1a9 100%);
+$gradient-card: linear-gradient(135deg, #ffffff 0%, #fefefe 100%);
+
+$font-family-primary:
+  "Inter",
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  Roboto,
+  sans-serif;
+$font-family-heading: "Plus Jakarta Sans", "Inter", sans-serif;
+
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+
+$radius-sm: 0.375rem;
+$radius-md: 0.5rem;
+$radius-lg: 0.75rem;
+$radius-xl: 1rem;
+$radius-2xl: 1.5rem;
+$radius-full: 9999px;
+
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md:
+  0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg:
+  0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl:
+  0 20px 25px -5px rgba(0, 0, 0, 0.1),
+  0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+$transition-fast: 150ms ease;
+$transition-base: 250ms ease;
+
+$z-modal-backdrop: 400;
+$z-modal: 500;
+
+// ── Overlay ────────────────────────────────────────────────────────────────
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba($color-gray-900, 0.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: $z-modal-backdrop;
+  padding: $spacing-md;
+  animation: fadeIn $transition-fast forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// ── Popup shell ────────────────────────────────────────────────────────────
+.popup {
+  background: $color-white;
+  border-radius: $radius-2xl;
+  box-shadow:
+    $shadow-xl,
+    0 0 0 1px rgba($color-primary, 0.08);
+  width: 100%;
+  max-width: 580px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUp $transition-base forwards;
+  z-index: $z-modal;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// ── Header ─────────────────────────────────────────────────────────────────
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-lg $spacing-xl;
+  background: linear-gradient(
+    135deg,
+    rgba($color-primary, 0.06) 0%,
+    rgba($color-secondary, 0.06) 100%
+  );
+  border-bottom: 1px solid $color-gray-100;
+
+  h3 {
+    font-family: $font-family-heading;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $color-gray-900;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+}
+
+.closeBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: $radius-full;
+  border: none;
+  background: $color-gray-100;
+  color: $color-gray-500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size-sm;
+  transition:
+    background $transition-fast,
+    color $transition-fast;
+  flex-shrink: 0;
+
+  &:hover {
+    background: $color-danger;
+    color: $color-white;
+  }
+}
+
+// ── Tabs ───────────────────────────────────────────────────────────────────
+.tabs {
+  display: flex;
+  gap: 0;
+  padding: 0 $spacing-xl;
+  border-bottom: 1px solid $color-gray-200;
+  background: $color-gray-50;
+}
+
+.tab {
+  position: relative;
+  padding: $spacing-md $spacing-lg;
+  font-family: $font-family-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-500;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color $transition-fast;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: $color-primary;
+    border-radius: $radius-full $radius-full 0 0;
+    transform: scaleX(0);
+    transition: transform $transition-base;
+  }
+
+  &:hover {
+    color: $color-gray-800;
+  }
+
+  &.active {
+    color: $color-primary;
+
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+
+  .tabIcon {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .tabBadge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 $spacing-xs;
+    background: $color-secondary-light;
+    color: $color-primary;
+    border-radius: $radius-full;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    line-height: 1;
+  }
+}
+
+// ── Body (scrollable) ──────────────────────────────────────────────────────
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: $spacing-xl;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+
+  // Custom scrollbar
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $color-gray-200;
+    border-radius: $radius-full;
+  }
+}
+
+// ── Tab panels ─────────────────────────────────────────────────────────────
+.tabPanel {
+  display: none;
+  flex-direction: column;
+  gap: $spacing-lg;
+  animation: panelFade $transition-base forwards;
+
+  &.visible {
+    display: flex;
+  }
+}
+
+@keyframes panelFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ── Form elements ──────────────────────────────────────────────────────────
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+
+  label {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    color: $color-gray-500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: $spacing-sm $spacing-md;
+    border: 1.5px solid $color-gray-200;
+    border-radius: $radius-md;
+    font-family: $font-family-primary;
+    font-size: $font-size-sm;
+    color: $color-gray-800;
+    background: $color-gray-50;
+    transition:
+      border-color $transition-fast,
+      box-shadow $transition-fast,
+      background $transition-fast;
+    box-sizing: border-box;
+    outline: none;
+
+    &:focus {
+      border-color: $color-secondary;
+      background: $color-white;
+      box-shadow: 0 0 0 3px rgba($color-secondary, 0.15);
+    }
+
+    &::placeholder {
+      color: $color-gray-400;
+    }
+  }
+
+  textarea {
+    min-height: 90px;
+    resize: vertical;
+    line-height: 1.6;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ── Documents tab ──────────────────────────────────────────────────────────
+.sectionLabel {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: $spacing-xs;
+}
+
+.sectionCard {
+  background: $color-gray-50;
+  border: 1.5px solid $color-gray-200;
+  border-radius: $radius-lg;
+  padding: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+// Photo grid
+.photoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: $spacing-sm;
+}
+
+.photoItem {
+  position: relative;
+  border-radius: $radius-md;
+  overflow: hidden;
+  aspect-ratio: 1;
+  background: $color-gray-200;
+  box-shadow: $shadow-sm;
+  group: true;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform $transition-base;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+
+  .photoDeleteBtn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 22px;
+    height: 22px;
+    border-radius: $radius-full;
+    background: rgba($color-gray-900, 0.65);
+    color: $color-white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    line-height: 1;
+    opacity: 0;
+    transition:
+      opacity $transition-fast,
+      background $transition-fast;
+
+    &:hover {
+      background: $color-danger;
+    }
+  }
+
+  &:hover .photoDeleteBtn {
+    opacity: 1;
+  }
+}
+
+// Empty state
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-xl;
+  color: $color-gray-400;
+  font-size: $font-size-sm;
+  gap: $spacing-sm;
+  text-align: center;
+
+  .emptyIcon {
+    font-size: 2rem;
+    opacity: 0.5;
+  }
+}
+
+// Add button row
+.addRow {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.addBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-xs $spacing-md;
+  border-radius: $radius-full;
+  border: 1.5px dashed $color-gray-300;
+  background: transparent;
+  color: $color-gray-600;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  transition:
+    border-color $transition-fast,
+    color $transition-fast,
+    background $transition-fast;
+
+  .addIcon {
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  &:hover {
+    border-color: $color-primary;
+    color: $color-primary;
+    background: rgba($color-primary, 0.05);
+  }
+
+  // Hidden file input trick
+  input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.addBtnWrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+// Document list
+.docList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.docItem {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-md;
+  background: $color-white;
+  border: 1.5px solid $color-gray-200;
+  border-radius: $radius-md;
+  transition: border-color $transition-fast;
+
+  &:hover {
+    border-color: $color-gray-300;
+  }
+
+  .docIcon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    color: $color-info;
+  }
+
+  .docName {
+    flex: 1;
+    font-size: $font-size-sm;
+    color: $color-gray-700;
+    font-weight: $font-weight-medium;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:hover {
+      color: $color-primary;
+      text-decoration: underline;
+    }
+  }
+
+  .docDeleteBtn {
+    width: 26px;
+    height: 26px;
+    border-radius: $radius-full;
+    background: $color-gray-100;
+    color: $color-gray-400;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    line-height: 1;
+    flex-shrink: 0;
+    transition:
+      background $transition-fast,
+      color $transition-fast;
+
+    &:hover {
+      background: rgba($color-danger, 0.1);
+      color: $color-danger;
+    }
+  }
+}
+
+// ── Divider ────────────────────────────────────────────────────────────────
+.divider {
+  height: 1px;
+  background: $color-gray-200;
+  margin: 0;
+  border: none;
+}
+
+// ── Footer ─────────────────────────────────────────────────────────────────
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-xl;
+  background: $color-gray-50;
+  border-top: 1px solid $color-gray-100;
+}
+
+.cancelBtn {
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-md;
+  border: 1.5px solid $color-gray-200;
+  background: $color-white;
+  color: $color-gray-600;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition:
+    border-color $transition-fast,
+    color $transition-fast;
+
+  &:hover {
+    border-color: $color-gray-400;
+    color: $color-gray-800;
+  }
+}
+
+.submitBtn {
+  padding: $spacing-sm $spacing-xl;
+  border-radius: $radius-md;
+  border: none;
+  background: linear-gradient(
+    135deg,
+    $color-primary 0%,
+    rgba($color-primary, 0.85) 100%
+  );
+  color: $color-white;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba($color-primary, 0.35);
+  transition:
+    opacity $transition-fast,
+    transform $transition-fast,
+    box-shadow $transition-fast;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba($color-primary, 0.4);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}

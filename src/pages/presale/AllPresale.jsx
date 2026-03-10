@@ -142,14 +142,14 @@ const AllPreSales = () => {
                         {item.status}
                       </span>
 
-                      <button
+                      {/* <button
                         className={styles.statusEditBtn}
                         onClick={() => setEditingStatus(item.srNumber)}
                       >
                         Change
-                      </button>
+                      </button> */}
 
-                      {editingStatus && (
+                      {/* {editingStatus && (
                         <StatusChangeModal
                           currentStatus={
                             data?.find(
@@ -162,7 +162,7 @@ const AllPreSales = () => {
                             setEditingStatus(null);
                           }}
                         />
-                      )}
+                      )} */}
                     </div>
                   </td>
 

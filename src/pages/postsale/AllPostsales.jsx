@@ -62,7 +62,7 @@ const AllPostSales = () => {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>ID</th>
+                  {/* <th>ID</th> */}
                   <th>Client</th>
                   <th>Phone</th>
                   <th>Project</th>
@@ -94,7 +94,7 @@ const AllPostSales = () => {
                     <tr key={item.id}>
                       <td>{page * size + index + 1}</td>
 
-                      <td>#{item.id}</td>
+                      {/* <td>#{item.id}</td> */}
 
                       <td>{item.client?.name || "—"}</td>
 

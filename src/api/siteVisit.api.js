@@ -62,3 +62,70 @@ export const getSiteVisitById = (id) => {
 export const deleteSiteVisit = (id) => {
   return api.delete(`/site-visits/${id}`);
 };
+
+
+
+/* ===============================
+   UPDATE SITE VISIT
+================================ */
+
+export const updateSiteVisit = ({ id, title, description, visitDateTime, locationNote }) => {
+  return api.put(`/site-visits/${id}`, null, {
+    params: {
+      title,
+      description,
+      visitDateTime,
+      locationNote,
+    },
+  });
+};
+
+/* ===============================
+   ADD PHOTOS TO VISIT
+================================ */
+export const addVisitPhotos = (visitId, photos) => {
+  const formData = new FormData();
+
+  photos.forEach((photo) => {
+    formData.append("photos", photo);
+  });
+
+  return api.post(`/site-visits/${visitId}/photos`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+/* ===============================
+   ADD DOCUMENTS TO VISIT
+================================ */
+export const addVisitDocuments = (id, documents, documentNames = []) => {
+  const formData = new FormData();
+
+  documents.forEach((file) => {
+    formData.append("documents", file);
+  });
+
+  if (documentNames.length) {
+    documentNames.forEach((name) => {
+      formData.append("documentNames", name);
+    });
+  }
+
+  return api.post(`/site-visits/${id}/documents`, formData);
+};
+/* ===============================
+   DELETE PHOTO FROM SITE VISIT
+================================ */
+
+export const deleteVisitPhoto = (visitId, photoId) => {
+  return api.delete(`/site-visits/${visitId}/photos/${photoId}`);
+};
+
+/* ===============================
+   DELETE DOCUMENT FROM SITE VISIT
+================================ */
+
+export const deleteVisitDocument = (visitId, documentId) => {
+  return api.delete(`/site-visits/${visitId}/documents/${documentId}`);
+};

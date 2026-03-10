@@ -1550,7 +1550,25 @@
     margin: 0;
   }
 }
+.svActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
+.editBtn {
+  border: none;
+  background: #eef2ff;
+  color: #4f46e5;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+
+  &:hover {
+    background: #e0e7ff;
+  }
+}
 // ─── Primary Button ───────────────────────────────────────────────────────────
 .primaryBtn {
   @include button-primary; // uses your existing mixin

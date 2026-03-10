@@ -1,0 +1,146 @@
+@use "../../styles/variables" as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: $z-modal;
+}
+
+.popup {
+  width: 650px;
+  max-width: 95%;
+  background: $color-white;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-xl;
+  display: flex;
+  flex-direction: column;
+  animation: popupIn 0.2s ease;
+}
+
+/* HEADER */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-lg;
+  border-bottom: 1px solid $color-gray-200;
+
+  h3 {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+  }
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: $color-gray-500;
+
+  &:hover {
+    color: $color-danger;
+  }
+}
+
+/* BODY */
+
+.body {
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    font-size: $font-size-sm;
+    color: $color-gray-600;
+    font-weight: $font-weight-medium;
+  }
+
+  input,
+  textarea {
+    padding: 10px 12px;
+    border-radius: $radius-md;
+    border: 1px solid $color-gray-300;
+    font-size: $font-size-sm;
+    transition: $transition-fast;
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+      box-shadow: 0 0 0 2px rgba(124, 94, 11, 0.15);
+    }
+  }
+}
+
+/* FOOTER */
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: $spacing-sm;
+  padding: $spacing-lg;
+  border-top: 1px solid $color-gray-200;
+}
+
+.cancelBtn {
+  padding: 8px 14px;
+  border-radius: $radius-md;
+  border: 1px solid $color-gray-300;
+  background: $color-white;
+  cursor: pointer;
+
+  &:hover {
+    background: $color-gray-100;
+  }
+}
+
+.submitBtn {
+  padding: 8px 16px;
+  border-radius: $radius-md;
+  border: none;
+  background: $color-primary;
+  color: $color-white;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+
+  &:hover {
+    background: $color-primary-dark;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+/* Animation */
+
+@keyframes popupIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

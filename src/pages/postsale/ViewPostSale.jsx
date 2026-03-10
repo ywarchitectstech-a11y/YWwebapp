@@ -70,7 +70,7 @@ const EmptyState = ({ icon, text }) => (
 const TABS = [
   { key: "overview", label: "Overview", icon: "⬡" },
   { key: "client", label: "Client", icon: "◈" },
-  { key: "project", label: "Project", icon: "◻" },
+  { key: "project", label: "Sites", icon: "◻" },
   { key: "proforma", label: "Proforma Invoices", icon: "◑" },
   { key: "tax", label: "Tax Invoices", icon: "◐" },
   { key: "payments", label: "Payments", icon: "◎" },
@@ -648,7 +648,7 @@ const ViewPostSales = () => {
                 navigate(`/projects/view/${data.project.projectId}`)
               }
             >
-              ⬡ View Project
+              ⬡ View Site
             </button>
           )}
         </div>

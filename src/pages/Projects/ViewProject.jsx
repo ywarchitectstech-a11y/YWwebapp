@@ -5,6 +5,9 @@ import styles from "./ViewProject.module.scss";
 import AddDocumentPopup from "./AddDocumentPopup";
 import StructureViewerPopup from "../Structure/StructureViewerPopup";
 import AddSiteVisitPopup from "./AddSiteVisitPopup";
+import EditSiteVisitPopup from "./EditSiteVisitPopup";
+import AddEmployeeToProjectPopup from "./AddEmployeeToProjectPopup";
+import { useEmployeeList } from "../../api/hooks/useEmployees";
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 const fmt = (dt) => {
   if (!dt) return "—";
@@ -655,43 +658,42 @@ const StagesTab = ({ stages, onDocClick, onAddDoc }) => {
 };
 
 // ─── Employees Tab ────────────────────────────────────────────────────────────
-const EmployeesTab = ({ employees }) => {
-  if (!employees?.length) {
-    return (
-      <div className={styles.emptyState}>
-        <span>👥</span>
-        <p>No employees assigned to this project yet.</p>
-      </div>
-    );
-  }
+const EmployeesTab = ({ employees, projectId, allEmployees }) => {
+  const [showPopup, setShowPopup] = useState(false);
 
   return (
-    <div className={styles.empGrid}>
-      {employees.map((emp, i) => {
-        const initials = (emp.name || emp.username || "?")
-          .split(" ")
-          .map((w) => w[0])
-          .join("")
-          .toUpperCase()
-          .slice(0, 2);
-        return (
-          <div key={emp.id || i} className={styles.empCard}>
-            <div className={styles.empAvatar}>{initials}</div>
-            <div className={styles.empInfo}>
-              <span className={styles.empName}>
-                {emp.name || emp.username || "—"}
-              </span>
-              {emp.email && (
-                <span className={styles.empEmail}>{emp.email}</span>
-              )}
-              {emp.phone && (
-                <span className={styles.empPhone}>{emp.phone}</span>
-              )}
-              {emp.role && <span className={styles.empRole}>{emp.role}</span>}
+    <div>
+      <div className={styles.sectionHeader}>
+        <h3>Employees</h3>
+
+        <button
+          className={styles.primaryBtn}
+          onClick={() => setShowPopup(true)}
+        >
+          + Add Employee
+        </button>
+      </div>
+
+      <div className={styles.empGrid}>
+        {employees?.map((emp) => (
+          <div key={emp.id} className={styles.empCard}>
+            <div className={styles.empAvatar}>{emp.name?.charAt(0)}</div>
+
+            <div>
+              <div>{emp.name}</div>
+              <div>{emp.email}</div>
             </div>
           </div>
-        );
-      })}
+        ))}
+      </div>
+
+      {showPopup && (
+        <AddEmployeeToProjectPopup
+          projectId={projectId}
+          employees={allEmployees}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
     </div>
   );
 };
@@ -700,7 +702,9 @@ const EmployeesTab = ({ employees }) => {
 
 const SiteVisitsTab = ({ siteVisits, projectId, onOpenGallery }) => {
   const [showPopup, setShowPopup] = useState(false);
-
+  // const [showPopup, setShowPopup] = useState(false);
+  const [showEditPopup, setEditPopup] = useState(false);
+  const [selectedVisit, setSelectedVisit] = useState(null);
   if (!siteVisits?.length) {
     return (
       <div className={styles.emptyState}>
@@ -712,7 +716,12 @@ const SiteVisitsTab = ({ siteVisits, projectId, onOpenGallery }) => {
         >
           + Add Site Visit
         </button>
-
+        {showEditPopup && selectedVisit && (
+          <EditSiteVisitPopup
+            visit={selectedVisit}
+            onClose={() => setEditPopup(false)}
+          />
+        )}
         {showPopup && (
           <AddSiteVisitPopup
             projectId={projectId}
@@ -760,9 +769,22 @@ const SiteVisitsTab = ({ siteVisits, projectId, onOpenGallery }) => {
               {/* ── Card Header ── */}
               <div className={styles.svHeader}>
                 <div className={styles.svNum}>Visit #{i + 1}</div>
-                <span className={styles.svDate}>
-                  {fmtTime(sv.visitDateTime)}
-                </span>
+
+                <div className={styles.svActions}>
+                  <span className={styles.svDate}>
+                    {fmtTime(sv.visitDateTime)}
+                  </span>
+
+                  <button
+                    className={styles.editBtn}
+                    onClick={() => {
+                      setSelectedVisit(sv);
+                      setEditPopup(true);
+                    }}
+                  >
+                    ✏ Edit
+                  </button>
+                </div>
               </div>
 
               {/* ── Info Fields ── */}
@@ -810,7 +832,12 @@ const SiteVisitsTab = ({ siteVisits, projectId, onOpenGallery }) => {
           );
         })}
       </div>
-
+      {showEditPopup && selectedVisit && (
+        <EditSiteVisitPopup
+          visit={selectedVisit}
+          onClose={() => setEditPopup(false)}
+        />
+      )}
       {showPopup && (
         <AddSiteVisitPopup
           projectId={projectId}
@@ -995,7 +1022,8 @@ export default function ViewProject() {
   const [activeTab, setActiveTab] = useState("overview");
   // const [docPopup, setDocPopup] = useState(null);
   const [addDocStage, setAddDocStage] = useState(null);
-
+  const { data: employeesData } = useEmployeeList();
+  const allEmployees = employeesData?.data || [];
   const p = data?.data;
 
   // Must be called unconditionally before any early returns
@@ -1162,7 +1190,11 @@ export default function ViewProject() {
           />
         )}
         {activeTab === "employees" && (
-          <EmployeesTab employees={p.workingEmployees} />
+          <EmployeesTab
+            employees={p.workingEmployees}
+            projectId={p.projectId}
+            allEmployees={allEmployees}
+          />
         )}
         {activeTab === "sitevisits" && (
           <SiteVisitsTab

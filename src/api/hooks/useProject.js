@@ -82,3 +82,21 @@ export const useProjectList = (page, size) => {
       projectApi.getAllProjects(page, size).then((res) => res.data.data),
   });
 };
+
+
+/* ===============================
+   ADD USERS TO PROJECT
+================================ */
+
+export const useAddUsersToProject = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ projectId, userIds }) =>
+      projectApi.addUsersToProject(projectId, userIds),
+
+    onSuccess: () => {
+      queryClient.invalidateQueries(["projects"]);
+    },
+  });
+};
