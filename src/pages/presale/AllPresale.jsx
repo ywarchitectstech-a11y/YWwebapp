@@ -681,6 +681,8 @@ const PreSaleDetailPopup = ({ item, onClose }) => {
               ) : (
                 <div className={styles.quotList}>
                   {quotations.map((q, i) => {
+                    console.log(q);
+
                     const cfg =
                       QUOT_STATUS_CFG[q.status] || QUOT_STATUS_CFG.DRAFT;
                     return (
@@ -690,11 +692,12 @@ const PreSaleDetailPopup = ({ item, onClose }) => {
                             <span className={styles.quotCardNum}>#{i + 1}</span>
                             <div>
                               <div className={styles.quotCardTitle}>
-                                {q.title}
-                              </div>
-                              {q.notes && (
+                                {q.quotationNumber}
+                              </div>{" "}
+                              <p>{q.accepted}</p>
+                              {q.quotationDetails && (
                                 <div className={styles.quotCardNotes}>
-                                  {q.notes}
+                                  {q.quotationDetails}
                                 </div>
                               )}
                             </div>
