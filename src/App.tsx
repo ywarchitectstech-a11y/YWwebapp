@@ -14,6 +14,7 @@ import ProjectsAvailability from "./pages/Projects/ProjectsAvailability";
 import AddProject from "./pages/Projects/AddProject";
 import EditProject from "./pages/Projects/Editproject";
 import Structure from "./pages/Projects/Structure";
+import ViewStructure from "./pages/Projects/ViewStructure";
 import Documents from "./pages/Projects/Documents";
 
 import Postsale from "./pages/postsale/Createpostsales.jsx";
@@ -72,6 +73,11 @@ const App = () => (
             <Route
               path="projects/:projectId/structure"
               element={<Structure />}
+            />
+
+            <Route
+              path="/projects/:projectId/structure/:structureId"
+              element={<ViewStructure />}
             />
             <Route path="projects/docs" element={<Documents />} />
 

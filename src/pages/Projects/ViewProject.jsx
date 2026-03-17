@@ -2136,75 +2136,177 @@ const SiteVisitsTab = ({ siteVisits, projectId, onOpenGallery }) => {
 };
 
 // ─── Structures Tab ───────────────────────────────────────────────────────────
-const StructuresTab = ({ structures, navigate, projectId }) => {
-  const [viewerStructure, setViewerStructure] = useState(null);
+// ─── Structures Tab ───────────────────────────────────────────────────────────
+// Replace the existing StructuresTab component in ViewProject.jsx with this:
 
+const StructuresTab = ({ structures, navigate, projectId }) => {
   if (!structures?.length) {
     return (
       <div className={styles.emptyState}>
-        {/* <span>🏢</span> */}
+        <span>🏢</span>
+        <p>No structures defined for this project yet.</p>
         <button
           className={styles.primaryBtn}
           onClick={() => navigate(`/projects/${projectId}/structure`)}
         >
-          Add Structure
+          + Add Structure
         </button>
-        <p>No structures defined for this project yet.</p>
       </div>
     );
   }
 
   return (
     <div className={styles.structList}>
-      <button
-        className={styles.primaryBtn}
-        onClick={() => navigate(`/projects/${projectId}/structure`)}
-      >
-        Add Structure
-      </button>
-
-      {structures.map((s, i) => (
-        <div
-          key={s.id}
-          className={styles.structCard}
-          onClick={() => setViewerStructure(s)}
+      <div className={styles.sectionHeader}>
+        <h3>Structures</h3>
+        <button
+          className={styles.primaryBtn}
+          onClick={() => navigate(`/projects/${projectId}/structure`)}
         >
-          <div className={styles.structHeader}>
-            <span className={styles.structName}>
-              {s.structureName || `Structure ${i + 1}`}
-            </span>
+          + Add Structure
+        </button>
+      </div>
 
-            {s.structureType && (
-              <span className={styles.structType}>{s.structureType}</span>
-            )}
-          </div>
+      <div className={styles.structGrid}>
+        {structures.map((s, i) => {
+          const STRUCT_ICONS = {
+            TOWER: "🗼",
+            WING: "🏢",
+            BUILDING: "🏗",
+            ROW_HOUSE: "🏘",
+            BUNGALOW: "🏡",
+            PODIUM_BLOCK: "⬛",
+          };
+          const USAGE_COLORS = {
+            RESIDENTIAL: { bg: "#dbeafe", color: "#1e40af" },
+            COMMERCIAL: { bg: "#fef3c7", color: "#92400e" },
+            PARKING: { bg: "#f3f4f6", color: "#374151" },
+            SERVICES: { bg: "#fce7f3", color: "#9d174d" },
+            MIXED: { bg: "#ede9fe", color: "#4c1d95" },
+          };
+          const icon = STRUCT_ICONS[s.structureType] || "🏢";
+          const usageCfg = USAGE_COLORS[s.usageType] || null;
+          const levelCount = s.levels?.length || 0;
+          const avgProgress = levelCount
+            ? Math.round(
+                s.levels.reduce(
+                  (acc, l) => acc + (Number(l.progressPercentage) || 0),
+                  0,
+                ) / levelCount,
+              )
+            : null;
 
-          <div className={styles.structBody}>
-            {s.totalFloors != null && (
-              <InfoField label="Floors" value={s.totalFloors} />
-            )}
+          return (
+            <div key={s.id || i} className={styles.structCard}>
+              {/* Card header */}
+              <div className={styles.structHeader}>
+                <div className={styles.structIconWrap}>{icon}</div>
+                <div className={styles.structHeaderInfo}>
+                  <span className={styles.structName}>
+                    {s.structureName || `Structure ${i + 1}`}
+                  </span>
+                  <div className={styles.structBadges}>
+                    {s.structureType && (
+                      <span className={styles.structType}>
+                        {s.structureType.replace(/_/g, " ")}
+                      </span>
+                    )}
+                    {usageCfg && (
+                      <span
+                        className={styles.structUsage}
+                        style={{
+                          background: usageCfg.bg,
+                          color: usageCfg.color,
+                        }}
+                      >
+                        {s.usageType}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
 
-            {s.totalBasements != null && (
-              <InfoField label="Basements" value={s.totalBasements} />
-            )}
+              {/* Stats row */}
+              <div className={styles.structStats}>
+                <div className={styles.structStat}>
+                  <span className={styles.structStatVal}>
+                    {s.totalFloors ?? "—"}
+                  </span>
+                  <span className={styles.structStatLabel}>Floors</span>
+                </div>
+                <div className={styles.structStat}>
+                  <span className={styles.structStatVal}>
+                    {s.totalBasements ?? "—"}
+                  </span>
+                  <span className={styles.structStatLabel}>Basements</span>
+                </div>
+                <div className={styles.structStat}>
+                  <span className={styles.structStatVal}>{levelCount}</span>
+                  <span className={styles.structStatLabel}>Levels</span>
+                </div>
+                {avgProgress !== null && (
+                  <div className={styles.structStat}>
+                    <span
+                      className={styles.structStatVal}
+                      style={{
+                        color:
+                          avgProgress >= 75
+                            ? "#10b981"
+                            : avgProgress >= 40
+                              ? "#f59e0b"
+                              : "#6366f1",
+                      }}
+                    >
+                      {avgProgress}%
+                    </span>
+                    <span className={styles.structStatLabel}>Progress</span>
+                  </div>
+                )}
+              </div>
 
-            {s.builtUpArea != null && (
-              <InfoField
-                label="Built-Up Area"
-                value={`${s.builtUpArea} sq.ft`}
-              />
-            )}
-          </div>
-        </div>
-      ))}
+              {/* Area info */}
+              {s.builtUpArea != null && (
+                <div className={styles.structArea}>
+                  <span className={styles.structAreaLabel}>Built-Up Area</span>
+                  <span className={styles.structAreaVal}>
+                    {s.builtUpArea.toLocaleString()} sq.ft
+                  </span>
+                </div>
+              )}
 
-      {/* STRUCTURE POPUP */}
-      {viewerStructure && (
-        <StructureViewerPopup
-          structure={viewerStructure}
-          onClose={() => setViewerStructure(null)}
-        />
-      )}
+              {/* Progress bar */}
+              {avgProgress !== null && (
+                <div className={styles.structProgBar}>
+                  <div
+                    className={styles.structProgFill}
+                    style={{
+                      width: `${avgProgress}%`,
+                      background:
+                        avgProgress >= 75
+                          ? "#10b981"
+                          : avgProgress >= 40
+                            ? "#f59e0b"
+                            : "#6366f1",
+                    }}
+                  />
+                </div>
+              )}
+
+              {/* Action */}
+              <div className={styles.structFooter}>
+                <button
+                  className={styles.viewStructBtn}
+                  onClick={() =>
+                    navigate(`/projects/${projectId}/structure/${s.id}`)
+                  }
+                >
+                  View Structure →
+                </button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

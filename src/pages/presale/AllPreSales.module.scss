@@ -1,3 +1,581 @@
+// @use "../../styles/variables" as *;
+
+// .pageWrapper {
+//   padding: 32px;
+//   min-height: 100vh;
+//   background: var(--bg-main);
+//   border-radius: 15px;
+//   background: linear-gradient(135deg, #f6f7ec 0%, #f9faaeb7 100%);
+// }
+
+// .breadcrumb {
+//   font-size: 14px;
+//   color: var(--text-secondary);
+//   margin-bottom: 20px;
+// }
+
+// .pageHeader {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   margin-bottom: 28px;
+// }
+
+// .pageTitle {
+//   font-size: 22px;
+//   font-weight: 600;
+//   color: var(--text-primary);
+// }
+
+// /* ===============================
+//    TABLE
+// =============================== */
+
+// .tableWrapper {
+//   background: var(--bg-card);
+//   border-radius: 16px;
+//   box-shadow: var(--shadow-soft);
+//   overflow: hidden;
+//   border: 1px solid var(--border-light);
+// }
+
+// .table {
+//   width: 100%;
+//   border-collapse: collapse;
+// }
+
+// .table thead {
+//   background: var(--bg-muted);
+// }
+
+// .table th {
+//   text-align: left;
+//   padding: 14px 18px;
+//   font-size: 13px;
+//   color: var(--text-secondary);
+//   font-weight: 500;
+// }
+
+// .table td {
+//   padding: 16px 18px;
+//   font-size: 14px;
+//   color: var(--text-primary);
+//   border-top: 1px solid var(--border-light);
+// }
+
+// .table tr:hover {
+//   background: var(--primary-soft);
+// }
+
+// /* ===============================
+//    BADGES
+// =============================== */
+
+// .badge {
+//   padding: 4px 10px;
+//   border-radius: 20px;
+//   font-size: 12px;
+//   font-weight: 500;
+// }
+
+// .badgeSuccess {
+//   background: #dcfce7;
+//   color: #166534;
+// }
+
+// .badgeWarning {
+//   background: #fef9c3;
+//   color: #854d0e;
+// }
+
+// .badgeDefault {
+//   background: var(--primary-soft);
+//   color: var(--primary);
+// }
+
+// /* ===============================
+//    BUTTONS
+// =============================== */
+
+// .deleteBtn {
+//   background: #fee2e2;
+//   color: #b91c1c;
+//   border: none;
+//   padding: 6px 12px;
+//   border-radius: 10px;
+//   font-size: 13px;
+//   cursor: pointer;
+//   transition: 0.2s ease;
+// }
+
+// .deleteBtn:hover {
+//   background: #fecaca;
+// }
+
+// /* ===============================
+//    EMPTY STATE
+// =============================== */
+
+// .emptyState {
+//   background: var(--bg-card);
+//   border-radius: 16px;
+//   padding: 48px;
+//   text-align: center;
+//   box-shadow: var(--shadow-soft);
+// }
+
+// .emptyIcon {
+//   font-size: 36px;
+//   margin-bottom: 16px;
+// }
+
+// .emptyTitle {
+//   font-size: 18px;
+//   font-weight: 600;
+//   margin-bottom: 8px;
+// }
+
+// .emptyText {
+//   font-size: 14px;
+//   color: var(--text-secondary);
+// }
+
+// /* ===============================
+//    LOADING / ERROR
+// =============================== */
+
+// .loading,
+// .error {
+//   padding: 40px;
+//   text-align: center;
+//   font-size: 16px;
+//   color: var(--text-secondary);
+// }
+
+// /* ===============================
+//    ACTION BUTTONS WRAPPER
+// =============================== */
+
+// .actionButtons {
+//   display: flex;
+//   gap: 8px;
+// }
+
+// /* ===============================
+//    EDIT BUTTON
+// =============================== */
+
+// .editBtn {
+//   background: var(--primary-soft);
+//   color: var(--primary);
+//   border: none;
+//   padding: 6px 12px;
+//   border-radius: 10px;
+//   font-size: 13px;
+//   cursor: pointer;
+//   transition: all 0.2s ease;
+// }
+
+// .editBtn:hover {
+//   background: #dadaff;
+//   transform: translateY(-1px);
+// }
+
+// /* ===============================
+//    DELETE BUTTON
+// =============================== */
+
+// .deleteBtn {
+//   background: #fee2e2;
+//   color: #b91c1c;
+//   border: none;
+//   padding: 6px 12px;
+//   border-radius: 10px;
+//   font-size: 13px;
+//   cursor: pointer;
+//   transition: all 0.2s ease;
+// }
+
+// .deleteBtn:hover {
+//   background: #fecaca;
+//   transform: translateY(-1px);
+// }
+// /* ===============================
+//    STATUS WRAPPER
+// =============================== */
+
+// .statusWrapper {
+//   display: flex;
+//   align-items: center;
+//   gap: 8px;
+//   position: relative;
+// }
+
+// /* ===============================
+//    STATUS BADGES
+// =============================== */
+
+// .badge {
+//   padding: 4px 10px;
+//   border-radius: 20px;
+//   font-size: 12px;
+//   font-weight: 500;
+// }
+
+// .badgeSuccess {
+//   background: #dcfce7;
+//   color: #166534;
+// }
+
+// .badgeDanger {
+//   background: #fee2e2;
+//   color: #b91c1c;
+// }
+
+// /* ===============================
+//    CHANGE BUTTON
+// =============================== */
+
+// .statusEditBtn {
+//   background: var(--primary-soft);
+//   color: var(--primary);
+//   border: none;
+//   padding: 4px 8px;
+//   border-radius: 8px;
+//   font-size: 11px;
+//   cursor: pointer;
+//   transition: 0.2s ease;
+// }
+
+// .statusEditBtn:hover {
+//   background: var(--primary);
+//   color: white;
+// }
+
+// /* ===============================
+//    DROPDOWN
+// =============================== */
+
+// .statusDropdown {
+//   position: absolute;
+//   top: 32px;
+//   left: 0;
+//   padding: 6px;
+//   border-radius: 8px;
+//   border: 1px solid var(--border-light);
+//   background: white;
+//   font-size: 12px;
+//   z-index: 10;
+// }
+
+// // popup convert postsale
+// .convertBtn {
+//   background: #e8e9ff;
+//   color: #5b5bd6;
+//   border: none;
+//   padding: 6px 12px;
+//   border-radius: 8px;
+//   cursor: pointer;
+//   font-size: 13px;
+// }
+
+// .convertBtn:hover {
+//   background: #dadaff;
+// }
+
+// /* Modal */
+
+// .modalOverlay {
+//   position: fixed;
+//   inset: 0;
+//   background: rgba(0, 0, 0, 0.35);
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   z-index: 999;
+// }
+
+// .modalBox {
+//   background: white;
+//   padding: 28px;
+//   border-radius: 16px;
+//   width: 400px;
+//   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+//   animation: fadeIn 0.2s ease;
+// }
+
+// .modalBox h3 {
+//   margin-bottom: 12px;
+// }
+
+// .modalBox p {
+//   font-size: 14px;
+//   color: #64748b;
+//   margin-bottom: 20px;
+// }
+
+// .modalActions {
+//   display: flex;
+//   justify-content: flex-end;
+//   gap: 12px;
+// }
+
+// .cancelBtn {
+//   background: #f1f5f9;
+//   border: none;
+//   padding: 8px 16px;
+//   border-radius: 8px;
+// }
+
+// .confirmBtn {
+//   background: #5b5bd6;
+//   color: white;
+//   border: none;
+//   padding: 8px 16px;
+//   border-radius: 8px;
+// }
+
+// @keyframes fadeIn {
+//   from {
+//     opacity: 0;
+//     transform: scale(0.95);
+//   }
+//   to {
+//     opacity: 1;
+//     transform: scale(1);
+//   }
+// }
+
+// // ─── ADD THESE to your existing .module.scss file ────────────────────────────
+// // Uses your existing $color-* and $spacing-* variables
+
+// // Modal overlay (reuse .modalOverlay if you already have it, otherwise add this)
+// .modalOverlay {
+//   position: fixed;
+//   inset: 0;
+//   background: rgba(0, 0, 0, 0.151);
+//   // backdrop-filter: blur(3px);
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   z-index: 1000;
+//   padding: $spacing-md;
+//   animation: fadeIn 0.15s ease;
+// }
+
+// @keyframes fadeIn {
+//   from {
+//     opacity: 0;
+//   }
+//   to {
+//     opacity: 1;
+//   }
+// }
+
+// // ─── Status Change Modal ──────────────────────────────────────────────────────
+// .statusModal {
+//   background: $color-white;
+//   border-radius: $radius-2xl;
+//   width: 100%;
+//   max-width: 400px;
+//   // box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+//   // animation: slideUp 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+//   overflow: hidden;
+// }
+
+// @keyframes slideUp {
+//   from {
+//     opacity: 0;
+//     transform: translateY(20px) scale(0.97);
+//   }
+//   to {
+//     opacity: 1;
+//     transform: translateY(0) scale(1);
+//   }
+// }
+
+// .statusModalHeader {
+//   display: flex;
+//   align-items: flex-start;
+//   gap: $spacing-md;
+//   padding: $spacing-xl;
+//   border-bottom: 1px solid $color-gray-100;
+//   position: relative;
+// }
+
+// .statusModalIcon {
+//   font-size: 1.6rem;
+//   line-height: 1;
+//   flex-shrink: 0;
+//   margin-top: 2px;
+// }
+
+// .statusModalTitle {
+//   font-family: $font-family-heading;
+//   font-size: $font-size-lg;
+//   font-weight: $font-weight-bold;
+//   color: $color-gray-900;
+//   margin: 0 0 3px 0;
+//   line-height: 1.2;
+// }
+
+// .statusModalSub {
+//   font-size: $font-size-xs;
+//   color: $color-gray-400;
+//   margin: 0;
+//   line-height: 1.4;
+// }
+
+// .statusModalClose {
+//   position: absolute;
+//   top: $spacing-md;
+//   right: $spacing-md;
+//   width: 30px;
+//   height: 30px;
+//   border-radius: $radius-md;
+//   border: none;
+//   background: $color-gray-100;
+//   color: $color-gray-500;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   cursor: pointer;
+//   transition:
+//     background $transition-fast,
+//     color $transition-fast;
+
+//   &:hover {
+//     background: $color-gray-200;
+//     color: $color-gray-800;
+//   }
+// }
+
+// // ─── Options ─────────────────────────────────────────────────────────────────
+// .statusOptions {
+//   display: flex;
+//   flex-direction: column;
+//   gap: $spacing-sm;
+//   padding: $spacing-lg;
+// }
+
+// .statusOption {
+//   display: flex;
+//   align-items: center;
+//   gap: $spacing-md;
+//   width: 100%;
+//   padding: $spacing-md;
+//   border: 1.5px solid $color-gray-200;
+//   border-radius: $radius-xl;
+//   background: $color-white;
+//   cursor: pointer;
+//   text-align: left;
+//   transition:
+//     border-color $transition-fast,
+//     background $transition-fast,
+//     box-shadow $transition-fast;
+
+//   &:hover {
+//     border-color: rgba($color-primary, 0.35);
+//     background: rgba($color-primary, 0.03);
+//   }
+// }
+
+// .statusOptionSelected {
+//   border-color: $color-primary !important;
+//   background: rgba($color-primary, 0.05) !important;
+//   box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+// }
+
+// .statusOptionRadio {
+//   width: 18px;
+//   height: 18px;
+//   border-radius: 50%;
+//   border: 2px solid $color-gray-300;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   flex-shrink: 0;
+//   color: $color-primary;
+//   transition: border-color $transition-fast;
+
+//   .statusOptionSelected & {
+//     border-color: $color-primary;
+//   }
+// }
+
+// .statusOptionLabel {
+//   flex: 1;
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-semibold;
+//   color: $color-gray-800;
+// }
+
+// .statusOptionBadge {
+//   display: inline-block;
+//   padding: 2px 9px;
+//   border-radius: $radius-full;
+//   font-size: $font-size-xs;
+//   font-weight: $font-weight-semibold;
+//   letter-spacing: 0.02em;
+// }
+
+// // ─── Footer ──────────────────────────────────────────────────────────────────
+// .statusModalFooter {
+//   display: flex;
+//   justify-content: flex-end;
+//   gap: $spacing-sm;
+//   padding: $spacing-md $spacing-lg;
+//   background: $color-gray-50;
+//   border-top: 1px solid $color-gray-100;
+// }
+
+// .statusCancelBtn {
+//   background: $color-white;
+//   color: $color-gray-600;
+//   border: 1px solid $color-gray-200;
+//   padding: $spacing-sm $spacing-lg;
+//   border-radius: $radius-lg;
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-medium;
+//   cursor: pointer;
+//   transition:
+//     background $transition-fast,
+//     border-color $transition-fast;
+
+//   &:hover {
+//     background: $color-gray-100;
+//     border-color: $color-gray-300;
+//   }
+// }
+
+// .statusConfirmBtn {
+//   background: $color-primary;
+//   color: $color-white;
+//   border: none;
+//   padding: $spacing-sm $spacing-lg;
+//   border-radius: $radius-lg;
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-semibold;
+//   cursor: pointer;
+//   box-shadow: 0 4px 12px rgba($color-primary, 0.3);
+//   transition:
+//     background $transition-fast,
+//     opacity $transition-fast,
+//     transform $transition-fast;
+
+//   &:hover:not(:disabled) {
+//     background: darken($color-primary, 8%);
+//     transform: translateY(-1px);
+//     box-shadow: 0 6px 16px rgba($color-primary, 0.4);
+//   }
+
+//   &:disabled {
+//     opacity: 0.45;
+//     cursor: not-allowed;
+//     box-shadow: none;
+//   }
+// }
+
 @use "../../styles/variables" as *;
 
 .pageWrapper {
@@ -93,23 +671,9 @@
   color: var(--primary);
 }
 
-/* ===============================
-   BUTTONS
-=============================== */
-
-.deleteBtn {
+.badgeDanger {
   background: #fee2e2;
   color: #b91c1c;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 10px;
-  font-size: 13px;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.deleteBtn:hover {
-  background: #fecaca;
 }
 
 /* ===============================
@@ -158,12 +722,30 @@
 
 .actionButtons {
   display: flex;
-  gap: 8px;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
 /* ===============================
-   EDIT BUTTON
+   BUTTONS
 =============================== */
+
+.viewBtn {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #bae6fd;
+    transform: translateY(-1px);
+  }
+}
 
 .editBtn {
   background: var(--primary-soft);
@@ -174,16 +756,12 @@
   font-size: 13px;
   cursor: pointer;
   transition: all 0.2s ease;
-}
 
-.editBtn:hover {
-  background: #dadaff;
-  transform: translateY(-1px);
+  &:hover {
+    background: #dadaff;
+    transform: translateY(-1px);
+  }
 }
-
-/* ===============================
-   DELETE BUTTON
-=============================== */
 
 .deleteBtn {
   background: #fee2e2;
@@ -194,12 +772,13 @@
   font-size: 13px;
   cursor: pointer;
   transition: all 0.2s ease;
+
+  &:hover {
+    background: #fecaca;
+    transform: translateY(-1px);
+  }
 }
 
-.deleteBtn:hover {
-  background: #fecaca;
-  transform: translateY(-1px);
-}
 /* ===============================
    STATUS WRAPPER
 =============================== */
@@ -211,31 +790,6 @@
   position: relative;
 }
 
-/* ===============================
-   STATUS BADGES
-=============================== */
-
-.badge {
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.badgeSuccess {
-  background: #dcfce7;
-  color: #166534;
-}
-
-.badgeDanger {
-  background: #fee2e2;
-  color: #b91c1c;
-}
-
-/* ===============================
-   CHANGE BUTTON
-=============================== */
-
 .statusEditBtn {
   background: var(--primary-soft);
   color: var(--primary);
@@ -245,16 +799,12 @@
   font-size: 11px;
   cursor: pointer;
   transition: 0.2s ease;
-}
 
-.statusEditBtn:hover {
-  background: var(--primary);
-  color: white;
+  &:hover {
+    background: var(--primary);
+    color: white;
+  }
 }
-
-/* ===============================
-   DROPDOWN
-=============================== */
 
 .statusDropdown {
   position: absolute;
@@ -268,7 +818,6 @@
   z-index: 10;
 }
 
-// popup convert postsale
 .convertBtn {
   background: #e8e9ff;
   color: #5b5bd6;
@@ -277,13 +826,15 @@
   border-radius: 8px;
   cursor: pointer;
   font-size: 13px;
+
+  &:hover {
+    background: #dadaff;
+  }
 }
 
-.convertBtn:hover {
-  background: #dadaff;
-}
-
-/* Modal */
+/* ===============================
+   CONVERT MODAL
+=============================== */
 
 .modalOverlay {
   position: fixed;
@@ -302,16 +853,15 @@
   width: 400px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   animation: fadeIn 0.2s ease;
-}
 
-.modalBox h3 {
-  margin-bottom: 12px;
-}
-
-.modalBox p {
-  font-size: 14px;
-  color: #64748b;
-  margin-bottom: 20px;
+  h3 {
+    margin-bottom: 12px;
+  }
+  p {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 20px;
+  }
 }
 
 .modalActions {
@@ -325,6 +875,7 @@
   border: none;
   padding: 8px 16px;
   border-radius: 8px;
+  cursor: pointer;
 }
 
 .confirmBtn {
@@ -333,6 +884,7 @@
   border: none;
   padding: 8px 16px;
   border-radius: 8px;
+  cursor: pointer;
 }
 
 @keyframes fadeIn {
@@ -346,52 +898,571 @@
   }
 }
 
-// ─── ADD THESE to your existing .module.scss file ────────────────────────────
-// Uses your existing $color-* and $spacing-* variables
+/* ===============================
+   PRESALE DETAIL POPUP
+=============================== */
 
-// Modal overlay (reuse .modalOverlay if you already have it, otherwise add this)
-.modalOverlay {
+.detailOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.151);
-  // backdrop-filter: blur(3px);
+  background: rgba(10, 14, 26, 0.55);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
-  padding: $spacing-md;
-  animation: fadeIn 0.15s ease;
+  z-index: 1100;
+  padding: 16px;
+  animation: fadeIn 0.18s ease;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-// ─── Status Change Modal ──────────────────────────────────────────────────────
-.statusModal {
-  background: $color-white;
-  border-radius: $radius-2xl;
+.detailPopup {
+  background: #fff;
+  border-radius: 20px;
   width: 100%;
-  max-width: 400px;
-  // box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
-  // animation: slideUp 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 780px;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
   overflow: hidden;
 }
 
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(20px) scale(0.97);
+    transform: translateY(24px) scale(0.97);
   }
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
+}
+
+/* Header */
+.detailHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #1a2744 0%, #2d4a8a 100%);
+  flex-shrink: 0;
+}
+
+.detailHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.detailAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.detailName {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 4px;
+}
+
+.detailSubRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.detailClientChip {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.15);
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+.detailStatusBadge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 999px;
+}
+
+.detailClose {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.28);
+  }
+}
+
+/* Tabs */
+.detailTabs {
+  display: flex;
+  gap: 2px;
+  padding: 8px 16px;
+  background: #f8f9fc;
+  border-bottom: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.detailTab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+
+  &:hover {
+    background: #eaecf4;
+    color: #1a2744;
+  }
+}
+
+.detailTabActive {
+  background: linear-gradient(135deg, #1a2744, #2d4a8a) !important;
+  color: #fff !important;
+}
+
+.detailTabCount {
+  background: rgba(255, 255, 255, 0.25);
+  color: inherit;
+  border-radius: 999px;
+  padding: 1px 6px;
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 18px;
+  text-align: center;
+
+  .detailTab:not(.detailTabActive) & {
+    background: rgba(45, 74, 138, 0.12);
+    color: #2d4a8a;
+  }
+}
+
+/* Body */
+.detailBody {
+  overflow-y: auto;
+  flex: 1;
+  padding: 20px 24px;
+
+  @media (max-width: 600px) {
+    padding: 14px;
+  }
+}
+
+/* Details Grid */
+.detailGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.detailSection {
+  background: #f8f9fc;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+
+.detailSectionFull {
+  grid-column: 1 / -1;
+}
+
+.detailSectionTitle {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 10px 14px;
+  background: #f0f2f8;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.detailFields {
+  display: flex;
+  flex-direction: column;
+}
+
+.detailField {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 9px 14px;
+  border-bottom: 1px solid #f0f2f8;
+  gap: 8px;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.detailFieldFull {
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detailFieldLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.detailFieldValue {
+  font-size: 13px;
+  color: #1a2744;
+  font-weight: 500;
+  text-align: right;
+  word-break: break-word;
+
+  .detailFieldFull & {
+    text-align: left;
+  }
+}
+
+/* ===============================
+   QUOTATIONS SECTION
+=============================== */
+
+.quotSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.quotHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.quotHeaderTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a2744;
+}
+
+.quotCount {
+  background: rgba(45, 74, 138, 0.12);
+  color: #2d4a8a;
+  border-radius: 999px;
+  padding: 1px 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.addQuotBtn {
+  background: linear-gradient(135deg, #1a2744, #2d4a8a);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+
+  &:hover {
+    opacity: 0.88;
+  }
+}
+
+/* Quotation Form */
+.quotForm {
+  background: #f8f9fc;
+  border: 1.5px solid #e2e6f0;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.quotFormTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a2744;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.quotFormGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.quotFormGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+}
+
+.quotFormFull {
+  grid-column: 1 / -1;
+}
+
+.req {
+  color: #ef4444;
+}
+
+.quotInput {
+  padding: 8px 11px;
+  border: 1.5px solid #e2e6f0;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #1a2744;
+  background: #fff;
+  outline: none;
+  font-family: inherit;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+
+  &:focus {
+    border-color: #2d4a8a;
+    box-shadow: 0 0 0 3px rgba(45, 74, 138, 0.1);
+  }
+}
+
+.quotTextarea {
+  @extend .quotInput;
+  resize: vertical;
+  min-height: 72px;
+}
+
+.quotFormActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.quotCancelBtn {
+  background: #fff;
+  border: 1.5px solid #d0d6e8;
+  color: #5a6480;
+  padding: 7px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+
+  &:hover {
+    background: #f4f5f9;
+  }
+}
+
+.quotSubmitBtn {
+  background: linear-gradient(135deg, #1a2744, #2d4a8a);
+  color: #fff;
+  border: none;
+  padding: 7px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+
+  &:hover:not(:disabled) {
+    opacity: 0.88;
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}
+
+/* Quotation List */
+.quotLoading {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 14px;
+  padding: 32px 0;
+}
+
+.quotEmpty {
+  text-align: center;
+  padding: 40px 24px;
+  color: #9ca3af;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: #f8f9fc;
+  border-radius: 12px;
+  border: 1.5px dashed #d0d6e8;
+
+  span {
+    font-size: 28px;
+  }
+  p {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+    margin: 0;
+  }
+  small {
+    font-size: 12px;
+  }
+}
+
+.quotList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quotCard {
+  background: #fff;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: box-shadow 0.15s;
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+  }
+}
+
+.quotCardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.quotCardLeft {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.quotCardNum {
+  font-size: 11px;
+  font-weight: 700;
+  color: #9ca3af;
+  background: #f3f4f6;
+  padding: 2px 7px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.quotCardTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a2744;
+}
+
+.quotCardNotes {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 3px;
+  line-height: 1.4;
+}
+
+.quotCardRight {
+  flex-shrink: 0;
+}
+
+.quotStatusBadge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.quotCardMeta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 8px;
+  border-top: 1px solid #f3f4f6;
+}
+
+.quotCardAmount {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a2744;
+}
+
+.quotCardDate {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* ===============================
+   STATUS CHANGE MODAL (unchanged)
+=============================== */
+
+.statusModal {
+  background: $color-white;
+  border-radius: $radius-2xl;
+  width: 100%;
+  max-width: 400px;
+  overflow: hidden;
 }
 
 .statusModalHeader {
@@ -450,7 +1521,6 @@
   }
 }
 
-// ─── Options ─────────────────────────────────────────────────────────────────
 .statusOptions {
   display: flex;
   flex-direction: column;
@@ -519,7 +1589,6 @@
   letter-spacing: 0.02em;
 }
 
-// ─── Footer ──────────────────────────────────────────────────────────────────
 .statusModalFooter {
   display: flex;
   justify-content: flex-end;

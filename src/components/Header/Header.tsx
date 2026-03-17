@@ -107,7 +107,7 @@ export const Header: React.FC = () => {
           <MenuIcon size={20} />
         </button>
 
-        {breadcrumbs.length > 0 && (
+        {/* {breadcrumbs.length > 0 && (
           <nav className={styles.breadcrumb}>
             <a href="/" className={styles.breadcrumbLink}>
               Dashboard
@@ -127,7 +127,7 @@ export const Header: React.FC = () => {
               </React.Fragment>
             ))}
           </nav>
-        )}
+        )} */}
       </div>
       <div className={styles.rightSection}>
         <button

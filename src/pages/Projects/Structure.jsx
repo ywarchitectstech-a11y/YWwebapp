@@ -2,6 +2,14 @@ import { useState } from "react";
 import styles from "./StructurePage.module.scss";
 import { useParams } from "react-router-dom";
 import { useCreateStructure } from "../../api/hooks/useStructure";
+import { useNavigate } from "react-router-dom";
+
+import {
+  showSuccess,
+  showError,
+  showLoading,
+  dismissToast,
+} from "../../components/Notification/toast";
 const STRUCTURE_TYPES = [
   "TOWER",
   "WING",
@@ -74,11 +82,8 @@ const initLevel = {
 
 export default function Structure() {
   const { projectId } = useParams();
-  const { mutate: createStructureApi, isPending } = useCreateStructure({
-    onSuccess: () => {
-      navigate(`/projects/${projectId}`);
-    },
-  });
+  const { mutate: createStructureApi, isPending } = useCreateStructure();
+  const navigate = useNavigate();
   const [structure, setStructure] = useState(initStructure);
   const [levels, setLevels] = useState([]);
   const [levelForm, setLevelForm] = useState(initLevel);
@@ -129,13 +134,13 @@ export default function Structure() {
   return (
     <div className={styles.page}>
       {/* ── Breadcrumb ── */}
-      <div className={styles.breadcrumb}>
+      {/* <div className={styles.breadcrumb}>
         <span className={styles.breadItem}>Projects</span>
         <span className={styles.breadSep}>›</span>
         <span className={styles.breadItem}>Structures</span>
         <span className={styles.breadSep}>›</span>
         <span className={styles.breadCurrent}>New Structure</span>
-      </div>
+      </div> */}
 
       {/* ── Hero Card ── */}
       <div className={styles.heroCard}>
@@ -177,19 +182,39 @@ export default function Structure() {
             <button className={styles.btnBack}>← Back</button>
             <button
               className={styles.btnPrimary}
-              onClick={() =>
-                createStructureApi({
-                  projectId,
-                  structure: {
-                    ...structure,
-                    usageType: structure.usageType || null,
-                    levels: levels.map((lv) => ({
-                      ...lv,
-                      usageType: lv.usageType || null,
-                    })),
+              onClick={() => {
+                const loadingToast = showLoading("Creating structure...");
+
+                createStructureApi(
+                  {
+                    projectId,
+                    structure: {
+                      ...structure,
+                      usageType: structure.usageType || null,
+                      levels: levels.map((lv) => ({
+                        ...lv,
+                        usageType: lv.usageType || null,
+                      })),
+                    },
                   },
-                })
-              }
+                  {
+                    onSuccess: () => {
+                      dismissToast(loadingToast);
+                      showSuccess("Structure created successfully");
+
+                      navigate(`/projects/view/${projectId}`);
+                    },
+
+                    onError: (error) => {
+                      dismissToast(loadingToast);
+                      showError(
+                        error?.response?.data?.message ||
+                          "Failed to create structure",
+                      );
+                    },
+                  },
+                );
+              }}
             >
               {isPending ? "Saving..." : "⊙ Save Structure"}
             </button>

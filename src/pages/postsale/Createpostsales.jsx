@@ -236,58 +236,69 @@ const CreatePostSales = () => {
     if (!validate()) return;
     createPostSales(buildPayload(), {
       onSuccess: (res) => {
-        setCreatedId(res?.data?.id ?? res?.id ?? null);
+        console.log("Create PostSale Response:", res);
+
+        const id = res?.data?.data?.id || res?.data?.id;
+
+        if (!id) {
+          console.error("PostSale ID missing in response", res);
+          return;
+        }
+
+        setCreatedId(id);
         setSubmitSuccess(true);
+
+        navigate(`/postsales/view/${id}`);
       },
     });
   };
 
   // ── Success screen ───────────────────────────────────────────────────────────
-  if (submitSuccess) {
-    return (
-      <div className={styles.pageWrapper}>
-        <div className={styles.successState}>
-          <div className={styles.successRing}>
-            <span className={styles.successIconChar}>◎</span>
-          </div>
-          <h2>Post-Sale Created!</h2>
-          <p>Record saved. A project has been auto-created and linked.</p>
-          {createdId && (
-            <div className={styles.successId}>
-              Record ID: <code>#{createdId}</code>
-            </div>
-          )}
-          <div className={styles.successActions}>
-            {createdId && (
-              <button
-                className={styles.primaryBtn}
-                onClick={() => navigate(`/postsales/view/${createdId}`)}
-              >
-                ⬡ View Record
-              </button>
-            )}
-            <button
-              className={styles.primaryBtn}
-              onClick={() => navigate("/postsales")}
-            >
-              ◈ All Post-Sales
-            </button>
-            <button
-              className={styles.ghostBtn}
-              onClick={() => {
-                setForm(initialForm);
-                setErrors({});
-                setCreatedId(null);
-                setSubmitSuccess(false);
-              }}
-            >
-              + Create Another
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // if (submitSuccess) {
+  //   return (
+  //     <div className={styles.pageWrapper}>
+  //       <div className={styles.successState}>
+  //         <div className={styles.successRing}>
+  //           <span className={styles.successIconChar}>◎</span>
+  //         </div>
+  //         <h2>Post-Sale Created!</h2>
+  //         <p>Record saved. A project has been auto-created and linked.</p>
+  //         {createdId && (
+  //           <div className={styles.successId}>
+  //             Record ID: <code>#{createdId}</code>
+  //           </div>
+  //         )}
+  //         <div className={styles.successActions}>
+  //           {createdId && (
+  //             <button
+  //               className={styles.primaryBtn}
+  //               onClick={() => navigate(`/postsales/view/${createdId}`)}
+  //             >
+  //               ⬡ View Record
+  //             </button>
+  //           )}
+  //           <button
+  //             className={styles.primaryBtn}
+  //             onClick={() => navigate("/postsales")}
+  //           >
+  //             ◈ All Post-Sales
+  //           </button>
+  //           <button
+  //             className={styles.ghostBtn}
+  //             onClick={() => {
+  //               setForm(initialForm);
+  //               setErrors({});
+  //               setCreatedId(null);
+  //               setSubmitSuccess(false);
+  //             }}
+  //           >
+  //             + Create Another
+  //           </button>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className={styles.pageWrapper}>
