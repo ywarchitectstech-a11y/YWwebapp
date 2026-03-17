@@ -189,7 +189,7 @@ export default function AddSiteVisitPopup({ projectId, onClose }) {
                 onChange={(e) => setPhotos([...e.target.files])}
               />
             </div>
-
+            <br />
             <div className={styles.formGroup}>
               <label>Documents</label>
               <input
