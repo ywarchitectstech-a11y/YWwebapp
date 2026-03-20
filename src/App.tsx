@@ -37,6 +37,7 @@ import ProfilePage from "./pages/Employee/ProfilePage.jsx";
 import AllEmployees from "./pages/Employee/AllEmployees.jsx";
 import EditEmployee from "./pages/Employee/EditEmployee.jsx";
 import AllActiveEmployee from "./pages/Employee/AllActiveEmployee.jsx";
+import DailyAttendance from "./pages/Employee/DailyAttendance.jsx";
 
 import PlaceholderPage from "./pages/PlaceholderPage";
 import NotFound from "./pages/NotFound";
@@ -120,6 +121,7 @@ const App = () => (
 
             {/* Employees */}
             <Route path="employees/add" element={<AddEmployee />} />
+            <Route path="employees/attendance" element={<DailyAttendance />} />
             <Route path="employees/all" element={<AllEmployees />} />
             <Route path="employees/active" element={<AllActiveEmployee />} />
             <Route path="employees/edit/:id" element={<EditEmployee />} />
