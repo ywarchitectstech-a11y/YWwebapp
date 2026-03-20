@@ -1,0 +1,1326 @@
+// @use "../../styles/variables" as *;
+// @use "../../styles/mixins" as *;
+
+// // ─── Page Shell ───────────────────────────────────────────────────────────────
+// .pageWrapper {
+//   padding: $spacing-xl $spacing-2xl;
+//   min-height: 100vh;
+//   background: $gradient-background;
+//   border-radius: $radius-xl;
+//   display: flex;
+//   flex-direction: column;
+//   gap: $spacing-lg;
+
+//   @include md {
+//     padding: $spacing-lg $spacing-md;
+//   }
+//   @include sm {
+//     padding: $spacing-md $spacing-sm;
+//   }
+// }
+
+// // ─── Today Panel ──────────────────────────────────────────────────────────────
+// .todayPanel {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   gap: $spacing-xl;
+//   background: $color-white;
+//   border-radius: $radius-2xl;
+//   padding: $spacing-xl;
+//   border: 1px solid rgba($color-gray-200, 0.6);
+//   box-shadow: $shadow-card;
+//   position: relative;
+//   overflow: hidden;
+
+//   // accent bar — matches your project pattern
+//   &::before {
+//     content: "";
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//     bottom: 0;
+//     width: 4px;
+//     background: linear-gradient(180deg, $color-primary 0%, $color-info 100%);
+//     border-radius: $radius-xl 0 0 $radius-xl;
+//   }
+
+//   @include md {
+//     flex-direction: column;
+//     align-items: stretch;
+//     gap: $spacing-md;
+//   }
+// }
+
+// // ── Today Left — date + clock ─────────────────────────────────────────────
+// .todayLeft {
+//   display: flex;
+//   align-items: center;
+//   gap: $spacing-md;
+//   flex-shrink: 0;
+// }
+
+// .todayDateBlock {
+//   display: flex;
+//   align-items: center;
+//   gap: $spacing-sm;
+// }
+
+// .todayDayNum {
+//   font-family: $font-family-heading;
+//   font-size: clamp(2.5rem, 5vw, 3.5rem);
+//   font-weight: $font-weight-bold;
+//   color: $color-primary;
+//   line-height: 1;
+//   letter-spacing: -0.04em;
+// }
+
+// .todayDateMeta {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 2px;
+// }
+
+// .todayMonthYear {
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-semibold;
+//   color: $color-gray-700;
+// }
+
+// .todayWeekday {
+//   font-size: $font-size-xs;
+//   color: $color-gray-400;
+//   font-weight: $font-weight-medium;
+// }
+
+// .liveClock {
+//   font-family: $font-family-heading;
+//   font-size: clamp(1rem, 2vw, 1.25rem);
+//   font-weight: $font-weight-bold;
+//   color: $color-gray-300;
+//   letter-spacing: 0.05em;
+//   padding-left: $spacing-md;
+//   border-left: 1px solid $color-gray-100;
+
+//   @include sm {
+//     display: none;
+//   }
+// }
+
+// // ── Today Center — status + times ─────────────────────────────────────────
+// .todayCenter {
+//   flex: 1;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   gap: $spacing-md;
+
+//   @include md {
+//     align-items: flex-start;
+//   }
+// }
+
+// .todayStatusBadge {
+//   display: inline-flex;
+//   align-items: center;
+//   gap: 6px;
+//   padding: 5px 16px;
+//   border-radius: $radius-full;
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-semibold;
+//   letter-spacing: 0.04em;
+//   white-space: nowrap;
+// }
+
+// .todayStatusDot {
+//   width: 8px;
+//   height: 8px;
+//   border-radius: 50%;
+//   flex-shrink: 0;
+// }
+
+// .timesRow {
+//   display: flex;
+//   align-items: center;
+//   gap: $spacing-md;
+//   flex-wrap: wrap;
+
+//   @include sm {
+//     gap: $spacing-sm;
+//   }
+// }
+
+// .timeBlock {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   gap: 2px;
+// }
+
+// .timeBlockLabel {
+//   font-size: $font-size-xs;
+//   color: $color-gray-400;
+//   font-weight: $font-weight-medium;
+//   text-transform: uppercase;
+//   letter-spacing: 0.06em;
+// }
+
+// .timeBlockVal {
+//   font-family: $font-family-heading;
+//   font-size: $font-size-lg;
+//   font-weight: $font-weight-bold;
+//   color: $color-gray-300;
+//   letter-spacing: 0.02em;
+// }
+
+// .timeBlockValGreen {
+//   color: #16a34a !important;
+// }
+// .timeBlockValRed {
+//   color: #dc2626 !important;
+// }
+
+// .timeSep {
+//   font-size: $font-size-lg;
+//   color: $color-gray-300;
+//   font-weight: $font-weight-bold;
+//   padding-top: $spacing-sm; // align with value row
+// }
+
+// // ── Today Right — buttons ─────────────────────────────────────────────────
+// .todayRight {
+//   display: flex;
+//   flex-direction: column;
+//   gap: $spacing-sm;
+//   flex-shrink: 0;
+//   min-width: 160px;
+
+//   @include md {
+//     flex-direction: row;
+//     min-width: auto;
+//   }
+//   @include sm {
+//     flex-direction: column;
+//   }
+// }
+
+// .actionBtn {
+//   display: inline-flex;
+//   align-items: center;
+//   justify-content: center;
+//   gap: $spacing-xs;
+//   padding: $spacing-sm $spacing-lg;
+//   border-radius: $radius-xl;
+//   border: none;
+//   font-family: $font-family-primary;
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-semibold;
+//   cursor: pointer;
+//   transition:
+//     transform $transition-fast,
+//     box-shadow $transition-fast,
+//     opacity $transition-fast;
+//   white-space: nowrap;
+
+//   &:disabled {
+//     opacity: 0.55;
+//     cursor: not-allowed;
+//     transform: none !important;
+//     box-shadow: none !important;
+//   }
+
+//   &:not(:disabled):hover {
+//     transform: translateY(-2px);
+//   }
+
+//   &:not(:disabled):active {
+//     transform: translateY(0);
+//   }
+// }
+
+// .checkInBtn {
+//   background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+//   color: $color-white;
+//   box-shadow: 0 4px 14px rgba(#22c55e, 0.35);
+
+//   &:not(:disabled):hover {
+//     box-shadow: 0 6px 20px rgba(#22c55e, 0.45);
+//   }
+// }
+
+// .checkOutBtn {
+//   background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+//   color: $color-white;
+//   box-shadow: 0 4px 14px rgba(#ef4444, 0.3);
+
+//   &:not(:disabled):hover {
+//     box-shadow: 0 6px 20px rgba(#ef4444, 0.4);
+//   }
+// }
+
+// .btnIcon {
+//   font-size: $font-size-sm;
+//   line-height: 1;
+// }
+
+// .btnSpinner {
+//   display: inline-block;
+//   width: 13px;
+//   height: 13px;
+//   border: 2px solid rgba($color-white, 0.4);
+//   border-top-color: $color-white;
+//   border-radius: 50%;
+//   animation: spin 0.6s linear infinite;
+// }
+
+// // ─── Bottom Layout: Stats + Calendar side by side ─────────────────────────────
+// .bottomLayout {
+//   display: grid;
+//   grid-template-columns: 280px 1fr;
+//   gap: $spacing-lg;
+//   align-items: start;
+
+//   @include md {
+//     grid-template-columns: 1fr;
+//   }
+// }
+
+// // ─── Stats Column ─────────────────────────────────────────────────────────────
+// .statsCol {
+//   @include card-base;
+//   padding: $spacing-lg;
+//   display: flex;
+//   flex-direction: column;
+//   gap: $spacing-md;
+// }
+
+// .sectionHead {
+//   display: flex;
+//   align-items: baseline;
+//   justify-content: space-between;
+//   gap: $spacing-sm;
+// }
+
+// .sectionTitle {
+//   font-family: $font-family-heading;
+//   font-size: $font-size-base;
+//   font-weight: $font-weight-bold;
+//   color: $color-gray-900;
+//   margin: 0;
+// }
+
+// .sectionSub {
+//   font-size: $font-size-xs;
+//   color: $color-gray-400;
+//   font-weight: $font-weight-medium;
+// }
+
+// .statsList {
+//   display: flex;
+//   flex-direction: column;
+//   gap: $spacing-xs;
+// }
+
+// .statRow {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   padding: $spacing-sm $spacing-sm;
+//   border-radius: $radius-lg;
+//   border-left: 3px solid transparent;
+//   background: $color-gray-50;
+//   transition: background $transition-fast;
+
+//   &:hover {
+//     background: $color-gray-100;
+//   }
+// }
+
+// .statLeft {
+//   display: flex;
+//   align-items: center;
+//   gap: $spacing-sm;
+// }
+
+// .statIcon {
+//   width: 26px;
+//   height: 26px;
+//   border-radius: $radius-md;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   font-size: 0.75rem;
+//   font-weight: $font-weight-bold;
+//   flex-shrink: 0;
+// }
+
+// .statLabel {
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-medium;
+//   color: $color-gray-700;
+// }
+
+// .statVal {
+//   font-family: $font-family-heading;
+//   font-size: $font-size-lg;
+//   font-weight: $font-weight-bold;
+//   min-width: 28px;
+//   text-align: right;
+// }
+
+// // Legend
+// .calLegend {
+//   display: flex;
+//   flex-wrap: wrap;
+//   gap: $spacing-xs $spacing-sm;
+//   padding-top: $spacing-sm;
+//   border-top: 1px solid $color-gray-100;
+// }
+
+// .legendItem {
+//   display: flex;
+//   align-items: center;
+//   gap: 5px;
+//   font-size: $font-size-xs;
+//   color: $color-gray-500;
+//   font-weight: $font-weight-medium;
+// }
+
+// .legendDot {
+//   width: 9px;
+//   height: 9px;
+//   border-radius: 50%;
+//   flex-shrink: 0;
+// }
+
+// // ─── Calendar Column ──────────────────────────────────────────────────────────
+// .calendarCol {
+//   @include card-base;
+//   padding: $spacing-lg;
+// }
+
+// // ── Nav ────────────────────────────────────────────────────────────────────
+// .calNav {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   margin-bottom: $spacing-md;
+// }
+
+// .navBtn {
+//   width: 34px;
+//   height: 34px;
+//   border-radius: $radius-lg;
+//   border: 1.5px solid $color-gray-200;
+//   background: $color-white;
+//   color: $color-gray-600;
+//   font-size: 1.2rem;
+//   font-weight: $font-weight-bold;
+//   cursor: pointer;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   transition: all $transition-fast;
+//   line-height: 1;
+
+//   &:hover {
+//     background: $color-primary;
+//     color: $color-white;
+//     border-color: $color-primary;
+//     box-shadow: 0 3px 10px rgba($color-primary, 0.3);
+//   }
+// }
+
+// .calTitle {
+//   font-family: $font-family-heading;
+//   font-size: $font-size-base;
+//   font-weight: $font-weight-bold;
+//   color: $color-gray-900;
+//   letter-spacing: -0.01em;
+// }
+
+// .calYear {
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-medium;
+//   color: $color-gray-400;
+//   margin-left: 4px;
+// }
+
+// // ── Day labels row ─────────────────────────────────────────────────────────
+// .calDowRow {
+//   display: grid;
+//   grid-template-columns: repeat(7, 1fr);
+//   gap: 4px;
+//   margin-bottom: 4px;
+// }
+
+// .calDow {
+//   text-align: center;
+//   font-size: $font-size-xs;
+//   font-weight: $font-weight-semibold;
+//   color: $color-gray-400;
+//   text-transform: uppercase;
+//   letter-spacing: 0.06em;
+//   padding: 4px 0;
+// }
+
+// .calDowSun {
+//   color: #ef4444;
+//   opacity: 0.6;
+// }
+
+// // ── Grid ───────────────────────────────────────────────────────────────────
+// .calGrid {
+//   display: grid;
+//   grid-template-columns: repeat(7, 1fr);
+//   gap: 5px;
+// }
+
+// .calEmpty {
+//   aspect-ratio: 1;
+//   border-radius: $radius-md;
+// }
+
+// .calCell {
+//   aspect-ratio: 1;
+//   border-radius: $radius-md;
+//   border: 1.5px solid $color-gray-100;
+//   background: $color-white;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   gap: 3px;
+//   cursor: default;
+//   position: relative;
+//   transition:
+//     transform $transition-fast,
+//     box-shadow $transition-fast;
+
+//   &:hover {
+//     transform: scale(1.06);
+//     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+//     z-index: 1;
+//   }
+// }
+
+// // Sunday
+// .calSun {
+//   background: $color-gray-50 !important;
+//   border-color: transparent !important;
+//   opacity: 0.5;
+//   &:hover {
+//     transform: none;
+//     box-shadow: none;
+//   }
+// }
+
+// // Today ring
+// .calToday {
+//   box-shadow: 0 0 0 2.5px $color-primary !important;
+//   border-color: $color-primary !important;
+// }
+
+// // Has attendance data
+// .calHasData {
+//   border-width: 1.5px;
+// }
+
+// .calDay {
+//   font-family: $font-family-heading;
+//   font-size: $font-size-xs;
+//   font-weight: $font-weight-semibold;
+//   color: $color-gray-700;
+//   line-height: 1;
+// }
+
+// // Colored dot under day number
+// .calDot {
+//   width: 5px;
+//   height: 5px;
+//   border-radius: 50%;
+//   flex-shrink: 0;
+// }
+
+// .calSunDash {
+//   font-size: 0.6rem;
+//   color: $color-gray-300;
+// }
+
+// // Skeleton cells
+// .skeletonCell {
+//   aspect-ratio: 1;
+//   border-radius: $radius-md;
+//   background: linear-gradient(
+//     90deg,
+//     $color-gray-100 25%,
+//     $color-gray-50 50%,
+//     $color-gray-100 75%
+//   );
+//   background-size: 200% 100%;
+//   animation: shimmer 1.4s infinite;
+// }
+
+// // ─── Animations ───────────────────────────────────────────────────────────────
+// @keyframes spin {
+//   to {
+//     transform: rotate(360deg);
+//   }
+// }
+
+// @keyframes shimmer {
+//   0% {
+//     background-position: 200% 0;
+//   }
+//   100% {
+//     background-position: -200% 0;
+//   }
+// }
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// ─── Page Shell ───────────────────────────────────────────────────────────────
+.pageWrapper {
+  padding: $spacing-xl $spacing-2xl;
+  min-height: 100vh;
+  background: $gradient-background;
+  border-radius: $radius-xl;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+
+  @include md {
+    padding: $spacing-lg $spacing-md;
+    gap: $spacing-md;
+  }
+  @include sm {
+    padding: $spacing-md $spacing-sm;
+    gap: $spacing-sm;
+  }
+}
+
+// ─── Today Panel ──────────────────────────────────────────────────────────────
+.todayPanel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-xl;
+  background: $color-white;
+  border-radius: $radius-2xl;
+  padding: $spacing-xl;
+  border: 1px solid rgba($color-gray-200, 0.6);
+  box-shadow: $shadow-card;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, $color-primary 0%, $color-info 100%);
+    border-radius: $radius-xl 0 0 $radius-xl;
+  }
+
+  @include md {
+    flex-direction: column;
+    align-items: stretch;
+    gap: $spacing-md;
+    padding: $spacing-lg;
+  }
+
+  @include sm {
+    padding: $spacing-md;
+    gap: $spacing-sm;
+    border-radius: $radius-xl;
+  }
+}
+
+// ── Today Left ────────────────────────────────────────────────────────────────
+.todayLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  flex-shrink: 0;
+
+  @include sm {
+    gap: $spacing-sm;
+    justify-content: space-between;
+  }
+}
+
+.todayDateBlock {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.todayDayNum {
+  font-family: $font-family-heading;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+  line-height: 1;
+  letter-spacing: -0.04em;
+
+  @include sm {
+    font-size: 2.2rem;
+  }
+}
+
+.todayDateMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.todayMonthYear {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-700;
+
+  @include sm {
+    font-size: $font-size-xs;
+  }
+}
+
+.todayWeekday {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  font-weight: $font-weight-medium;
+}
+
+.liveClock {
+  font-family: $font-family-heading;
+  font-size: clamp(0.9rem, 2vw, 1.25rem);
+  font-weight: $font-weight-bold;
+  color: $color-gray-300;
+  letter-spacing: 0.05em;
+  padding-left: $spacing-md;
+  border-left: 1px solid $color-gray-100;
+
+  @include sm {
+    display: none;
+  }
+}
+
+// ── Today Center ──────────────────────────────────────────────────────────────
+.todayCenter {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-md;
+
+  @include md {
+    align-items: flex-start;
+    gap: $spacing-sm;
+  }
+  @include sm {
+    gap: $spacing-sm;
+  }
+}
+
+.todayStatusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 16px;
+  border-radius: $radius-full;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+
+  @include sm {
+    font-size: $font-size-xs;
+    padding: 4px 12px;
+  }
+}
+
+.todayStatusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.timesRow {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+
+  @include md {
+    gap: $spacing-sm;
+  }
+  @include sm {
+    gap: $spacing-xs;
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.timeBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+
+  @include sm {
+    align-items: flex-start;
+  }
+}
+
+.timeBlockLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.timeBlockVal {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-gray-300;
+  letter-spacing: 0.02em;
+
+  @include sm {
+    font-size: $font-size-base;
+  }
+}
+
+.timeBlockValGreen {
+  color: #16a34a !important;
+}
+.timeBlockValRed {
+  color: #dc2626 !important;
+}
+
+.timeSep {
+  font-size: $font-size-lg;
+  color: $color-gray-300;
+  font-weight: $font-weight-bold;
+  padding-top: $spacing-sm;
+
+  @include sm {
+    display: none;
+  }
+}
+
+// ── Today Right — buttons ─────────────────────────────────────────────────────
+.todayRight {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  flex-shrink: 0;
+  min-width: 160px;
+
+  @include md {
+    flex-direction: row;
+    min-width: auto;
+    flex-wrap: wrap;
+  }
+  @include sm {
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+.actionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-xl;
+  border: none;
+  font-family: $font-family-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition:
+    transform $transition-fast,
+    box-shadow $transition-fast,
+    opacity $transition-fast;
+  white-space: nowrap;
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  &:not(:disabled):hover {
+    transform: translateY(-2px);
+  }
+  &:not(:disabled):active {
+    transform: translateY(0);
+  }
+
+  @include md {
+    flex: 1;
+    min-width: 130px;
+  }
+  @include sm {
+    width: 100%;
+    padding: $spacing-sm $spacing-md;
+    font-size: $font-size-sm;
+  }
+}
+
+.checkInBtn {
+  background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+  color: $color-white;
+  box-shadow: 0 4px 14px rgba(#22c55e, 0.35);
+
+  &:not(:disabled):hover {
+    box-shadow: 0 6px 20px rgba(#22c55e, 0.45);
+  }
+}
+
+.checkOutBtn {
+  background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+  color: $color-white;
+  box-shadow: 0 4px 14px rgba(#ef4444, 0.3);
+
+  &:not(:disabled):hover {
+    box-shadow: 0 6px 20px rgba(#ef4444, 0.4);
+  }
+}
+
+.btnIcon {
+  font-size: $font-size-sm;
+  line-height: 1;
+}
+
+.btnSpinner {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border: 2px solid rgba($color-white, 0.4);
+  border-top-color: $color-white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+// ─── Bottom Layout ────────────────────────────────────────────────────────────
+.bottomLayout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: $spacing-lg;
+  align-items: start;
+
+  @include lg {
+    grid-template-columns: 240px 1fr;
+    gap: $spacing-md;
+  }
+  @include md {
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+  }
+  @include sm {
+    gap: $spacing-sm;
+  }
+}
+
+// ─── Stats Column ─────────────────────────────────────────────────────────────
+.statsCol {
+  @include card-base;
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+
+  @include md {
+    // On tablet/mobile show as horizontal scroll strip
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-sm;
+    padding: $spacing-md;
+  }
+
+  @include sm {
+    grid-template-columns: 1fr;
+    padding: $spacing-md;
+  }
+}
+
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: $spacing-sm;
+
+  @include md {
+    grid-column: 1 / -1;
+  }
+}
+
+.sectionTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  margin: 0;
+}
+
+.sectionSub {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  font-weight: $font-weight-medium;
+}
+
+.statsList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+
+  @include md {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-xs;
+  }
+  @include sm {
+    grid-template-columns: 1fr;
+  }
+}
+
+.statRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-sm;
+  border-radius: $radius-lg;
+  border-left: 3px solid transparent;
+  background: $color-gray-50;
+  transition: background $transition-fast;
+
+  &:hover {
+    background: $color-gray-100;
+  }
+
+  @include sm {
+    padding: $spacing-xs $spacing-sm;
+  }
+}
+
+.statLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.statIcon {
+  width: 26px;
+  height: 26px;
+  border-radius: $radius-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: $font-weight-bold;
+  flex-shrink: 0;
+
+  @include sm {
+    width: 22px;
+    height: 22px;
+    font-size: 0.65rem;
+  }
+}
+
+.statLabel {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-gray-700;
+
+  @include sm {
+    font-size: $font-size-xs;
+  }
+}
+
+.statVal {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  min-width: 28px;
+  text-align: right;
+
+  @include sm {
+    font-size: $font-size-base;
+  }
+}
+
+// ─── Legend ───────────────────────────────────────────────────────────────────
+.calLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs $spacing-sm;
+  padding-top: $spacing-sm;
+  border-top: 1px solid $color-gray-100;
+
+  @include md {
+    grid-column: 1 / -1;
+  }
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+  font-weight: $font-weight-medium;
+}
+
+.legendDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+// ─── Calendar Column ──────────────────────────────────────────────────────────
+.calendarCol {
+  @include card-base;
+  padding: $spacing-lg;
+
+  @include md {
+    padding: $spacing-md;
+  }
+  @include sm {
+    padding: $spacing-sm;
+  }
+}
+
+.calNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-md;
+
+  @include sm {
+    margin-bottom: $spacing-sm;
+  }
+}
+
+.navBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: $radius-lg;
+  border: 1.5px solid $color-gray-200;
+  background: $color-white;
+  color: $color-gray-600;
+  font-size: 1.2rem;
+  font-weight: $font-weight-bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all $transition-fast;
+  line-height: 1;
+  flex-shrink: 0;
+
+  &:hover {
+    background: $color-primary;
+    color: $color-white;
+    border-color: $color-primary;
+    box-shadow: 0 3px 10px rgba($color-primary, 0.3);
+  }
+
+  @include sm {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
+}
+
+.calTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  letter-spacing: -0.01em;
+
+  @include sm {
+    font-size: $font-size-sm;
+  }
+}
+
+.calYear {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-gray-400;
+  margin-left: 4px;
+
+  @include sm {
+    font-size: $font-size-xs;
+  }
+}
+
+.calDowRow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 4px;
+
+  @include sm {
+    gap: 2px;
+    margin-bottom: 2px;
+  }
+}
+
+.calDow {
+  text-align: center;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-400;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 0;
+
+  @include sm {
+    font-size: 0.6rem;
+    padding: 2px 0;
+    letter-spacing: 0;
+  }
+}
+
+.calDowSun {
+  color: #ef4444;
+  opacity: 0.6;
+}
+
+.calGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+
+  @include md {
+    gap: 4px;
+  }
+  @include sm {
+    gap: 3px;
+  }
+}
+
+.calEmpty {
+  aspect-ratio: 1;
+  border-radius: $radius-md;
+
+  @include sm {
+    aspect-ratio: auto;
+    min-height: 34px;
+  }
+}
+
+.calCell {
+  aspect-ratio: 1;
+  border-radius: $radius-md;
+  border: 1.5px solid $color-gray-100;
+  background: $color-white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  cursor: default;
+  position: relative;
+  transition:
+    transform $transition-fast,
+    box-shadow $transition-fast;
+
+  &:hover {
+    transform: scale(1.06);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }
+
+  @include sm {
+    aspect-ratio: auto;
+    min-height: 34px;
+    border-radius: $radius-sm;
+    gap: 2px;
+  }
+
+  @include xs {
+    min-height: 28px;
+  }
+}
+
+.calSun {
+  background: $color-gray-50 !important;
+  border-color: transparent !important;
+  opacity: 0.5;
+  &:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+.calToday {
+  box-shadow: 0 0 0 2.5px $color-primary !important;
+  border-color: $color-primary !important;
+}
+
+.calHasData {
+  border-width: 1.5px;
+}
+
+.calDay {
+  font-family: $font-family-heading;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-700;
+  line-height: 1;
+
+  @include sm {
+    font-size: 0.6rem;
+  }
+}
+
+.calDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+
+  @include sm {
+    width: 4px;
+    height: 4px;
+  }
+  @include xs {
+    display: none;
+  }
+}
+
+.calSunDash {
+  font-size: 0.6rem;
+  color: $color-gray-300;
+}
+
+// ── Skeleton ──────────────────────────────────────────────────────────────────
+.skeletonCell {
+  aspect-ratio: 1;
+  border-radius: $radius-md;
+  @include skeleton;
+
+  @include sm {
+    aspect-ratio: auto;
+    min-height: 34px;
+  }
+}
+
+// ─── Animations ───────────────────────────────────────────────────────────────
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

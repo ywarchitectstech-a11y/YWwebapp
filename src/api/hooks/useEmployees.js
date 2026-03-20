@@ -115,3 +115,31 @@ export const useActivateEmployee = () => {
     },
   });
 };
+
+
+/* ===============================
+   UPDATE MY PASSWORD
+=============================== */
+export const useUpdateMyPassword = () => {
+  return useMutation({
+    mutationFn: ({ oldPassword, newPassword }) =>
+      employeeApi.updateMyPassword(oldPassword, newPassword),
+  });
+};
+
+
+/* ===============================
+   UPDATE PROFILE IMAGE
+=============================== */
+export const useUpdateMyProfileImage = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (file) => employeeApi.updateMyProfileImage(file),
+
+    onSuccess: () => {
+      // refresh user profile everywhere
+      queryClient.invalidateQueries(["userProfile"]);
+    },
+  });
+};

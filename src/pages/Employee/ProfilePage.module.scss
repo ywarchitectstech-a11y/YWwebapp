@@ -1,3 +1,628 @@
+// @use "../../styles/variables" as *;
+// @use "../../styles/mixins" as *;
+
+// // ── Page ───────────────────────────────────────────────────────────────────────
+// .page {
+//   padding: $spacing-xl $spacing-2xl;
+//   min-height: 100vh;
+//   background: $gradient-background;
+//   border-radius: $radius-xl;
+//   display: flex;
+//   flex-direction: column;
+//   gap: $spacing-lg;
+//   padding-bottom: 100px; // space for save bar
+
+//   @include md {
+//     padding: $spacing-lg $spacing-md;
+//     padding-bottom: 100px;
+//   }
+//   @include sm {
+//     padding: $spacing-md $spacing-sm;
+//     padding-bottom: 90px;
+//   }
+// }
+
+// // ── Loading / Error ───────────────────────────────────────────────────────────
+// .loadingWrap,
+// .errorWrap {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   min-height: 40vh;
+//   gap: $spacing-md;
+//   color: $color-gray-400;
+//   font-size: $font-size-sm;
+//   text-align: center;
+// }
+
+// .spinner {
+//   width: 32px;
+//   height: 32px;
+//   border: 3px solid $color-gray-200;
+//   border-top-color: $color-primary;
+//   border-radius: 50%;
+//   animation: spin 0.7s linear infinite;
+// }
+
+// @keyframes spin {
+//   to {
+//     transform: rotate(360deg);
+//   }
+// }
+
+// .errorIcon {
+//   font-size: 2.5rem;
+// }
+
+// // ── Hero Card ─────────────────────────────────────────────────────────────────
+// .heroCard {
+//   background: $color-white;
+//   border-radius: $radius-2xl;
+//   box-shadow: $shadow-card;
+//   border: 1px solid rgba($color-gray-200, 0.6);
+//   overflow: hidden;
+// }
+
+// .heroTopBar {
+//   height: 5px;
+//   background: linear-gradient(
+//     90deg,
+//     $color-primary,
+//     $color-secondary,
+//     $color-info
+//   );
+// }
+
+// .heroContent {
+//   padding: $spacing-xl;
+//   display: flex;
+//   align-items: flex-start;
+//   justify-content: space-between;
+//   gap: $spacing-xl;
+//   flex-wrap: wrap;
+
+//   @include sm {
+//     padding: $spacing-lg;
+//     flex-direction: column;
+//     gap: $spacing-md;
+//   }
+// }
+
+// .heroLeft {
+//   display: flex;
+//   align-items: center;
+//   gap: $spacing-lg;
+//   flex: 1;
+//   min-width: 0;
+
+//   @include sm {
+//     gap: $spacing-md;
+//   }
+// }
+
+// // ── Avatar ────────────────────────────────────────────────────────────────────
+// .avatarWrap {
+//   position: relative;
+//   flex-shrink: 0;
+// }
+
+// .avatarImg {
+//   width: 80px;
+//   height: 80px;
+//   border-radius: $radius-xl;
+//   object-fit: cover;
+//   border: 3px solid $color-white;
+//   box-shadow: $shadow-md;
+// }
+
+// .avatarInitials {
+//   width: 80px;
+//   height: 80px;
+//   border-radius: $radius-xl;
+//   background: linear-gradient(135deg, $color-primary, $color-secondary);
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   font-family: $font-family-heading;
+//   font-size: $font-size-2xl;
+//   font-weight: $font-weight-bold;
+//   color: $color-white;
+//   box-shadow: $shadow-md;
+//   border: 3px solid $color-white;
+
+//   @include sm {
+//     width: 64px;
+//     height: 64px;
+//     font-size: $font-size-xl;
+//   }
+// }
+
+// .avatarStatus {
+//   position: absolute;
+//   bottom: 4px;
+//   right: 4px;
+//   width: 14px;
+//   height: 14px;
+//   border-radius: 50%;
+//   background: $color-success;
+//   border: 2px solid $color-white;
+// }
+
+// // ── Hero Info ─────────────────────────────────────────────────────────────────
+// .heroInfo {
+//   flex: 1;
+//   min-width: 0;
+// }
+
+// .heroName {
+//   font-family: $font-family-heading;
+//   font-size: $font-size-2xl;
+//   font-weight: $font-weight-bold;
+//   color: $color-gray-900;
+//   margin: 0 0 $spacing-sm;
+//   line-height: $line-height-tight;
+
+//   @include sm {
+//     font-size: $font-size-xl;
+//   }
+// }
+
+// .heroChips {
+//   display: flex;
+//   flex-wrap: wrap;
+//   gap: $spacing-xs;
+//   align-items: center;
+// }
+
+// .roleChip {
+//   display: inline-flex;
+//   align-items: center;
+//   padding: 3px 10px;
+//   background: rgba($color-primary, 0.1);
+//   color: $color-primary;
+//   border-radius: $radius-full;
+//   font-size: $font-size-xs;
+//   font-weight: $font-weight-semibold;
+//   text-transform: uppercase;
+//   letter-spacing: 0.05em;
+// }
+
+// .statusChip {
+//   display: inline-flex;
+//   align-items: center;
+//   gap: 5px;
+//   padding: 3px 10px;
+//   border-radius: $radius-full;
+//   font-size: $font-size-xs;
+//   font-weight: $font-weight-semibold;
+// }
+
+// .statusDot {
+//   width: 6px;
+//   height: 6px;
+//   border-radius: 50%;
+//   flex-shrink: 0;
+// }
+
+// .emailChip {
+//   display: inline-flex;
+//   align-items: center;
+//   padding: 3px 10px;
+//   background: $color-gray-100;
+//   color: $color-gray-600;
+//   border-radius: $radius-full;
+//   font-size: $font-size-xs;
+//   font-weight: $font-weight-medium;
+
+//   @include sm {
+//     display: none;
+//   }
+// }
+
+// // ── Hero Stats ────────────────────────────────────────────────────────────────
+// .heroStats {
+//   display: flex;
+//   gap: $spacing-xl;
+//   flex-shrink: 0;
+//   align-self: center;
+
+//   @include md {
+//     gap: $spacing-lg;
+//   }
+//   @include sm {
+//     width: 100%;
+//     justify-content: space-around;
+//     padding-top: $spacing-md;
+//     border-top: 1px solid $color-gray-100;
+//   }
+// }
+
+// .heroStat {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   gap: 3px;
+//   text-align: center;
+// }
+
+// .heroStatVal {
+//   font-family: $font-family-heading;
+//   font-size: $font-size-lg;
+//   font-weight: $font-weight-bold;
+//   color: $color-gray-800;
+//   line-height: 1;
+// }
+
+// .heroStatLabel {
+//   font-size: $font-size-xs;
+//   color: $color-gray-400;
+//   font-weight: $font-weight-medium;
+//   text-transform: uppercase;
+//   letter-spacing: 0.05em;
+// }
+
+// // ── Tab Bar ───────────────────────────────────────────────────────────────────
+// .tabBar {
+//   display: flex;
+//   gap: 4px;
+//   background: $color-white;
+//   border-radius: $radius-xl;
+//   padding: 4px;
+//   box-shadow: $shadow-card;
+//   border: 1px solid rgba($color-gray-200, 0.6);
+//   overflow-x: auto;
+
+//   &::-webkit-scrollbar {
+//     height: 2px;
+//   }
+//   &::-webkit-scrollbar-thumb {
+//     background: $color-gray-200;
+//     border-radius: 2px;
+//   }
+// }
+
+// .tab {
+//   display: flex;
+//   align-items: center;
+//   gap: $spacing-xs;
+//   padding: $spacing-sm $spacing-lg;
+//   border: none;
+//   border-radius: $radius-lg;
+//   background: transparent;
+//   color: $color-gray-500;
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-medium;
+//   cursor: pointer;
+//   transition: all $transition-fast;
+//   white-space: nowrap;
+//   flex-shrink: 0;
+
+//   &:hover {
+//     background: $color-gray-50;
+//     color: $color-gray-700;
+//   }
+// }
+
+// .tabActive {
+//   background: $color-primary !important;
+//   color: $color-white !important;
+//   box-shadow: 0 2px 8px rgba($color-primary, 0.3);
+// }
+
+// .tabLabel {
+//   @include sm {
+//     display: none;
+//   }
+// }
+
+// // ── Dirty Banner ─────────────────────────────────────────────────────────────
+// .dirtyBanner {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   gap: $spacing-md;
+//   padding: $spacing-sm $spacing-lg;
+//   background: #fef3c7;
+//   border: 1px solid #fcd34d;
+//   border-radius: $radius-lg;
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-medium;
+//   color: #92400e;
+//   flex-wrap: wrap;
+// }
+
+// .dirtyBannerActions {
+//   display: flex;
+//   gap: $spacing-sm;
+// }
+
+// // ── Tab Content ───────────────────────────────────────────────────────────────
+// .tabContent {
+//   animation: fadeUp 0.18s ease;
+//   flex: 1;
+// }
+
+// @keyframes fadeUp {
+//   from {
+//     opacity: 0;
+//     transform: translateY(6px);
+//   }
+//   to {
+//     opacity: 1;
+//     transform: translateY(0);
+//   }
+// }
+
+// // ── Grid ──────────────────────────────────────────────────────────────────────
+// .grid {
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+//   gap: $spacing-lg;
+//   align-items: start;
+
+//   @include md {
+//     grid-template-columns: 1fr;
+//   }
+// }
+
+// // ── Section Card ──────────────────────────────────────────────────────────────
+// .sectionCard {
+//   background: $color-white;
+//   border-radius: $radius-xl;
+//   box-shadow: $shadow-card;
+//   border: 1px solid rgba($color-gray-200, 0.6);
+//   overflow: hidden;
+// }
+
+// .sectionCardHead {
+//   display: flex;
+//   align-items: center;
+//   gap: $spacing-sm;
+//   padding: $spacing-md $spacing-lg;
+//   background: $color-gray-50;
+//   border-bottom: 1px solid $color-gray-100;
+// }
+
+// .sectionCardIcon {
+//   font-size: 1.1rem;
+// }
+
+// .sectionCardTitle {
+//   font-family: $font-family-heading;
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-semibold;
+//   color: $color-gray-700;
+//   margin: 0;
+//   text-transform: uppercase;
+//   letter-spacing: 0.05em;
+// }
+
+// .sectionCardBody {
+//   padding: $spacing-lg;
+//   display: flex;
+//   flex-direction: column;
+//   gap: $spacing-md;
+// }
+
+// // ── Form Grid ─────────────────────────────────────────────────────────────────
+// .formGrid {
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+//   gap: $spacing-md;
+
+//   @include sm {
+//     grid-template-columns: 1fr;
+//   }
+// }
+
+// // ── Field ─────────────────────────────────────────────────────────────────────
+// .field {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 5px;
+// }
+
+// .fieldFull {
+//   grid-column: 1 / -1;
+// }
+
+// .fieldLabel {
+//   font-size: $font-size-xs;
+//   font-weight: $font-weight-semibold;
+//   color: $color-gray-500;
+//   text-transform: uppercase;
+//   letter-spacing: 0.06em;
+// }
+
+// .req {
+//   color: $color-danger;
+// }
+
+// // ── Inputs ────────────────────────────────────────────────────────────────────
+// .input,
+// .select {
+//   @include input-base;
+// }
+
+// .select {
+//   cursor: pointer;
+//   appearance: none;
+//   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+//   background-repeat: no-repeat;
+//   background-position: right 12px center;
+//   padding-right: 36px;
+// }
+
+// // ── Info Row ──────────────────────────────────────────────────────────────────
+// .infoRow {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   padding: $spacing-sm 0;
+//   border-bottom: 1px solid $color-gray-100;
+//   gap: $spacing-md;
+
+//   &:last-child {
+//     border-bottom: none;
+//   }
+// }
+
+// .infoRowLabel {
+//   font-size: $font-size-xs;
+//   font-weight: $font-weight-semibold;
+//   color: $color-gray-400;
+//   text-transform: uppercase;
+//   letter-spacing: 0.05em;
+//   flex-shrink: 0;
+// }
+
+// .infoRowValue {
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-medium;
+//   color: $color-gray-800;
+//   text-align: right;
+// }
+
+// // ── Image Preview ─────────────────────────────────────────────────────────────
+// .imgPreviewWrap {
+//   display: flex;
+//   justify-content: center;
+//   padding: $spacing-md 0 $spacing-sm;
+// }
+
+// .imgPreview {
+//   width: 100px;
+//   height: 100px;
+//   border-radius: $radius-xl;
+//   object-fit: cover;
+//   border: 2px solid $color-gray-200;
+//   box-shadow: $shadow-sm;
+// }
+
+// // ── Identity Note ─────────────────────────────────────────────────────────────
+// .identityNote {
+//   display: flex;
+//   align-items: center;
+//   gap: $spacing-sm;
+//   padding: $spacing-sm $spacing-md;
+//   background: #fef3c7;
+//   border: 1px solid #fcd34d;
+//   border-radius: $radius-lg;
+//   font-size: $font-size-xs;
+//   color: #92400e;
+
+//   span {
+//     font-size: 1rem;
+//     flex-shrink: 0;
+//   }
+//   p {
+//     margin: 0;
+//     font-weight: $font-weight-medium;
+//   }
+// }
+
+// // ── Bottom Save Bar ───────────────────────────────────────────────────────────
+// .saveBar {
+//   position: fixed;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   gap: $spacing-md;
+//   padding: $spacing-md $spacing-2xl;
+//   background: $color-white;
+//   border-top: 1px solid $color-gray-200;
+//   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+//   z-index: $z-sticky;
+//   flex-wrap: wrap;
+
+//   @include md {
+//     padding: $spacing-md $spacing-lg;
+//   }
+//   @include sm {
+//     padding: $spacing-sm $spacing-md;
+//   }
+// }
+
+// .saveBarLeft {
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-medium;
+// }
+
+// .unsavedDot {
+//   color: $color-warning;
+// }
+
+// .savedDot {
+//   color: $color-success;
+// }
+
+// .saveBarRight {
+//   display: flex;
+//   gap: $spacing-sm;
+//   align-items: center;
+// }
+
+// // ── Buttons ───────────────────────────────────────────────────────────────────
+// .resetBtn {
+//   padding: $spacing-sm $spacing-lg;
+//   border-radius: $radius-lg;
+//   border: 1.5px solid $color-gray-200;
+//   background: $color-white;
+//   color: $color-gray-600;
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-medium;
+//   cursor: pointer;
+//   transition: all $transition-fast;
+
+//   &:hover:not(:disabled) {
+//     background: $color-gray-50;
+//     border-color: $color-gray-300;
+//   }
+//   &:disabled {
+//     opacity: 0.45;
+//     cursor: not-allowed;
+//   }
+// }
+
+// .saveBtn {
+//   display: inline-flex;
+//   align-items: center;
+//   gap: $spacing-xs;
+//   padding: $spacing-sm $spacing-xl;
+//   border-radius: $radius-lg;
+//   border: none;
+//   background: $color-primary;
+//   color: $color-white;
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-semibold;
+//   cursor: pointer;
+//   transition: all $transition-fast;
+//   box-shadow: 0 2px 8px rgba($color-primary, 0.3);
+
+//   &:hover:not(:disabled) {
+//     opacity: 0.9;
+//     transform: translateY(-1px);
+//   }
+
+//   &:disabled {
+//     opacity: 0.45;
+//     cursor: not-allowed;
+//     transform: none;
+//   }
+// }
+
+// .btnSpinner {
+//   width: 14px;
+//   height: 14px;
+//   border: 2px solid rgba(255, 255, 255, 0.35);
+//   border-top-color: $color-white;
+//   border-radius: 50%;
+//   animation: spin 0.7s linear infinite;
+// }
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as *;
 
@@ -622,4 +1247,393 @@
   border-top-color: $color-white;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
+}
+
+// ── Change Password Button (hero card) ────────────────────────────────────────
+.heroRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: $spacing-md;
+  flex-shrink: 0;
+  align-self: center;
+
+  @include md {
+    align-items: flex-start;
+  }
+  @include sm {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: $spacing-md;
+    border-top: 1px solid $color-gray-100;
+  }
+}
+
+.changePwBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-xs $spacing-md;
+  border-radius: $radius-lg;
+  border: 1.5px solid rgba($color-primary, 0.25);
+  background: rgba($color-primary, 0.06);
+  color: $color-primary;
+  font-family: $font-family-primary;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba($color-primary, 0.12);
+    border-color: $color-primary;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba($color-primary, 0.18);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  @include sm {
+    font-size: $font-size-xs;
+    padding: $spacing-xs $spacing-sm;
+  }
+}
+
+// ── Change Password Popup ──────────────────────────────────────────────────────
+.pwPopupOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  z-index: $z-modal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-md;
+  animation: fadeInOverlay 0.18s ease;
+
+  @include sm {
+    align-items: flex-end;
+    padding: 0;
+  }
+}
+
+.pwPopupBox {
+  background: $color-white;
+  border-radius: $radius-2xl;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.16);
+  width: 100%;
+  max-width: 460px;
+  overflow: hidden;
+  animation: slideUpPopup 0.22s ease;
+
+  @include sm {
+    max-width: 100%;
+    border-radius: $radius-2xl $radius-2xl 0 0;
+    max-height: 92vh;
+    overflow-y: auto;
+  }
+}
+
+// Popup Header
+.pwPopupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  padding: $spacing-lg $spacing-xl;
+  border-bottom: 1px solid $color-gray-100;
+  position: relative;
+
+  // Accent bar — matches your existing card pattern
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(
+      180deg,
+      $color-primary 0%,
+      $color-secondary 100%
+    );
+    border-radius: $radius-xl 0 0 0;
+  }
+
+  @include sm {
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+.pwPopupHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.pwPopupIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: $radius-xl;
+  background: linear-gradient(135deg, $color-primary, $color-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size-xl;
+  flex-shrink: 0;
+
+  @include sm {
+    width: 38px;
+    height: 38px;
+    font-size: $font-size-lg;
+  }
+}
+
+.pwPopupTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  margin: 0 0 2px;
+  letter-spacing: -0.01em;
+
+  @include sm {
+    font-size: $font-size-base;
+  }
+}
+
+.pwPopupSub {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  margin: 0;
+  font-weight: $font-weight-medium;
+}
+
+.pwPopupClose {
+  width: 32px;
+  height: 32px;
+  border-radius: $radius-lg;
+  border: 1.5px solid $color-gray-200;
+  background: $color-white;
+  color: $color-gray-500;
+  font-size: $font-size-sm;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: #fee2e2;
+    color: #991b1b;
+    border-color: #fca5a5;
+  }
+}
+
+// Popup Form
+.pwForm {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-xl;
+
+  @include sm {
+    padding: $spacing-lg $spacing-md;
+  }
+}
+
+.pwField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pwDivider {
+  height: 1px;
+  background: $color-gray-100;
+  margin: $spacing-xs 0;
+}
+
+.pwInputWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+// Reuse existing .input but needs padding for eye btn
+.pwInputWrap .input {
+  padding-right: 2.8rem;
+}
+
+.pwEyeBtn {
+  position: absolute;
+  right: $spacing-sm;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1;
+  padding: 3px;
+  color: $color-gray-400;
+  transition: color $transition-fast;
+  flex-shrink: 0;
+
+  &:hover {
+    color: $color-gray-700;
+  }
+}
+
+// Input state variants for confirm field
+.inputError {
+  border-color: $color-danger !important;
+  box-shadow: 0 0 0 3px rgba($color-danger, 0.1) !important;
+}
+
+.inputSuccess {
+  border-color: $color-success !important;
+  box-shadow: 0 0 0 3px rgba($color-success, 0.08) !important;
+}
+
+// Match indicator
+.pwMatchOk {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-success;
+}
+
+.pwMatchFail {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-danger;
+}
+
+// Error banner
+.pwError {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-xs $spacing-md;
+  background: rgba($color-danger, 0.06);
+  border: 1px solid rgba($color-danger, 0.18);
+  border-radius: $radius-lg;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  color: $color-danger;
+}
+
+// Password strength indicator
+.pwStrength {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.pwStrengthBars {
+  display: flex;
+  gap: 3px;
+  flex: 1;
+}
+
+.pwStrengthBar {
+  height: 4px;
+  flex: 1;
+  border-radius: 2px;
+  transition: background $transition-fast;
+}
+
+.pwStrengthLabel {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-500;
+  white-space: nowrap;
+  min-width: 44px;
+  text-align: right;
+}
+
+// Actions row
+.pwActions {
+  display: flex;
+  gap: $spacing-sm;
+  padding-top: $spacing-xs;
+
+  @include sm {
+    flex-direction: column;
+  }
+
+  // Reuse existing .resetBtn and .saveBtn — just ensure full-width on mobile
+  .resetBtn,
+  .saveBtn {
+    flex: 1;
+
+    @include sm {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+// ── Success State ─────────────────────────────────────────────────────────────
+.pwSuccess {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-2xl $spacing-xl;
+  text-align: center;
+}
+
+.pwSuccessIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba($color-success, 0.1);
+  color: $color-success;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba($color-success, 0.2);
+}
+
+.pwSuccessText {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-gray-800;
+  margin: 0;
+}
+
+.pwSuccessSub {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+}
+
+// ── Popup animations ──────────────────────────────────────────────────────────
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUpPopup {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }

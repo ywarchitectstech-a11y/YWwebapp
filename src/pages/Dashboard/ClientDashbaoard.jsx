@@ -451,7 +451,7 @@ export default function ClientDashboard() {
       </div>
 
       {/* ── Client Information ── */}
-      <SectionCard title="Client Information" icon={IconUser}>
+      <SectionCard title="My Information" icon={IconUser}>
         <div className={styles.clientInfoGrid}>
           <InfoCard
             icon={IconUser}

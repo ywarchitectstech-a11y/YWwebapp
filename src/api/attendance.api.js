@@ -7,7 +7,13 @@ export const recordMyCheckIn = (date, time) =>
   api.patch("/attendance/recordmycheckIn", null, {
     params: { date, time },
   });
-
+/* ===============================
+   USER CHECK-OUT (SELF)
+=============================== */
+export const recordMyCheckOut = (date, time, attendanceStatus) =>
+  api.patch("/attendance/recordmycheckout", null, {
+    params: { date, time, attendanceStatus },
+  });
 /* ===============================
    HR CHECK-IN
 =============================== */
@@ -49,7 +55,7 @@ export const getMonthlyAttendance = (userId, month, year) =>
   });
 
 /* ===============================
-   GET ALL EMPLOYEES MONTHLY
+   GET ALL EMPLOYEES MONTHLY 
 =============================== */
 export const getAllEmployeesMonthlyAttendance = (month, year) =>
   api.get("/attendance/all", {
@@ -63,3 +69,9 @@ export const getMyMonthlyAttendance = (month, year) =>
   api.get("/attendance/getmymonthlyattendance", {
     params: { month, year },
   });
+
+  /* ===============================
+   GET TODAY ATTENDANCE
+=============================== */
+export const getTodayAttendance = () =>
+  api.get("/attendance/today");

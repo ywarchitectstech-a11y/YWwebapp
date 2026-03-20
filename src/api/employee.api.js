@@ -31,7 +31,22 @@ export const updateEmployee = (id, data) => {
 export const updateMyProfile = (data) => {
   return api.put("/employees/updatemyprofile", data);
 };
+/* ===============================
+   UPDATE PROFILE IMAGE
+=============================== */
+export const updateMyProfileImage = (file) => {
+  const formData = new FormData();
 
+  if (file) {
+    formData.append("profileimage", file); // ⚠️ must match backend name
+  }
+
+  return api.put("/employees/updatemyprofileimage", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
 /* ===============================
    DELETE EMPLOYEE
 =============================== */
@@ -58,3 +73,11 @@ export const activateEmployee = (id) => {
     params: { id },
   });
 };
+/* ===============================
+   UPDATE MY PASSWORD (USER)
+=============================== */
+export const updateMyPassword = (oldPassword, newPassword) =>
+  api.put("/employees/updatemypassword", null, {
+    params: { oldPassword, newPassword },
+  });
+

@@ -29,3 +29,10 @@ export const updateClient = (data) =>
 export const getClientProfile = () => {
   return api.get("/clients/getclient");
 };
+/* ===============================
+   UPDATE MY PASSWORD
+=============================== */
+export const updateMyPassword = (oldPassword, newPassword) =>
+  api.put("/clients/updatemypassword", null, {
+    params: { oldPassword, newPassword },
+  });

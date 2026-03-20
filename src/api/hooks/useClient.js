@@ -72,3 +72,12 @@ export const useClientProfile = () => {
       clientApi.getClientProfile().then((res) => res.data.data),
   });
 };
+/* ===============================
+   UPDATE MY PASSWORD
+=============================== */
+export const useUpdateMyPassword = () => {
+  return useMutation({
+    mutationFn: ({ oldPassword, newPassword }) =>
+      clientApi.updateMyPassword(oldPassword, newPassword),
+  });
+};

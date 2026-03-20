@@ -1,0 +1,2070 @@
+// @use "../../styles/variables" as *;
+// @use "../../styles/mixins" as *;
+
+// // ─── Page Shell ───────────────────────────────────────────────────────────────
+// .pageWrapper {
+//   padding: $spacing-xl $spacing-2xl;
+//   min-height: 100vh;
+//   background: $gradient-background;
+//   border-radius: $radius-xl;
+
+//   @include md {
+//     padding: $spacing-lg $spacing-md;
+//   }
+//   @include sm {
+//     padding: $spacing-md $spacing-sm;
+//   }
+// }
+
+// // ─── Breadcrumb ───────────────────────────────────────────────────────────────
+// .breadcrumb {
+//   display: flex;
+//   align-items: center;
+//   gap: $spacing-xs;
+//   font-size: $font-size-xs;
+//   color: $color-gray-500;
+//   margin-bottom: $spacing-lg;
+//   font-weight: $font-weight-medium;
+//   text-transform: uppercase;
+//   letter-spacing: 0.06em;
+// }
+// .breadLink {
+//   color: $color-gray-500;
+//   cursor: pointer;
+//   transition: color $transition-fast;
+//   &:hover {
+//     color: $color-primary;
+//   }
+// }
+// .sep {
+//   color: $color-gray-300;
+// }
+
+// // ─── Hero ─────────────────────────────────────────────────────────────────────
+// .hero {
+//   display: flex;
+//   align-items: flex-start;
+//   justify-content: space-between;
+//   gap: $spacing-xl;
+//   background: $color-white;
+//   border-radius: $radius-2xl;
+//   padding: $spacing-xl;
+//   margin-bottom: $spacing-lg;
+//   border: 1px solid rgba($color-gray-200, 0.6);
+//   box-shadow: $shadow-card;
+//   position: relative;
+//   overflow: hidden;
+
+//   &::before {
+//     content: "";
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//     bottom: 0;
+//     width: 4px;
+//     background: linear-gradient(180deg, $color-primary 0%, $color-info 100%);
+//     border-radius: $radius-xl 0 0 $radius-xl;
+//   }
+
+//   @include md {
+//     flex-direction: column;
+//     gap: $spacing-md;
+//   }
+// }
+
+// .heroLeft {
+//   display: flex;
+//   align-items: flex-start;
+//   gap: $spacing-lg;
+//   flex: 1;
+//   min-width: 0;
+
+//   @include sm {
+//     flex-direction: column;
+//     gap: $spacing-md;
+//   }
+// }
+
+// .heroIcon {
+//   flex-shrink: 0;
+//   width: 72px;
+//   height: 72px;
+//   border-radius: $radius-xl;
+//   background: linear-gradient(135deg, $color-primary 0%, $color-info 100%);
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   font-size: $font-size-2xl;
+//   box-shadow: 0 4px 14px rgba($color-primary, 0.28);
+// }
+
+// .heroMeta {
+//   flex: 1;
+//   min-width: 0;
+// }
+
+// .heroTitle {
+//   font-family: $font-family-heading;
+//   font-size: clamp(1.25rem, 3vw, 1.75rem);
+//   font-weight: $font-weight-bold;
+//   color: $color-gray-900;
+//   letter-spacing: -0.02em;
+//   margin: 0 0 $spacing-sm;
+//   @include text-truncate;
+// }
+
+// .heroChips {
+//   display: flex;
+//   flex-wrap: wrap;
+//   gap: $spacing-xs;
+//   margin-bottom: $spacing-xs;
+// }
+
+// .chip {
+//   display: inline-flex;
+//   align-items: center;
+//   padding: 3px 10px;
+//   border-radius: $radius-full;
+//   background: $color-gray-100;
+//   color: $color-gray-600;
+//   font-size: $font-size-xs;
+//   font-weight: $font-weight-medium;
+// }
+
+// .heroDetails {
+//   font-size: $font-size-sm;
+//   color: $color-gray-500;
+//   line-height: $line-height-relaxed;
+//   margin: $spacing-xs 0 0;
+// }
+
+// // Hero stats strip (right side)
+// .heroRight {
+//   display: flex;
+//   align-items: center;
+//   gap: $spacing-sm;
+//   flex-shrink: 0;
+//   flex-wrap: wrap;
+
+//   @include md {
+//     flex-direction: row;
+//   }
+// }
+
+// .heroStat {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   gap: 2px;
+//   padding: $spacing-sm $spacing-md;
+//   border-radius: $radius-xl;
+//   min-width: 64px;
+//   text-align: center;
+//   box-shadow: $shadow-card;
+// }
+
+// .heroStatVal {
+//   font-family: $font-family-heading;
+//   font-size: $font-size-xl;
+//   font-weight: $font-weight-bold;
+//   line-height: 1;
+// }
+
+// .heroStatLabel {
+//   font-size: 0.62rem;
+//   font-weight: $font-weight-semibold;
+//   text-transform: uppercase;
+//   letter-spacing: 0.06em;
+//   opacity: 0.8;
+// }
+
+// // ─── Calendar Card ────────────────────────────────────────────────────────────
+// .calendarCard {
+//   @include card-base;
+//   padding: $spacing-xl;
+//   animation: fadeUp 0.2s ease;
+
+//   @include md {
+//     padding: $spacing-lg $spacing-md;
+//   }
+//   @include sm {
+//     padding: $spacing-md $spacing-sm;
+//   }
+// }
+
+// // ── Month Navigation ───────────────────────────────────────────────────────
+// .calNav {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   margin-bottom: $spacing-lg;
+// }
+
+// .navBtn {
+//   width: 40px;
+//   height: 40px;
+//   border-radius: $radius-lg;
+//   border: 1.5px solid $color-gray-200;
+//   background: $color-white;
+//   color: $color-gray-600;
+//   font-size: 1.4rem;
+//   font-weight: $font-weight-bold;
+//   cursor: pointer;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   transition: all $transition-fast;
+//   line-height: 1;
+
+//   &:hover {
+//     background: $color-primary;
+//     color: $color-white;
+//     border-color: $color-primary;
+//     box-shadow: 0 4px 12px rgba($color-primary, 0.3);
+//   }
+// }
+
+// .calNavCenter {
+//   display: flex;
+//   align-items: baseline;
+//   gap: $spacing-sm;
+// }
+
+// .calMonth {
+//   font-family: $font-family-heading;
+//   font-size: clamp(1.3rem, 3vw, 1.8rem);
+//   font-weight: $font-weight-bold;
+//   color: $color-gray-900;
+//   letter-spacing: -0.02em;
+//   margin: 0;
+// }
+
+// .calYear {
+//   font-size: $font-size-lg;
+//   font-weight: $font-weight-medium;
+//   color: $color-gray-400;
+// }
+
+// // ── Day-of-week header ─────────────────────────────────────────────────────
+// .calDowRow {
+//   display: grid;
+//   grid-template-columns: repeat(7, 1fr);
+//   gap: 4px;
+//   margin-bottom: 4px;
+// }
+
+// .calDow {
+//   text-align: center;
+//   font-size: $font-size-xs;
+//   font-weight: $font-weight-semibold;
+//   color: $color-gray-400;
+//   text-transform: uppercase;
+//   letter-spacing: 0.06em;
+//   padding: $spacing-xs 0;
+// }
+
+// .calDowSun {
+//   color: #ef4444;
+//   opacity: 0.6;
+// }
+
+// // ── Calendar Grid ──────────────────────────────────────────────────────────
+// .calGrid {
+//   display: grid;
+//   grid-template-columns: repeat(7, 1fr);
+//   gap: 6px;
+
+//   @include sm {
+//     gap: 3px;
+//   }
+// }
+
+// .calCellEmpty {
+//   aspect-ratio: 1;
+//   border-radius: $radius-lg;
+//   background: rgba($color-gray-50, 0.5);
+
+//   @include sm {
+//     aspect-ratio: auto;
+//     min-height: 36px;
+//   }
+// }
+
+// .calCell {
+//   aspect-ratio: 1;
+//   border-radius: $radius-lg;
+//   border: 1.5px solid $color-gray-100;
+//   background: $color-white;
+//   cursor: pointer;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   gap: 4px;
+//   position: relative;
+//   transition: all $transition-fast;
+//   padding: $spacing-xs;
+
+//   &:hover {
+//     border-color: $color-primary;
+//     box-shadow: 0 4px 12px rgba($color-primary, 0.15);
+//     transform: translateY(-1px);
+//     z-index: 1;
+//   }
+
+//   @include sm {
+//     aspect-ratio: auto;
+//     min-height: 48px;
+//     padding: 4px 2px;
+//   }
+// }
+
+// // Sunday — not clickable
+// .calCellSun {
+//   cursor: not-allowed;
+//   background: rgba($color-gray-50, 0.6);
+//   border-color: transparent;
+
+//   .calDayNum {
+//     color: #ef4444;
+//     opacity: 0.5;
+//   }
+
+//   &:hover {
+//     transform: none;
+//     box-shadow: none;
+//     border-color: transparent;
+//   }
+// }
+
+// // Today highlight
+// .calCellToday {
+//   border-color: $color-primary !important;
+//   box-shadow: 0 0 0 2px rgba($color-primary, 0.2);
+
+//   .calDayNum {
+//     background: $color-primary;
+//     color: $color-white;
+//     border-radius: 50%;
+//     width: 26px;
+//     height: 26px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//   }
+// }
+
+// // Selected date
+// .calCellSelected {
+//   border-color: $color-primary !important;
+//   background: rgba($color-primary, 0.06) !important;
+//   box-shadow: 0 0 0 3px rgba($color-primary, 0.18) !important;
+// }
+
+// // Has data — has attendance records
+// .calCellHasData {
+//   border-color: rgba($color-gray-300, 0.8);
+// }
+
+// // Tint classes — based on dominant status
+// .cellTintGreen {
+//   background: rgba(#dcfce7, 0.55) !important;
+//   border-color: rgba(#22c55e, 0.25) !important;
+// }
+// .cellTintRed {
+//   background: rgba(#fee2e2, 0.5) !important;
+//   border-color: rgba(#ef4444, 0.2) !important;
+// }
+// .cellTintYellow {
+//   background: rgba(#fef9c3, 0.55) !important;
+//   border-color: rgba(#f59e0b, 0.25) !important;
+// }
+
+// .calDayNum {
+//   font-family: $font-family-heading;
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-semibold;
+//   color: $color-gray-700;
+//   line-height: 1;
+
+//   @include sm {
+//     font-size: $font-size-xs;
+//   }
+// }
+
+// .sunLabel {
+//   font-size: 0.58rem;
+//   color: #ef4444;
+//   opacity: 0.5;
+//   text-transform: uppercase;
+//   letter-spacing: 0.04em;
+//   font-weight: $font-weight-semibold;
+// }
+
+// // ── Day Indicator ──────────────────────────────────────────────────────────
+// .dayIndicator {
+//   display: flex;
+//   align-items: center;
+//   gap: 2px;
+//   flex-wrap: wrap;
+//   justify-content: center;
+// }
+
+// .dot {
+//   width: 6px;
+//   height: 6px;
+//   border-radius: 50%;
+//   flex-shrink: 0;
+
+//   @include sm {
+//     width: 5px;
+//     height: 5px;
+//   }
+// }
+
+// .dayCount {
+//   font-size: 0.6rem;
+//   font-weight: $font-weight-bold;
+//   color: $color-gray-400;
+//   line-height: 1;
+
+//   @include sm {
+//     display: none;
+//   }
+// }
+
+// // ── Loading Skeleton ───────────────────────────────────────────────────────
+// .calLoading {
+//   padding: $spacing-md 0;
+// }
+
+// .calLoadingGrid {
+//   display: grid;
+//   grid-template-columns: repeat(7, 1fr);
+//   gap: 6px;
+// }
+
+// .skeletonCell {
+//   aspect-ratio: 1;
+//   border-radius: $radius-lg;
+//   background: linear-gradient(
+//     90deg,
+//     $color-gray-100 25%,
+//     $color-gray-50 50%,
+//     $color-gray-100 75%
+//   );
+//   background-size: 200% 100%;
+//   animation: shimmer 1.4s infinite;
+// }
+
+// // ── Error ──────────────────────────────────────────────────────────────────
+// .calError {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   gap: $spacing-sm;
+//   padding: $spacing-2xl;
+//   text-align: center;
+
+//   span {
+//     font-size: 2rem;
+//   }
+//   p {
+//     font-size: $font-size-sm;
+//     color: $color-gray-500;
+//     margin: 0;
+//   }
+// }
+
+// .retryBtn {
+//   padding: $spacing-sm $spacing-lg;
+//   border: 1.5px solid $color-gray-200;
+//   border-radius: $radius-lg;
+//   background: $color-white;
+//   color: $color-gray-600;
+//   font-family: $font-family-primary;
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-medium;
+//   cursor: pointer;
+//   transition: all $transition-fast;
+//   &:hover {
+//     background: $color-gray-50;
+//     border-color: $color-primary;
+//     color: $color-primary;
+//   }
+// }
+
+// // ── Legend ─────────────────────────────────────────────────────────────────
+// .calLegend {
+//   display: flex;
+//   align-items: center;
+//   gap: $spacing-md;
+//   margin-top: $spacing-lg;
+//   padding-top: $spacing-md;
+//   border-top: 1px solid $color-gray-100;
+//   flex-wrap: wrap;
+// }
+
+// .legendItem {
+//   display: flex;
+//   align-items: center;
+//   gap: 6px;
+//   font-size: $font-size-xs;
+//   color: $color-gray-500;
+//   font-weight: $font-weight-medium;
+// }
+
+// .legendDot {
+//   width: 10px;
+//   height: 10px;
+//   border-radius: 50%;
+//   flex-shrink: 0;
+// }
+
+// .legendToday {
+//   width: 10px;
+//   height: 10px;
+//   border-radius: 50%;
+//   background: $color-primary;
+//   flex-shrink: 0;
+//   box-shadow: 0 0 0 2px rgba($color-primary, 0.25);
+// }
+
+// // ─── Popup ────────────────────────────────────────────────────────────────────
+// .popupOverlay {
+//   position: fixed;
+//   inset: 0;
+//   background: rgba(0, 0, 0, 0.45);
+//   backdrop-filter: blur(4px);
+//   z-index: 200;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   padding: $spacing-md;
+//   animation: fadeIn 0.18s ease;
+// }
+
+// .popupBox {
+//   background: $color-white;
+//   border-radius: $radius-2xl;
+//   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+//   width: 100%;
+//   max-width: 860px;
+//   max-height: 88vh;
+//   display: flex;
+//   flex-direction: column;
+//   overflow: hidden;
+//   animation: slideUp 0.22s ease;
+// }
+
+// // Popup Header
+// .popupHeader {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   gap: $spacing-md;
+//   padding: $spacing-lg $spacing-xl;
+//   border-bottom: 1px solid $color-gray-100;
+//   flex-shrink: 0;
+//   position: relative;
+
+//   &::before {
+//     content: "";
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//     bottom: 0;
+//     width: 4px;
+//     background: linear-gradient(180deg, $color-primary 0%, $color-info 100%);
+//     border-radius: $radius-xl 0 0 0;
+//   }
+// }
+
+// .popupHeaderLeft {
+//   display: flex;
+//   align-items: center;
+//   gap: $spacing-md;
+// }
+
+// .popupIconWrap {
+//   width: 48px;
+//   height: 48px;
+//   border-radius: $radius-xl;
+//   background: linear-gradient(135deg, $color-primary 0%, $color-info 100%);
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   font-size: $font-size-xl;
+//   flex-shrink: 0;
+// }
+
+// .popupTitle {
+//   font-family: $font-family-heading;
+//   font-size: $font-size-lg;
+//   font-weight: $font-weight-bold;
+//   color: $color-gray-900;
+//   margin: 0 0 2px;
+//   letter-spacing: -0.01em;
+// }
+
+// .popupSub {
+//   font-size: $font-size-xs;
+//   color: $color-gray-400;
+//   margin: 0;
+//   font-weight: $font-weight-medium;
+// }
+
+// .popupClose {
+//   width: 34px;
+//   height: 34px;
+//   border-radius: $radius-lg;
+//   border: 1.5px solid $color-gray-200;
+//   background: $color-white;
+//   color: $color-gray-500;
+//   font-size: $font-size-sm;
+//   cursor: pointer;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   flex-shrink: 0;
+//   transition: all $transition-fast;
+
+//   &:hover {
+//     background: #fee2e2;
+//     color: #991b1b;
+//     border-color: #fca5a5;
+//   }
+// }
+
+// // Day summary chips
+// .popupSummaryRow {
+//   display: flex;
+//   gap: $spacing-xs;
+//   flex-wrap: wrap;
+//   padding: $spacing-sm $spacing-xl;
+//   border-bottom: 1px solid $color-gray-100;
+//   flex-shrink: 0;
+// }
+
+// .summaryChip {
+//   display: inline-flex;
+//   align-items: center;
+//   gap: 4px;
+//   padding: 3px 10px;
+//   border-radius: $radius-full;
+//   font-size: $font-size-xs;
+//   font-weight: $font-weight-medium;
+//   white-space: nowrap;
+// }
+
+// // Popup search
+// .popupSearchWrap {
+//   position: relative;
+//   display: flex;
+//   align-items: center;
+//   padding: $spacing-sm $spacing-xl;
+//   border-bottom: 1px solid $color-gray-100;
+//   flex-shrink: 0;
+// }
+
+// .popupSearchIcon {
+//   position: absolute;
+//   left: calc($spacing-xl + $spacing-xs);
+//   font-size: $font-size-sm;
+//   color: $color-gray-400;
+//   pointer-events: none;
+// }
+
+// .popupSearch {
+//   width: 100%;
+//   padding: $spacing-xs $spacing-xl $spacing-xs 2rem;
+//   border: 1.5px solid $color-gray-200;
+//   border-radius: $radius-lg;
+//   font-family: $font-family-primary;
+//   font-size: $font-size-sm;
+//   color: $color-gray-700;
+//   background: $color-gray-50;
+//   transition:
+//     border-color $transition-fast,
+//     box-shadow $transition-fast;
+
+//   &:focus {
+//     outline: none;
+//     border-color: $color-primary;
+//     background: $color-white;
+//     box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+//   }
+
+//   &::placeholder {
+//     color: $color-gray-400;
+//   }
+// }
+
+// .popupSearchClear {
+//   position: absolute;
+//   right: calc($spacing-xl + $spacing-xs);
+//   background: none;
+//   border: none;
+//   color: $color-gray-400;
+//   cursor: pointer;
+//   font-size: $font-size-xs;
+//   padding: 2px;
+//   transition: color $transition-fast;
+//   &:hover {
+//     color: $color-gray-700;
+//   }
+// }
+
+// // Popup table area
+// .popupTableWrap {
+//   overflow-y: auto;
+//   flex: 1;
+//   min-height: 0;
+
+//   &::-webkit-scrollbar {
+//     width: 4px;
+//   }
+//   &::-webkit-scrollbar-track {
+//     background: transparent;
+//   }
+//   &::-webkit-scrollbar-thumb {
+//     background: $color-gray-200;
+//     border-radius: 2px;
+//   }
+// }
+
+// .popupEmpty {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   gap: $spacing-sm;
+//   padding: $spacing-2xl;
+//   color: $color-gray-400;
+
+//   span {
+//     font-size: 2.5rem;
+//   }
+//   p {
+//     font-size: $font-size-sm;
+//     margin: 0;
+//   }
+// }
+
+// .popupTable {
+//   width: 100%;
+//   border-collapse: collapse;
+//   min-width: 580px;
+// }
+
+// .popupTh {
+//   padding: $spacing-sm $spacing-md;
+//   text-align: left;
+//   font-size: $font-size-xs;
+//   font-weight: $font-weight-semibold;
+//   color: $color-gray-400;
+//   text-transform: uppercase;
+//   letter-spacing: 0.08em;
+//   background: $color-gray-50;
+//   border-bottom: 1px solid $color-gray-100;
+//   white-space: nowrap;
+//   position: sticky;
+//   top: 0;
+//   z-index: 1;
+
+//   &:first-child {
+//     width: 42px;
+//     text-align: center;
+//   }
+// }
+
+// .popupTr {
+//   border-bottom: 1px solid rgba($color-gray-100, 0.8);
+//   transition: background $transition-fast;
+
+//   &:last-child {
+//     border-bottom: none;
+//   }
+//   &:hover {
+//     background: $color-gray-50;
+//   }
+// }
+
+// .popupTd {
+//   padding: $spacing-sm $spacing-md;
+//   vertical-align: middle;
+
+//   &:first-child {
+//     text-align: center;
+//   }
+// }
+
+// .rowNum {
+//   display: inline-flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: 22px;
+//   height: 22px;
+//   border-radius: 50%;
+//   background: $color-gray-100;
+//   font-size: $font-size-xs;
+//   color: $color-gray-500;
+//   font-weight: $font-weight-semibold;
+// }
+
+// // Employee cell
+// .empCell {
+//   display: flex;
+//   align-items: center;
+//   gap: $spacing-sm;
+// }
+
+// .avatar {
+//   flex-shrink: 0;
+//   width: 34px;
+//   height: 34px;
+//   border-radius: 50%;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   font-family: $font-family-heading;
+//   font-size: $font-size-xs;
+//   font-weight: $font-weight-bold;
+//   color: $color-white;
+// }
+
+// .avatarImg {
+//   flex-shrink: 0;
+//   width: 34px;
+//   height: 34px;
+//   border-radius: 50%;
+//   object-fit: cover;
+//   border: 1.5px solid $color-gray-200;
+// }
+
+// .empInfo {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 1px;
+//   min-width: 0;
+// }
+// .empName {
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-semibold;
+//   color: $color-gray-800;
+//   @include text-truncate;
+// }
+
+// // Status badge
+// .statusBadge {
+//   display: inline-flex;
+//   align-items: center;
+//   gap: 5px;
+//   padding: 3px 10px;
+//   border-radius: $radius-full;
+//   font-size: $font-size-xs;
+//   font-weight: $font-weight-semibold;
+//   white-space: nowrap;
+// }
+
+// .statusDot {
+//   width: 6px;
+//   height: 6px;
+//   border-radius: 50%;
+//   flex-shrink: 0;
+// }
+
+// .statusUnknown {
+//   font-size: $font-size-xs;
+//   color: $color-gray-400;
+// }
+
+// // Time / remarks values
+// .timeVal {
+//   font-family: monospace;
+//   font-size: $font-size-sm;
+//   color: $color-gray-700;
+//   font-weight: $font-weight-medium;
+//   letter-spacing: 0.03em;
+// }
+
+// .remarksVal {
+//   font-size: $font-size-xs;
+//   color: $color-gray-500;
+//   font-style: italic;
+// }
+
+// // Popup footer
+// .popupFooter {
+//   display: flex;
+//   justify-content: flex-end;
+//   padding: $spacing-md $spacing-xl;
+//   border-top: 1px solid $color-gray-100;
+//   flex-shrink: 0;
+// }
+
+// .popupCloseBtn {
+//   padding: $spacing-sm $spacing-xl;
+//   border-radius: $radius-lg;
+//   border: 1.5px solid $color-gray-200;
+//   background: $color-white;
+//   color: $color-gray-600;
+//   font-family: $font-family-primary;
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-semibold;
+//   cursor: pointer;
+//   transition: all $transition-fast;
+
+//   &:hover {
+//     background: $color-primary;
+//     color: $color-white;
+//     border-color: $color-primary;
+//     box-shadow: 0 4px 12px rgba($color-primary, 0.25);
+//   }
+// }
+
+// // ─── Animations ───────────────────────────────────────────────────────────────
+// @keyframes fadeUp {
+//   from {
+//     opacity: 0;
+//     transform: translateY(8px);
+//   }
+//   to {
+//     opacity: 1;
+//     transform: translateY(0);
+//   }
+// }
+
+// @keyframes fadeIn {
+//   from {
+//     opacity: 0;
+//   }
+//   to {
+//     opacity: 1;
+//   }
+// }
+
+// @keyframes slideUp {
+//   from {
+//     opacity: 0;
+//     transform: translateY(24px) scale(0.97);
+//   }
+//   to {
+//     opacity: 1;
+//     transform: translateY(0) scale(1);
+//   }
+// }
+
+// @keyframes shimmer {
+//   0% {
+//     background-position: 200% 0;
+//   }
+//   100% {
+//     background-position: -200% 0;
+//   }
+// }
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// ─── Page Shell ───────────────────────────────────────────────────────────────
+.pageWrapper {
+  padding: $spacing-xl $spacing-2xl;
+  min-height: 100vh;
+  background: $gradient-background;
+  border-radius: $radius-xl;
+
+  @include md {
+    padding: $spacing-lg $spacing-md;
+  }
+  @include sm {
+    padding: $spacing-md $spacing-sm;
+  }
+}
+
+// ─── Breadcrumb ───────────────────────────────────────────────────────────────
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+  margin-bottom: $spacing-lg;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+
+  @include sm {
+    margin-bottom: $spacing-md;
+  }
+}
+
+.breadLink {
+  color: $color-gray-500;
+  cursor: pointer;
+  transition: color $transition-fast;
+  &:hover {
+    color: $color-primary;
+  }
+}
+.sep {
+  color: $color-gray-300;
+}
+
+// ─── Hero ─────────────────────────────────────────────────────────────────────
+.hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-xl;
+  background: $color-white;
+  border-radius: $radius-2xl;
+  padding: $spacing-xl;
+  margin-bottom: $spacing-lg;
+  border: 1px solid rgba($color-gray-200, 0.6);
+  box-shadow: $shadow-card;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, $color-primary 0%, $color-info 100%);
+    border-radius: $radius-xl 0 0 $radius-xl;
+  }
+
+  @include md {
+    flex-direction: column;
+    gap: $spacing-md;
+    padding: $spacing-lg;
+  }
+  @include sm {
+    padding: $spacing-md;
+    gap: $spacing-sm;
+    border-radius: $radius-xl;
+  }
+}
+
+.heroLeft {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-lg;
+  flex: 1;
+  min-width: 0;
+
+  @include sm {
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+}
+
+.heroIcon {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: $radius-xl;
+  background: linear-gradient(135deg, $color-primary 0%, $color-info 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size-2xl;
+  box-shadow: 0 4px 14px rgba($color-primary, 0.28);
+
+  @include sm {
+    width: 52px;
+    height: 52px;
+    font-size: $font-size-xl;
+  }
+}
+
+.heroMeta {
+  flex: 1;
+  min-width: 0;
+}
+
+.heroTitle {
+  font-family: $font-family-heading;
+  font-size: clamp(1.1rem, 3vw, 1.75rem);
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  letter-spacing: -0.02em;
+  margin: 0 0 $spacing-sm;
+  @include text-truncate;
+}
+
+.heroChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  margin-bottom: $spacing-xs;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: $radius-full;
+  background: $color-gray-100;
+  color: $color-gray-600;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+}
+
+.heroDetails {
+  font-size: $font-size-sm;
+  color: $color-gray-500;
+  line-height: $line-height-relaxed;
+  margin: $spacing-xs 0 0;
+
+  @include sm {
+    font-size: $font-size-xs;
+  }
+}
+
+// Hero stats strip
+.heroRight {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+
+  @include md {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  @include sm {
+    gap: $spacing-xs;
+  }
+}
+
+.heroStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-xl;
+  min-width: 64px;
+  text-align: center;
+  box-shadow: $shadow-card;
+
+  @include md {
+    flex: 1;
+    min-width: 0;
+    padding: $spacing-sm;
+  }
+  @include sm {
+    padding: $spacing-xs $spacing-sm;
+    min-width: 56px;
+    border-radius: $radius-lg;
+  }
+}
+
+.heroStatVal {
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  line-height: 1;
+
+  @include sm {
+    font-size: $font-size-lg;
+  }
+}
+
+.heroStatLabel {
+  font-size: 0.62rem;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.8;
+}
+
+// ─── Calendar Card ────────────────────────────────────────────────────────────
+.calendarCard {
+  @include card-base;
+  padding: $spacing-xl;
+  animation: fadeUp 0.2s ease;
+
+  @include md {
+    padding: $spacing-lg $spacing-md;
+  }
+  @include sm {
+    padding: $spacing-md $spacing-sm;
+    border-radius: $radius-xl;
+  }
+}
+
+// ── Month Nav ──────────────────────────────────────────────────────────────────
+.calNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-lg;
+
+  @include sm {
+    margin-bottom: $spacing-md;
+  }
+}
+
+.navBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: $radius-lg;
+  border: 1.5px solid $color-gray-200;
+  background: $color-white;
+  color: $color-gray-600;
+  font-size: 1.4rem;
+  font-weight: $font-weight-bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all $transition-fast;
+  line-height: 1;
+  flex-shrink: 0;
+
+  &:hover {
+    background: $color-primary;
+    color: $color-white;
+    border-color: $color-primary;
+    box-shadow: 0 4px 12px rgba($color-primary, 0.3);
+  }
+
+  @include sm {
+    width: 34px;
+    height: 34px;
+    font-size: 1.1rem;
+  }
+}
+
+.calNavCenter {
+  display: flex;
+  align-items: baseline;
+  gap: $spacing-sm;
+}
+
+.calMonth {
+  font-family: $font-family-heading;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.calYear {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-medium;
+  color: $color-gray-400;
+
+  @include sm {
+    font-size: $font-size-sm;
+  }
+}
+
+// ── Day-of-week header ─────────────────────────────────────────────────────────
+.calDowRow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 4px;
+
+  @include sm {
+    gap: 2px;
+    margin-bottom: 2px;
+  }
+}
+
+.calDow {
+  text-align: center;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-400;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: $spacing-xs 0;
+
+  @include sm {
+    font-size: 0.6rem;
+    padding: 2px 0;
+    letter-spacing: 0;
+  }
+}
+
+.calDowSun {
+  color: #ef4444;
+  opacity: 0.6;
+}
+
+// ── Calendar Grid ──────────────────────────────────────────────────────────────
+.calGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+
+  @include md {
+    gap: 4px;
+  }
+  @include sm {
+    gap: 3px;
+  }
+}
+
+.calCellEmpty {
+  aspect-ratio: 1;
+  border-radius: $radius-lg;
+  background: rgba($color-gray-50, 0.5);
+
+  @include sm {
+    aspect-ratio: auto;
+    min-height: 40px;
+    border-radius: $radius-md;
+  }
+  @include xs {
+    min-height: 32px;
+  }
+}
+
+.calCell {
+  aspect-ratio: 1;
+  border-radius: $radius-lg;
+  border: 1.5px solid $color-gray-100;
+  background: $color-white;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  position: relative;
+  transition: all $transition-fast;
+  padding: $spacing-xs;
+
+  &:hover {
+    border-color: $color-primary;
+    box-shadow: 0 4px 12px rgba($color-primary, 0.15);
+    transform: translateY(-1px);
+    z-index: 1;
+  }
+
+  @include md {
+    gap: 3px;
+  }
+
+  @include sm {
+    aspect-ratio: auto;
+    min-height: 40px;
+    padding: 3px 2px;
+    border-radius: $radius-md;
+    gap: 2px;
+
+    &:hover {
+      transform: none;
+      box-shadow: 0 2px 6px rgba($color-primary, 0.15);
+    }
+  }
+
+  @include xs {
+    min-height: 32px;
+  }
+}
+
+.calCellSun {
+  cursor: not-allowed;
+  background: rgba($color-gray-50, 0.6);
+  border-color: transparent;
+
+  .calDayNum {
+    color: #ef4444;
+    opacity: 0.5;
+  }
+
+  &:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: transparent;
+  }
+}
+
+.calCellToday {
+  border-color: $color-primary !important;
+  box-shadow: 0 0 0 2px rgba($color-primary, 0.2);
+
+  .calDayNum {
+    background: $color-primary;
+    color: $color-white;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include sm {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.calCellSelected {
+  border-color: $color-primary !important;
+  background: rgba($color-primary, 0.06) !important;
+  box-shadow: 0 0 0 3px rgba($color-primary, 0.18) !important;
+}
+
+.calCellHasData {
+  border-color: rgba($color-gray-300, 0.8);
+}
+
+.cellTintGreen {
+  background: rgba(#dcfce7, 0.55) !important;
+  border-color: rgba(#22c55e, 0.25) !important;
+}
+.cellTintRed {
+  background: rgba(#fee2e2, 0.5) !important;
+  border-color: rgba(#ef4444, 0.2) !important;
+}
+.cellTintYellow {
+  background: rgba(#fef9c3, 0.55) !important;
+  border-color: rgba(#f59e0b, 0.25) !important;
+}
+
+.calDayNum {
+  font-family: $font-family-heading;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-700;
+  line-height: 1;
+
+  @include sm {
+    font-size: $font-size-xs;
+  }
+  @include xs {
+    font-size: 0.6rem;
+  }
+}
+
+.sunLabel {
+  font-size: 0.58rem;
+  color: #ef4444;
+  opacity: 0.5;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: $font-weight-semibold;
+
+  @include xs {
+    display: none;
+  }
+}
+
+// ── Day Indicator ──────────────────────────────────────────────────────────────
+.dayIndicator {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+
+  @include sm {
+    width: 5px;
+    height: 5px;
+  }
+  @include xs {
+    width: 4px;
+    height: 4px;
+  }
+}
+
+.dayCount {
+  font-size: 0.6rem;
+  font-weight: $font-weight-bold;
+  color: $color-gray-400;
+  line-height: 1;
+
+  @include md {
+    display: none;
+  }
+}
+
+// ── Loading Skeleton ───────────────────────────────────────────────────────────
+.calLoading {
+  padding: $spacing-md 0;
+}
+
+.calLoadingGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+
+  @include sm {
+    gap: 3px;
+  }
+}
+
+.skeletonCell {
+  aspect-ratio: 1;
+  border-radius: $radius-lg;
+  @include skeleton;
+
+  @include sm {
+    aspect-ratio: auto;
+    min-height: 40px;
+  }
+  @include xs {
+    min-height: 32px;
+  }
+}
+
+// ── Error ──────────────────────────────────────────────────────────────────────
+.calError {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-2xl;
+  text-align: center;
+
+  span {
+    font-size: 2rem;
+  }
+  p {
+    font-size: $font-size-sm;
+    color: $color-gray-500;
+    margin: 0;
+  }
+}
+
+.retryBtn {
+  padding: $spacing-sm $spacing-lg;
+  border: 1.5px solid $color-gray-200;
+  border-radius: $radius-lg;
+  background: $color-white;
+  color: $color-gray-600;
+  font-family: $font-family-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  transition: all $transition-fast;
+  &:hover {
+    background: $color-gray-50;
+    border-color: $color-primary;
+    color: $color-primary;
+  }
+}
+
+// ── Legend ─────────────────────────────────────────────────────────────────────
+.calLegend {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  margin-top: $spacing-lg;
+  padding-top: $spacing-md;
+  border-top: 1px solid $color-gray-100;
+  flex-wrap: wrap;
+
+  @include sm {
+    gap: $spacing-sm;
+    margin-top: $spacing-md;
+    padding-top: $spacing-sm;
+  }
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+  font-weight: $font-weight-medium;
+}
+
+.legendDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legendToday {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: $color-primary;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba($color-primary, 0.25);
+}
+
+// ─── Popup ────────────────────────────────────────────────────────────────────
+.popupOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  z-index: $z-modal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-md;
+  animation: fadeIn 0.18s ease;
+
+  @include sm {
+    padding: $spacing-sm;
+    align-items: flex-end;
+  }
+}
+
+.popupBox {
+  background: $color-white;
+  border-radius: $radius-2xl;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+  width: 100%;
+  max-width: 860px;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUp 0.22s ease;
+
+  @include md {
+    max-width: 95vw;
+    max-height: 85vh;
+  }
+  @include sm {
+    max-width: 100%;
+    max-height: 92vh;
+    border-radius: $radius-2xl $radius-2xl 0 0;
+  }
+}
+
+.popupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  padding: $spacing-lg $spacing-xl;
+  border-bottom: 1px solid $color-gray-100;
+  flex-shrink: 0;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, $color-primary 0%, $color-info 100%);
+    border-radius: $radius-xl 0 0 0;
+  }
+
+  @include sm {
+    padding: $spacing-md;
+    gap: $spacing-sm;
+  }
+}
+
+.popupHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+
+  @include sm {
+    gap: $spacing-sm;
+  }
+}
+
+.popupIconWrap {
+  width: 48px;
+  height: 48px;
+  border-radius: $radius-xl;
+  background: linear-gradient(135deg, $color-primary 0%, $color-info 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size-xl;
+  flex-shrink: 0;
+
+  @include sm {
+    width: 38px;
+    height: 38px;
+    font-size: $font-size-lg;
+  }
+}
+
+.popupTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  margin: 0 0 2px;
+  letter-spacing: -0.01em;
+
+  @include sm {
+    font-size: $font-size-base;
+  }
+}
+
+.popupSub {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  margin: 0;
+  font-weight: $font-weight-medium;
+}
+
+.popupClose {
+  width: 34px;
+  height: 34px;
+  border-radius: $radius-lg;
+  border: 1.5px solid $color-gray-200;
+  background: $color-white;
+  color: $color-gray-500;
+  font-size: $font-size-sm;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: #fee2e2;
+    color: #991b1b;
+    border-color: #fca5a5;
+  }
+}
+
+.popupSummaryRow {
+  display: flex;
+  gap: $spacing-xs;
+  flex-wrap: wrap;
+  padding: $spacing-sm $spacing-xl;
+  border-bottom: 1px solid $color-gray-100;
+  flex-shrink: 0;
+
+  @include sm {
+    padding: $spacing-sm $spacing-md;
+  }
+}
+
+.summaryChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  white-space: nowrap;
+}
+
+.popupSearchWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: $spacing-sm $spacing-xl;
+  border-bottom: 1px solid $color-gray-100;
+  flex-shrink: 0;
+
+  @include sm {
+    padding: $spacing-sm $spacing-md;
+  }
+}
+
+.popupSearchIcon {
+  position: absolute;
+  left: calc($spacing-xl + $spacing-xs);
+  font-size: $font-size-sm;
+  color: $color-gray-400;
+  pointer-events: none;
+
+  @include sm {
+    left: calc($spacing-md + $spacing-xs);
+  }
+}
+
+.popupSearch {
+  @include input-base;
+  padding-left: 2rem;
+  background: $color-gray-50;
+
+  &:focus {
+    background: $color-white;
+  }
+}
+
+.popupSearchClear {
+  position: absolute;
+  right: calc($spacing-xl + $spacing-xs);
+  background: none;
+  border: none;
+  color: $color-gray-400;
+  cursor: pointer;
+  font-size: $font-size-xs;
+  padding: 2px;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-gray-700;
+  }
+
+  @include sm {
+    right: calc($spacing-md + $spacing-xs);
+  }
+}
+
+.popupTableWrap {
+  overflow-y: auto;
+  overflow-x: auto;
+  flex: 1;
+  min-height: 0;
+  @include custom-scrollbar;
+}
+
+.popupEmpty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-2xl;
+  color: $color-gray-400;
+
+  span {
+    font-size: 2.5rem;
+  }
+  p {
+    font-size: $font-size-sm;
+    margin: 0;
+  }
+
+  @include sm {
+    padding: $spacing-xl;
+  }
+}
+
+.popupTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 480px;
+}
+
+.popupTh {
+  @include table-header;
+  padding: $spacing-sm $spacing-md;
+  border-bottom: 1px solid $color-gray-100;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  &:first-child {
+    width: 42px;
+    text-align: center;
+  }
+}
+
+.popupTr {
+  border-bottom: 1px solid rgba($color-gray-100, 0.8);
+  transition: background $transition-fast;
+
+  &:last-child {
+    border-bottom: none;
+  }
+  &:hover {
+    background: $color-gray-50;
+  }
+}
+
+.popupTd {
+  @include table-cell;
+
+  &:first-child {
+    text-align: center;
+  }
+}
+
+.rowNum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: $color-gray-100;
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+  font-weight: $font-weight-semibold;
+}
+
+.empCell {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-family-heading;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+
+  @include sm {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.avatarImg {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid $color-gray-200;
+
+  @include sm {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.empInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+.empName {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-800;
+  @include text-truncate;
+
+  @include sm {
+    font-size: $font-size-xs;
+  }
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  white-space: nowrap;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.statusUnknown {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+}
+
+.timeVal {
+  font-family: monospace;
+  font-size: $font-size-sm;
+  color: $color-gray-700;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.03em;
+
+  @include sm {
+    font-size: $font-size-xs;
+  }
+}
+
+.remarksVal {
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+  font-style: italic;
+}
+
+.popupFooter {
+  display: flex;
+  justify-content: flex-end;
+  padding: $spacing-md $spacing-xl;
+  border-top: 1px solid $color-gray-100;
+  flex-shrink: 0;
+
+  @include sm {
+    padding: $spacing-md;
+  }
+}
+
+.popupCloseBtn {
+  @include button-secondary;
+  padding: $spacing-sm $spacing-xl;
+
+  &:hover {
+    background: $color-primary;
+    color: $color-white;
+    border-color: $color-primary;
+    box-shadow: 0 4px 12px rgba($color-primary, 0.25);
+  }
+
+  @include sm {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+// ─── Animations ───────────────────────────────────────────────────────────────
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

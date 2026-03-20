@@ -251,12 +251,21 @@ const NAV_PERMISSIONS: Record<string, UserRole[] | "ALL"> = {
     "LIAISON_OFFICER",
     "LIAISON_ASSISTANT",
   ],
-
+  myattendance: [
+    "HR",
+    "SR_ARCHITECT",
+    "JR_ARCHITECT",
+    "SR_ENGINEER",
+    "DRAFTSMAN",
+    "LIAISON_MANAGER",
+    "LIAISON_OFFICER",
+    "LIAISON_ASSISTANT",
+  ],
   // ── ADMIN / CO_FOUNDER / HR FULL CONTROL ────────────────────
 
   // Enquiry (PreSales)
   "presales-new": ["ADMIN", "CO_FOUNDER", "HR"],
-  "presales-all": ["ADMIN", "CO_FOUNDER", "HR"],
+  "presales-all": ["ADMIN", "CO_FOUNDER", "HR", "CLIENT"],
 
   // Projects (PostSales)
   "postsales-new": ["ADMIN", "CO_FOUNDER", "HR"],
@@ -281,6 +290,8 @@ const NAV_PERMISSIONS: Record<string, UserRole[] | "ALL"> = {
   "manage-employees": ["ADMIN", "CO_FOUNDER", "HR"],
   "active-employees": ["ADMIN", "CO_FOUNDER", "HR"],
   "add-employee": ["ADMIN", "CO_FOUNDER", "HR"],
+  attendance: ["ADMIN", "CO_FOUNDER", "HR"],
+  calender: ["ADMIN", "CO_FOUNDER", "HR"],
 };
 // ── Full nav definition ───────────────────────────────────────
 export const navigationData: NavItem[] = [
@@ -418,6 +429,24 @@ export const navigationData: NavItem[] = [
         id: "add-employee",
         label: "Add New Employee",
         path: "employees/add",
+        icon: "userPlus",
+      },
+      {
+        id: "attendance",
+        label: "Employee Attendance",
+        path: "employees/attendance",
+        icon: "userPlus",
+      },
+      {
+        id: "calender",
+        label: "Employee Calender",
+        path: "employees/calender",
+        icon: "userPlus",
+      },
+      {
+        id: "myattendance",
+        label: "My Attendance",
+        path: "employees/myattendance",
         icon: "userPlus",
       },
     ],

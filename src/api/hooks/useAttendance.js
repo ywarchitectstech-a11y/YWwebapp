@@ -16,7 +16,21 @@ export const useMyCheckIn = () => {
     },
   });
 };
+/* ===============================
+   MY CHECK-OUT
+=============================== */
+export const useMyCheckOut = () => {
+  const queryClient = useQueryClient();
 
+  return useMutation({
+    mutationFn: ({ date, time, attendanceStatus }) =>
+      attendanceApi.recordMyCheckOut(date, time, attendanceStatus),
+
+    onSuccess: () => {
+      queryClient.invalidateQueries(["myAttendance"]);
+    },
+  });
+};
 /* ===============================
    HR CHECK-IN
 =============================== */
@@ -122,6 +136,19 @@ export const useMyMonthlyAttendance = (month, year) => {
     queryFn: () =>
       attendanceApi
         .getMyMonthlyAttendance(month, year)
+        .then((res) => res.data.data),
+  });
+};
+
+/* ===============================
+   TODAY ATTENDANCE
+=============================== */
+export const useTodayAttendance = () => {
+  return useQuery({
+    queryKey: ["todayAttendance"],
+    queryFn: () =>
+      attendanceApi
+        .getTodayAttendance()
         .then((res) => res.data.data),
   });
 };
