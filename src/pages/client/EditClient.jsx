@@ -63,17 +63,6 @@ const EditClient = () => {
       newErrors.phone = "Phone must be 10 digits";
     }
 
-    if (
-      formData.GSTCertificate &&
-      !/^[0-9A-Z]{15}$/.test(formData.GSTCertificate)
-    ) {
-      newErrors.GSTCertificate = "Invalid GST format";
-    }
-
-    if (formData.PAN && !/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(formData.PAN)) {
-      newErrors.PAN = "Invalid PAN format";
-    }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
