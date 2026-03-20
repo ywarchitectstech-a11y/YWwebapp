@@ -16,7 +16,8 @@ const PreSalesPage = () => {
   const [clientSearch, setClientSearch] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
   const [isExistingClient, setIsExistingClient] = useState(false);
-  const { data: clients = [] } = useClientList();
+  const { data: clientsRaw = [] } = useClientList();
+  const clients = clientsRaw ?? [];
   const filteredClients = clients.filter((c) =>
     c.name?.toLowerCase().includes(clientSearch.toLowerCase()),
   );
