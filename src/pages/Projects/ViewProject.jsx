@@ -2420,7 +2420,7 @@ export default function ViewProject() {
   const [galleryDocs, setGalleryDocs] = useState([]);
   const navigate = useNavigate();
   const { projectId } = useParams();
-  const { data, isLoading, isError } = useProjectById(projectId);
+  const { data, isLoading, isError, refetch } = useProjectById(projectId);
   console.log(data);
   const { data: reraData, isLoading: reraLoading } =
     useReraByProject(projectId);
@@ -2636,9 +2636,10 @@ export default function ViewProject() {
         )}
         {activeTab === "rera" && (
           <ReraTab
-            rera={reraData ?? null}
-            isLoading={reraLoading}
-            onAddRera={() => setShowReraPopup(true)}
+            reraList={p.reraProjects || []}
+            projectId={p.projectId}
+            isLoading={isLoading}
+            onRefetch={refetch}
           />
         )}
       </div>

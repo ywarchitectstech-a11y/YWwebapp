@@ -135,14 +135,114 @@ export interface NavItem {
 // ── Permission Map ────────────────────────────────────────────
 // "ALL" = every role can see it
 // Array = only those roles can see it
+// const NAV_PERMISSIONS: Record<string, UserRole[] | "ALL"> = {
+//   // Dashboard
+//   dashboard: "ALL",
+
+//   // Projects
+//   "manage-projects": [
+//     "ADMIN",
+//     "CO_FOUNDER",
+//     "SR_ARCHITECT",
+//     "JR_ARCHITECT",
+//     "SR_ENGINEER",
+//     "DRAFTSMAN",
+//     "LIAISON_MANAGER",
+//     "LIAISON_OFFICER",
+//     "LIAISON_ASSISTANT",
+//     "HR",
+//   ],
+//   "add-project": ["ADMIN", "CO_FOUNDER", "SR_ARCHITECT"],
+//   "all-quotations": [
+//     "ADMIN",
+//     "CO_FOUNDER",
+//     "SR_ARCHITECT",
+//     "JR_ARCHITECT",
+//     "CLIENT",
+//   ],
+
+//   // Pre Sales
+//   "presales-new": [
+//     "ADMIN",
+//     "CO_FOUNDER",
+//     "SR_ARCHITECT",
+//     "LIAISON_MANAGER",
+//     "LIAISON_OFFICER",
+//     "LIAISON_ASSISTANT",
+//     "HR",
+//   ],
+//   "presales-all": [
+//     "ADMIN",
+//     "CO_FOUNDER",
+//     "SR_ARCHITECT",
+//     "LIAISON_MANAGER",
+//     "LIAISON_OFFICER",
+//     "HR",
+//     "CLIENT",
+//   ],
+
+//   // Post Sales
+//   "postsales-new": ["ADMIN", "CO_FOUNDER", "SR_ARCHITECT", "HR"],
+//   "postsales-all": [
+//     "ADMIN",
+//     "CO_FOUNDER",
+//     "SR_ARCHITECT",
+//     "JR_ARCHITECT",
+//     "HR",
+//     "CLIENT",
+//   ],
+//   "postsales-invoices": ["ADMIN", "CO_FOUNDER", "HR"],
+
+//   // Clients
+//   "manage-clients": [
+//     "ADMIN",
+//     "CO_FOUNDER",
+//     "SR_ARCHITECT",
+//     "JR_ARCHITECT",
+//     "LIAISON_MANAGER",
+//     "LIAISON_OFFICER",
+//     "HR",
+//   ],
+//   "add-new-client": [
+//     "ADMIN",
+//     "CO_FOUNDER",
+//     "SR_ARCHITECT",
+//     "LIAISON_MANAGER",
+//     "HR",
+//   ],
+
+//   // Reports
+//   "inventory-report": ["ADMIN", "CO_FOUNDER"],
+//   "financial-report": ["ADMIN", "CO_FOUNDER"],
+//   "heading-wise-report": ["ADMIN", "CO_FOUNDER", "SR_ARCHITECT"],
+//   "stage-wise-report": [
+//     "ADMIN",
+//     "CO_FOUNDER",
+//     "SR_ARCHITECT",
+//     "JR_ARCHITECT",
+//     "SR_ENGINEER",
+//   ],
+
+//   // Accounts
+//   "payment-receipts": ["ADMIN", "CO_FOUNDER"],
+//   "payment-vouchers": ["ADMIN", "CO_FOUNDER"],
+//   "bank-accounts": ["ADMIN", "CO_FOUNDER"],
+
+//   // HR
+//   "active-employees": ["ADMIN", "CO_FOUNDER", "HR"],
+//   "manage-employees": ["ADMIN", "CO_FOUNDER", "HR"],
+//   // 'all-employees': ['ADMIN', 'CO_FOUNDER', 'HR'],
+//   "add-employee": ["ADMIN", "CO_FOUNDER", "HR"],
+// };
 const NAV_PERMISSIONS: Record<string, UserRole[] | "ALL"> = {
-  // Dashboard
+  // ── SUPER ACCESS (ALL MODULES) ───────────────────────────────
   dashboard: "ALL",
 
-  // Projects
+  // ── EMPLOYEE LIMITED ACCESS ─────────────────────────────────
   "manage-projects": [
     "ADMIN",
     "CO_FOUNDER",
+    "HR",
     "SR_ARCHITECT",
     "JR_ARCHITECT",
     "SR_ENGINEER",
@@ -150,91 +250,38 @@ const NAV_PERMISSIONS: Record<string, UserRole[] | "ALL"> = {
     "LIAISON_MANAGER",
     "LIAISON_OFFICER",
     "LIAISON_ASSISTANT",
-    "HR",
-  ],
-  "add-project": ["ADMIN", "CO_FOUNDER", "SR_ARCHITECT"],
-  "all-quotations": [
-    "ADMIN",
-    "CO_FOUNDER",
-    "SR_ARCHITECT",
-    "JR_ARCHITECT",
-    "CLIENT",
   ],
 
-  // Pre Sales
-  "presales-new": [
-    "ADMIN",
-    "CO_FOUNDER",
-    "SR_ARCHITECT",
-    "LIAISON_MANAGER",
-    "LIAISON_OFFICER",
-    "LIAISON_ASSISTANT",
-    "HR",
-  ],
-  "presales-all": [
-    "ADMIN",
-    "CO_FOUNDER",
-    "SR_ARCHITECT",
-    "LIAISON_MANAGER",
-    "LIAISON_OFFICER",
-    "HR",
-    "CLIENT",
-  ],
+  // ── ADMIN / CO_FOUNDER / HR FULL CONTROL ────────────────────
 
-  // Post Sales
-  "postsales-new": ["ADMIN", "CO_FOUNDER", "SR_ARCHITECT", "HR"],
+  // Enquiry (PreSales)
+  "presales-new": ["ADMIN", "CO_FOUNDER", "HR"],
+  "presales-all": ["ADMIN", "CO_FOUNDER", "HR"],
+
+  // Projects (PostSales)
+  "postsales-new": ["ADMIN", "CO_FOUNDER", "HR"],
   "postsales-all": [
     "ADMIN",
     "CO_FOUNDER",
-    "SR_ARCHITECT",
-    "JR_ARCHITECT",
     "HR",
-    "CLIENT",
+    "CLIENT", // 👈 client can see their projects
   ],
   "postsales-invoices": ["ADMIN", "CO_FOUNDER", "HR"],
 
   // Clients
-  "manage-clients": [
-    "ADMIN",
-    "CO_FOUNDER",
-    "SR_ARCHITECT",
-    "JR_ARCHITECT",
-    "LIAISON_MANAGER",
-    "LIAISON_OFFICER",
-    "HR",
-  ],
-  "add-new-client": [
-    "ADMIN",
-    "CO_FOUNDER",
-    "SR_ARCHITECT",
-    "LIAISON_MANAGER",
-    "HR",
-  ],
-
-  // Reports
-  "inventory-report": ["ADMIN", "CO_FOUNDER"],
-  "financial-report": ["ADMIN", "CO_FOUNDER"],
-  "heading-wise-report": ["ADMIN", "CO_FOUNDER", "SR_ARCHITECT"],
-  "stage-wise-report": [
-    "ADMIN",
-    "CO_FOUNDER",
-    "SR_ARCHITECT",
-    "JR_ARCHITECT",
-    "SR_ENGINEER",
-  ],
+  "manage-clients": ["ADMIN", "CO_FOUNDER", "HR"],
+  "add-new-client": ["ADMIN", "CO_FOUNDER", "HR"],
 
   // Accounts
-  "payment-receipts": ["ADMIN", "CO_FOUNDER"],
-  "payment-vouchers": ["ADMIN", "CO_FOUNDER"],
-  "bank-accounts": ["ADMIN", "CO_FOUNDER"],
+  "payment-receipts": ["ADMIN", "CO_FOUNDER", "HR"],
+  "payment-vouchers": ["ADMIN", "CO_FOUNDER", "HR"],
+  "bank-accounts": ["ADMIN", "CO_FOUNDER", "HR"],
 
   // HR
-  "active-employees": ["ADMIN", "CO_FOUNDER", "HR"],
   "manage-employees": ["ADMIN", "CO_FOUNDER", "HR"],
-  // 'all-employees': ['ADMIN', 'CO_FOUNDER', 'HR'],
+  "active-employees": ["ADMIN", "CO_FOUNDER", "HR"],
   "add-employee": ["ADMIN", "CO_FOUNDER", "HR"],
 };
-
 // ── Full nav definition ───────────────────────────────────────
 export const navigationData: NavItem[] = [
   {

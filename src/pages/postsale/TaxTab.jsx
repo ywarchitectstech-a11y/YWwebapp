@@ -401,7 +401,7 @@ const TaxCard = ({ inv, index, postSalesId, onDeleted }) => {
   };
 
   const handlePreview = () => {
-    navigate(`/postsales/${postSalesId}/invoice/tax`);
+    navigate(`/postsales/${postSalesId}/invoice/${inv.id}/tax`);
   };
 
   return (

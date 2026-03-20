@@ -110,7 +110,7 @@ const App = () => (
             <Route path="postsales/view/:id" element={<ViewPostSale />} />
 
             <Route
-              path="/postsales/:postSalesId/invoice/:type"
+              path="/postsales/:postSalesId/invoice/:invoiseId/:type"
               element={<InvoicePage />}
             />
             {/* Clients */}

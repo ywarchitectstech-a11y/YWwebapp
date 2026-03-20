@@ -1,3 +1,423 @@
+// @use "../../styles/variables" as *;
+// @use "../../styles/mixins" as *;
+
+// // ─── Wrapper ──────────────────────────────────────────────────────────────────
+// .wrapper {
+//   display: flex;
+//   flex-direction: column;
+//   gap: $spacing-md;
+//   animation: fadeUp 0.2s ease;
+// }
+
+// @keyframes fadeUp {
+//   from { opacity: 0; transform: translateY(8px); }
+//   to   { opacity: 1; transform: translateY(0); }
+// }
+
+// // ─── Section header (title + button row) ─────────────────────────────────────
+// .sectionHeader {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   gap: $spacing-md;
+
+//   h3 {
+//     font-family: $font-family-heading;
+//     font-size: $font-size-lg;
+//     font-weight: $font-weight-bold;
+//     color: $color-gray-900;
+//     margin: 0;
+//     letter-spacing: -0.01em;
+//   }
+// }
+
+// // ─── Buttons ──────────────────────────────────────────────────────────────────
+// .primaryBtn {
+//   @include button-primary;
+//   font-size: $font-size-sm;
+//   padding: $spacing-sm $spacing-lg;
+// }
+
+// .addReraBtn {
+//   display: inline-flex;
+//   align-items: center;
+//   gap: $spacing-xs;
+//   padding: $spacing-sm $spacing-lg;
+//   border-radius: $radius-lg;
+//   border: 1.5px dashed rgba($color-primary, 0.4);
+//   background: rgba($color-primary, 0.04);
+//   color: $color-primary;
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-semibold;
+//   cursor: pointer;
+//   transition: all $transition-fast;
+
+//   &:hover {
+//     background: rgba($color-primary, 0.1);
+//     border-color: $color-primary;
+//   }
+// }
+
+// // ─── Cards ────────────────────────────────────────────────────────────────────
+// .card {
+//   @include card-base;
+//   padding: $spacing-xl;
+
+//   @include sm { padding: $spacing-lg; }
+// }
+
+// .cardHeader {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   gap: $spacing-sm;
+//   margin-bottom: $spacing-lg;
+//   padding-bottom: $spacing-md;
+//   border-bottom: 1px solid $color-gray-100;
+// }
+
+// // ─── Section title row (icon + label + count pill) ────────────────────────────
+// .sectionTitle {
+//   display: flex;
+//   align-items: center;
+//   gap: $spacing-sm;
+//   font-family: $font-family-heading;
+//   font-size: $font-size-base;
+//   font-weight: $font-weight-semibold;
+//   color: $color-gray-800;
+// }
+
+// .sectionIcon {
+//   font-size: 16px;
+//   color: $color-primary;
+//   line-height: 1;
+// }
+
+// .countPill {
+//   display: inline-flex;
+//   align-items: center;
+//   justify-content: center;
+//   min-width: 22px;
+//   height: 22px;
+//   padding: 0 6px;
+//   background: rgba($color-primary, 0.1);
+//   color: $color-primary;
+//   border-radius: $radius-full;
+//   font-size: $font-size-xs;
+//   font-weight: $font-weight-bold;
+// }
+
+// // ─── Active / Inactive badge ──────────────────────────────────────────────────
+// .badge {
+//   display: inline-flex;
+//   align-items: center;
+//   gap: 6px;
+//   padding: 5px 12px;
+//   border-radius: $radius-full;
+//   font-size: $font-size-xs;
+//   font-weight: $font-weight-semibold;
+//   letter-spacing: 0.04em;
+//   text-transform: uppercase;
+// }
+
+// .badgeDot {
+//   width: 6px;
+//   height: 6px;
+//   border-radius: 50%;
+//   flex-shrink: 0;
+// }
+
+// .badgeActive {
+//   background: rgba($color-success, 0.1);
+//   color: darken($color-success, 10%);
+
+//   .badgeDot { background: $color-success; }
+// }
+
+// .badgeInactive {
+//   background: rgba($color-danger, 0.1);
+//   color: darken($color-danger, 10%);
+
+//   .badgeDot { background: $color-danger; }
+// }
+
+// // ─── Info Grid (2-col field layout) ──────────────────────────────────────────
+// .infoGrid {
+//   display: grid;
+//   grid-template-columns: repeat(2, 1fr);
+//   gap: $spacing-md $spacing-xl;
+
+//   @include sm { grid-template-columns: 1fr; }
+// }
+
+// .infoField {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 4px;
+// }
+
+// .fieldLabel {
+//   font-size: $font-size-xs;
+//   color: $color-gray-400;
+//   font-weight: $font-weight-medium;
+//   text-transform: uppercase;
+//   letter-spacing: 0.06em;
+// }
+
+// .fieldValue {
+//   font-size: $font-size-sm;
+//   color: $color-gray-800;
+//   font-weight: $font-weight-medium;
+// }
+
+// .mono {
+//   font-family: monospace;
+//   font-size: $font-size-xs;
+//   letter-spacing: 0.06em;
+//   color: $color-gray-700;
+// }
+
+// // ─── Certificate list ─────────────────────────────────────────────────────────
+// .certList {
+//   display: flex;
+//   flex-direction: column;
+//   gap: $spacing-sm;
+// }
+
+// .certCard {
+//   border: 1.5px solid $color-gray-200;
+//   border-radius: $radius-lg;
+//   overflow: hidden;
+//   transition: box-shadow $transition-fast, border-color $transition-fast;
+
+//   &:hover { box-shadow: $shadow-md; }
+// }
+
+// .certCardOpen {
+//   border-color: rgba($color-primary, 0.3);
+//   box-shadow: $shadow-md;
+// }
+
+// .certCardHeader {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   padding: $spacing-md $spacing-lg;
+//   cursor: pointer;
+//   user-select: none;
+//   background: $color-white;
+//   transition: background $transition-fast;
+
+//   &:hover { background: $color-gray-50; }
+// }
+
+// .certCardLeft {
+//   display: flex;
+//   align-items: center;
+//   gap: $spacing-sm;
+//   flex-wrap: wrap;
+// }
+
+// .certCardRight {
+//   display: flex;
+//   align-items: center;
+//   gap: $spacing-sm;
+//   flex-shrink: 0;
+// }
+
+// .certIndex {
+//   font-family: monospace;
+//   font-size: $font-size-xs;
+//   font-weight: $font-weight-bold;
+//   color: $color-primary;
+//   background: rgba($color-primary, 0.08);
+//   padding: 2px 8px;
+//   border-radius: $radius-full;
+//   letter-spacing: 0.04em;
+// }
+
+// .certDate {
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-semibold;
+//   color: $color-gray-800;
+// }
+
+// .fileChip {
+//   font-size: $font-size-xs;
+//   color: $color-info;
+//   background: rgba($color-info, 0.08);
+//   padding: 2px 10px;
+//   border-radius: $radius-full;
+//   font-weight: $font-weight-medium;
+// }
+
+// .chevron {
+//   font-size: 10px;
+//   color: $color-gray-400;
+// }
+
+// .certCardBody {
+//   padding: $spacing-md $spacing-lg $spacing-lg;
+//   border-top: 1px solid $color-gray-100;
+//   background: $color-gray-50;
+//   display: flex;
+//   flex-direction: column;
+//   gap: $spacing-md;
+// }
+
+// .remarksBlock {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 4px;
+// }
+
+// .remarksText {
+//   font-size: $font-size-sm;
+//   color: $color-gray-700;
+//   line-height: $line-height-relaxed;
+//   margin: 0;
+//   white-space: pre-wrap;
+// }
+
+// .fileLink {
+//   display: inline-flex;
+//   align-items: center;
+//   gap: $spacing-xs;
+//   font-size: $font-size-sm;
+//   font-weight: $font-weight-medium;
+//   color: $color-info;
+//   text-decoration: none;
+//   padding: $spacing-xs $spacing-md;
+//   border-radius: $radius-md;
+//   background: rgba($color-info, 0.06);
+//   border: 1px solid rgba($color-info, 0.2);
+//   width: fit-content;
+//   transition: all $transition-fast;
+
+//   &:hover {
+//     background: rgba($color-info, 0.12);
+//     border-color: rgba($color-info, 0.4);
+//   }
+// }
+
+// // ─── Quarter Update Grid ──────────────────────────────────────────────────────
+// .quarterGrid {
+//   display: grid;
+//   grid-template-columns: repeat(2, 1fr);
+//   gap: $spacing-md;
+
+//   @include sm { grid-template-columns: 1fr; }
+// }
+
+// .quarterCard {
+//   border: 1.5px solid $color-gray-200;
+//   border-radius: $radius-lg;
+//   overflow: hidden;
+//   transition: box-shadow $transition-fast;
+
+//   &:hover { box-shadow: $shadow-md; }
+// }
+
+// .quarterHeader {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   padding: $spacing-sm $spacing-md;
+//   background: rgba($color-primary, 0.05);
+//   border-bottom: 1px solid $color-gray-200;
+// }
+
+// .quarterLabel {
+//   font-size: $font-size-xs;
+//   font-weight: $font-weight-bold;
+//   color: $color-primary;
+//   text-transform: uppercase;
+//   letter-spacing: 0.08em;
+// }
+
+// .quarterDate {
+//   font-size: $font-size-xs;
+//   color: $color-gray-500;
+//   font-family: monospace;
+//   letter-spacing: 0.04em;
+// }
+
+// .quarterBody {
+//   padding: $spacing-md;
+//   display: flex;
+//   flex-direction: column;
+//   gap: $spacing-sm;
+//   background: $color-white;
+// }
+
+// .quarterRow {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 3px;
+// }
+
+// .quarterValue {
+//   font-size: $font-size-sm;
+//   color: $color-gray-800;
+//   font-weight: $font-weight-medium;
+//   line-height: 1.4;
+// }
+
+// // ─── Empty states ─────────────────────────────────────────────────────────────
+// .emptyState {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   gap: $spacing-md;
+//   padding: $spacing-3xl $spacing-xl;
+//   background: $color-white;
+//   border-radius: $radius-xl;
+//   border: 1px dashed $color-gray-200;
+//   text-align: center;
+
+//   p {
+//     font-size: $font-size-sm;
+//     color: $color-gray-400;
+//     margin: 0;
+//   }
+// }
+
+// .emptyStateIcon {
+//   font-size: 40px;
+//   opacity: 0.3;
+// }
+
+// .emptyBlock {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   gap: $spacing-sm;
+//   padding: $spacing-xl;
+//   background: $color-gray-50;
+//   border-radius: $radius-lg;
+//   border: 1px dashed $color-gray-200;
+//   text-align: center;
+
+//   p {
+//     font-size: $font-size-sm;
+//     color: $color-gray-400;
+//     margin: 0;
+//   }
+// }
+
+// .emptyIcon {
+//   font-size: 28px;
+//   opacity: 0.35;
+// }
+
+// // ─── Skeleton loaders ─────────────────────────────────────────────────────────
+// .skeletonCard {
+//   @include skeleton;
+//   height: 180px;
+//   border-radius: $radius-xl;
+// }
+
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as *;
 
@@ -5,37 +425,67 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: $spacing-md;
+  gap: $spacing-lg;
   animation: fadeUp 0.2s ease;
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-// ─── Section header (title + button row) ─────────────────────────────────────
-.sectionHeader {
+// ─── Top Bar ──────────────────────────────────────────────────────────────────
+.topBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: $spacing-md;
-
-  h3 {
-    font-family: $font-family-heading;
-    font-size: $font-size-lg;
-    font-weight: $font-weight-bold;
-    color: $color-gray-900;
-    margin: 0;
-    letter-spacing: -0.01em;
-  }
+  flex-wrap: wrap;
 }
 
-// ─── Buttons ──────────────────────────────────────────────────────────────────
-.primaryBtn {
-  @include button-primary;
-  font-size: $font-size-sm;
+.topBarLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.sectionTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+// ─── Primary Button ───────────────────────────────────────────────────────────
+.addBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
   padding: $spacing-sm $spacing-lg;
+  background: $color-primary;
+  color: $color-white;
+  border: none;
+  border-radius: $radius-lg;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+  box-shadow: 0 2px 8px rgba($color-primary, 0.3);
+  white-space: nowrap;
+
+  &:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba($color-primary, 0.35);
+  }
 }
 
 .addReraBtn {
@@ -58,41 +508,271 @@
   }
 }
 
-// ─── Cards ────────────────────────────────────────────────────────────────────
-.card {
-  @include card-base;
-  padding: $spacing-xl;
-
-  @include sm { padding: $spacing-lg; }
+// ─── Stats Row ────────────────────────────────────────────────────────────────
+.statsRow {
+  display: flex;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
 }
 
-.cardHeader {
+.statCard {
+  flex: 1;
+  min-width: 80px;
+  background: $color-white;
+  border-radius: $radius-lg;
+  border: 1px solid rgba($color-gray-200, 0.7);
+  box-shadow: $shadow-sm;
+  padding: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+
+  @include sm {
+    min-width: calc(50% - #{$spacing-xs});
+  }
+}
+
+.statGreen {
+  border-color: rgba(#22c55e, 0.2);
+  background: rgba(#dcfce7, 0.35);
+}
+.statAmber {
+  border-color: rgba(#ca8a04, 0.2);
+  background: rgba(#fef9c3, 0.35);
+}
+.statBlue {
+  border-color: rgba(#0369a1, 0.2);
+  background: rgba(#e0f2fe, 0.35);
+}
+
+.statVal {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+// ─── RERA Projects List ───────────────────────────────────────────────────────
+.reraList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+// ─── Single RERA Project Card ─────────────────────────────────────────────────
+.reraCard {
+  display: flex;
+  background: $color-white;
+  border-radius: $radius-xl;
+  border: 1.5px solid rgba($color-gray-200, 0.7);
+  box-shadow: $shadow-sm;
+  overflow: hidden;
+  transition: box-shadow $transition-fast;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}
+
+.reraCardExpanded {
+  box-shadow: $shadow-lg !important;
+  border-color: rgba($color-primary, 0.2) !important;
+}
+
+.reraCardInactive {
+  opacity: 0.75;
+  background: rgba($color-gray-50, 0.8);
+}
+
+.reraCardAccent {
+  width: 4px;
+  flex-shrink: 0;
+}
+
+.reraCardInner {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+// ── Card Header (always visible, clickable) ───────────────────────────────────
+.reraCardHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: $spacing-sm;
-  margin-bottom: $spacing-lg;
-  padding-bottom: $spacing-md;
-  border-bottom: 1px solid $color-gray-100;
+  gap: $spacing-md;
+  padding: $spacing-md $spacing-lg;
+  cursor: pointer;
+  user-select: none;
+  transition: background $transition-fast;
+
+  &:hover {
+    background: $color-gray-50;
+  }
+
+  @include sm {
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+    padding: $spacing-md;
+  }
 }
 
-// ─── Section title row (icon + label + count pill) ────────────────────────────
-.sectionTitle {
+.reraCardHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex: 1;
+  min-width: 0;
+}
+
+.reraIndex {
+  font-size: 11px;
+  font-weight: $font-weight-bold;
+  background: $color-gray-100;
+  color: $color-gray-500;
+  padding: 2px 7px;
+  border-radius: $radius-sm;
+  flex-shrink: 0;
+}
+
+.reraHeaderInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.reraNumber {
+  font-family: monospace;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  letter-spacing: 0.04em;
+}
+
+.reraHeaderMeta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.reraMetaChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 8px;
+  border-radius: $radius-full;
+  background: $color-gray-100;
+  color: $color-gray-500;
+  font-size: 11px;
+  font-weight: $font-weight-medium;
+  white-space: nowrap;
+}
+
+.reraCardHeaderRight {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex-shrink: 0;
+}
+
+.deleteBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: $radius-md;
+  border: 1.5px solid #fecaca;
+  background: #fff5f5;
+  color: #b91c1c;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all $transition-fast;
+  flex-shrink: 0;
+
+  &:hover:not(:disabled) {
+    background: #fee2e2;
+    border-color: #f87171;
+  }
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.chevron {
+  font-size: 18px;
+  color: $color-gray-400;
+  transition: transform $transition-fast;
+  display: inline-block;
+  line-height: 1;
+  font-weight: $font-weight-bold;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.chevronOpen {
+  transform: rotate(90deg);
+}
+
+// ── Card Body (expanded) ──────────────────────────────────────────────────────
+.reraCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  border-top: 1px solid $color-gray-100;
+  background: $color-gray-50;
+  animation: fadeUp 0.15s ease;
+}
+
+// Sections inside the expanded card
+.reraSection {
+  background: $color-white;
+  border: 1px solid rgba($color-gray-200, 0.7);
+  border-radius: $radius-lg;
+  overflow: hidden;
+  padding: $spacing-md $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+
+  @include sm {
+    padding: $spacing-md;
+  }
+}
+
+.reraSectionTitle {
   display: flex;
   align-items: center;
   gap: $spacing-sm;
   font-family: $font-family-heading;
-  font-size: $font-size-base;
+  font-size: $font-size-sm;
   font-weight: $font-weight-semibold;
-  color: $color-gray-800;
+  color: $color-gray-700;
+  padding-bottom: $spacing-sm;
+  border-bottom: 1px solid $color-gray-100;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.sectionIcon {
-  font-size: 16px;
-  color: $color-primary;
-  line-height: 1;
-}
+// ─── Existing styles (kept as-is) ─────────────────────────────────────────────
 
+// Count pill
 .countPill {
   display: inline-flex;
   align-items: center;
@@ -107,17 +787,18 @@
   font-weight: $font-weight-bold;
 }
 
-// ─── Active / Inactive badge ──────────────────────────────────────────────────
+// Active/inactive badge
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 5px 12px;
+  padding: 4px 10px;
   border-radius: $radius-full;
   font-size: $font-size-xs;
   font-weight: $font-weight-semibold;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .badgeDot {
@@ -130,24 +811,28 @@
 .badgeActive {
   background: rgba($color-success, 0.1);
   color: darken($color-success, 10%);
-
-  .badgeDot { background: $color-success; }
+  .badgeDot {
+    background: $color-success;
+  }
 }
 
 .badgeInactive {
   background: rgba($color-danger, 0.1);
   color: darken($color-danger, 10%);
-
-  .badgeDot { background: $color-danger; }
+  .badgeDot {
+    background: $color-danger;
+  }
 }
 
-// ─── Info Grid (2-col field layout) ──────────────────────────────────────────
+// Info grid
 .infoGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: $spacing-md $spacing-xl;
 
-  @include sm { grid-template-columns: 1fr; }
+  @include sm {
+    grid-template-columns: 1fr;
+  }
 }
 
 .infoField {
@@ -177,7 +862,7 @@
   color: $color-gray-700;
 }
 
-// ─── Certificate list ─────────────────────────────────────────────────────────
+// Cert list
 .certList {
   display: flex;
   flex-direction: column;
@@ -188,27 +873,32 @@
   border: 1.5px solid $color-gray-200;
   border-radius: $radius-lg;
   overflow: hidden;
-  transition: box-shadow $transition-fast, border-color $transition-fast;
+  transition:
+    box-shadow $transition-fast,
+    border-color $transition-fast;
 
-  &:hover { box-shadow: $shadow-md; }
+  &:hover {
+    box-shadow: $shadow-sm;
+  }
 }
 
 .certCardOpen {
   border-color: rgba($color-primary, 0.3);
-  box-shadow: $shadow-md;
 }
 
 .certCardHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: $spacing-md $spacing-lg;
+  padding: $spacing-sm $spacing-md;
   cursor: pointer;
   user-select: none;
   background: $color-white;
   transition: background $transition-fast;
 
-  &:hover { background: $color-gray-50; }
+  &:hover {
+    background: $color-gray-50;
+  }
 }
 
 .certCardLeft {
@@ -218,20 +908,13 @@
   flex-wrap: wrap;
 }
 
-.certCardRight {
-  display: flex;
-  align-items: center;
-  gap: $spacing-sm;
-  flex-shrink: 0;
-}
-
 .certIndex {
   font-family: monospace;
   font-size: $font-size-xs;
   font-weight: $font-weight-bold;
   color: $color-primary;
   background: rgba($color-primary, 0.08);
-  padding: 2px 8px;
+  padding: 2px 7px;
   border-radius: $radius-full;
   letter-spacing: 0.04em;
 }
@@ -251,18 +934,14 @@
   font-weight: $font-weight-medium;
 }
 
-.chevron {
-  font-size: 10px;
-  color: $color-gray-400;
-}
-
 .certCardBody {
-  padding: $spacing-md $spacing-lg $spacing-lg;
+  padding: $spacing-md;
   border-top: 1px solid $color-gray-100;
   background: $color-gray-50;
   display: flex;
   flex-direction: column;
   gap: $spacing-md;
+  animation: fadeUp 0.12s ease;
 }
 
 .remarksBlock {
@@ -300,13 +979,15 @@
   }
 }
 
-// ─── Quarter Update Grid ──────────────────────────────────────────────────────
+// Quarter grid
 .quarterGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: $spacing-md;
+  gap: $spacing-sm;
 
-  @include sm { grid-template-columns: 1fr; }
+  @include sm {
+    grid-template-columns: 1fr;
+  }
 }
 
 .quarterCard {
@@ -315,14 +996,16 @@
   overflow: hidden;
   transition: box-shadow $transition-fast;
 
-  &:hover { box-shadow: $shadow-md; }
+  &:hover {
+    box-shadow: $shadow-sm;
+  }
 }
 
 .quarterHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: $spacing-sm $spacing-md;
+  padding: $spacing-xs $spacing-md;
   background: rgba($color-primary, 0.05);
   border-bottom: 1px solid $color-gray-200;
 }
@@ -373,19 +1056,26 @@
   padding: $spacing-3xl $spacing-xl;
   background: $color-white;
   border-radius: $radius-xl;
-  border: 1px dashed $color-gray-200;
+  border: 1.5px dashed $color-gray-200;
   text-align: center;
-
-  p {
-    font-size: $font-size-sm;
-    color: $color-gray-400;
-    margin: 0;
-  }
+  min-height: 240px;
 }
 
 .emptyStateIcon {
-  font-size: 40px;
+  font-size: 3.5rem;
   opacity: 0.3;
+  display: block;
+}
+.emptyTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-600;
+  margin: 0;
+}
+.emptyHint {
+  font-size: $font-size-sm;
+  color: $color-gray-400;
+  margin: 0;
 }
 
 .emptyBlock {
@@ -393,7 +1083,7 @@
   flex-direction: column;
   align-items: center;
   gap: $spacing-sm;
-  padding: $spacing-xl;
+  padding: $spacing-lg;
   background: $color-gray-50;
   border-radius: $radius-lg;
   border: 1px dashed $color-gray-200;
@@ -407,8 +1097,9 @@
 }
 
 .emptyIcon {
-  font-size: 28px;
+  font-size: 24px;
   opacity: 0.35;
+  display: block;
 }
 
 // ─── Skeleton loaders ─────────────────────────────────────────────────────────
@@ -416,4 +1107,334 @@
   @include skeleton;
   height: 180px;
   border-radius: $radius-xl;
+}
+
+// ─── Overlay & Popup ──────────────────────────────────────────────────────────
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 14, 26, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: $z-modal;
+  padding: $spacing-md;
+  animation: overlayIn 0.15s ease;
+
+  @include sm {
+    padding: $spacing-xs;
+    align-items: flex-end;
+  }
+}
+
+@keyframes overlayIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.popup {
+  background: $color-white;
+  border-radius: $radius-2xl;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+  animation: popupIn 0.22s cubic-bezier(0.34, 1.5, 0.64, 1);
+  overflow: hidden;
+
+  @include sm {
+    border-radius: $radius-2xl $radius-2xl 0 0;
+    max-height: 96vh;
+  }
+}
+
+@keyframes popupIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// Popup header
+.popupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  padding: $spacing-lg $spacing-xl;
+  background: linear-gradient(
+    135deg,
+    $color-primary 0%,
+    darken($color-primary, 12%) 100%
+  );
+  flex-shrink: 0;
+
+  @include sm {
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+.popupHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.popupHeaderIcon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.popupTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  margin: 0 0 2px;
+}
+
+.popupSub {
+  font-size: $font-size-xs;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.closeBtn {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  border-radius: $radius-lg;
+  color: $color-white;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background $transition-fast;
+  flex-shrink: 0;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
+}
+
+// Popup body
+.popupBody {
+  overflow-y: auto;
+  flex: 1;
+  padding: $spacing-xl;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+
+  @include sm {
+    padding: $spacing-md;
+  }
+  @include custom-scrollbar;
+}
+
+// Form sections
+.formSection {
+  background: $color-gray-50;
+  border-radius: $radius-xl;
+  border: 1px solid $color-gray-100;
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.formSectionTitle {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  color: $color-gray-500;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  padding-bottom: $spacing-sm;
+  border-bottom: 1px solid $color-gray-200;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+
+  @include sm {
+    grid-template-columns: 1fr;
+  }
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.formGroupFull {
+  grid-column: 1 / -1;
+}
+
+.label {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.req {
+  color: $color-danger;
+}
+
+.input {
+  @include input-base;
+}
+
+// Toggle switch
+.toggleLabel {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.toggleWrap {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.toggleInput {
+  display: none;
+}
+
+.toggleTrack {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  background: $color-gray-300;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background $transition-fast;
+  flex-shrink: 0;
+}
+
+.toggleOn {
+  background: $color-success;
+}
+
+.toggleThumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  background: $color-white;
+  border-radius: 50%;
+  transition: transform $transition-fast;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.toggleOn .toggleThumb {
+  transform: translateX(20px);
+}
+
+.toggleText {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-gray-700;
+}
+
+// Popup footer
+.popupFooter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-xl;
+  background: $color-gray-50;
+  border-top: 1px solid $color-gray-100;
+  flex-shrink: 0;
+
+  @include sm {
+    padding: $spacing-sm $spacing-md;
+  }
+}
+
+.cancelBtn {
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-lg;
+  border: 1.5px solid $color-gray-200;
+  background: $color-white;
+  color: $color-gray-600;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: $color-gray-50;
+    border-color: $color-gray-300;
+  }
+}
+
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-xl;
+  border-radius: $radius-lg;
+  border: none;
+  background: $color-primary;
+  color: $color-white;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+  box-shadow: 0 2px 8px rgba($color-primary, 0.3);
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.btnSpinner,
+.btnSpinnerSm {
+  width: 13px;
+  height: 13px;
+  // border: 2px solid rgba(currentColor, 0.3);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.btnSpinnerSm {
+  width: 11px;
+  height: 11px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

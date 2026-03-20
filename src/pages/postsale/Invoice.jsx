@@ -42,7 +42,7 @@ const BANK = {
 
 // ─── InvoicePage ──────────────────────────────────────────────────────────────
 export default function InvoicePage() {
-  const { postSalesId, type } = useParams(); // type = "proforma" | "tax"
+  const { postSalesId, invoiseId, type } = useParams(); // type = "proforma" | "tax"
   const navigate = useNavigate();
   const printRef = useRef();
 
@@ -73,7 +73,7 @@ export default function InvoicePage() {
     type === "tax" ? data.taxInvoices || [] : data.proformaInvoices || [];
 
   // If invId param present, show that one; else show latest
-  const invoice = invoiceList[0] || {};
+  const invoice = invoiceList[invoiseId - 1] || {};
   const client = data.client || {};
   const project = data.project || {};
 

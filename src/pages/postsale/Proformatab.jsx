@@ -581,7 +581,7 @@ const ProformaCard = ({ inv, index, onDeleted }) => {
                 <button
                   className={styles.actionBtnView}
                   onClick={() =>
-                    navigate(`/postsales/${inv.postSalesId}/invoice/proforma`)
+                    navigate(`/postsales/${postSalesId}/invoice/${inv.id}/tax`)
                   }
                 >
                   👁 View Invoice

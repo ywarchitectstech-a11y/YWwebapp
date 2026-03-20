@@ -313,7 +313,7 @@ const PreSalesPage = () => {
       {/* ===============================
           QUOTATIONS
       =============================== */}
-      <div className={styles.card}>
+      {/* <div className={styles.card}>
         <div className={styles.sectionTitle}>Quotations</div>
 
         <button className={styles.buttonSecondary} onClick={addQuotation}>
@@ -339,7 +339,7 @@ const PreSalesPage = () => {
             />
           </div>
         ))}
-      </div>
+      </div> */}
 
       {/* ===============================
           ACTION BUTTONS

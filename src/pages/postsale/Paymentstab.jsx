@@ -28,15 +28,7 @@ const fmtMoney = (val) => {
 };
 
 // PaymentMode matches backend enum
-const PAYMENT_MODES = [
-  "CASH",
-  "RTGS",
-  "NEFT",
-  "IMPS",
-  "CHEQUE",
-  "UPI",
-  "BANK_TRANSFER",
-];
+const PAYMENT_MODES = ["CASH", "RTGS", "CHEQUE"];
 
 const MODE_CFG = {
   CASH: { bg: "#dcfce7", color: "#14532d" },
@@ -56,7 +48,7 @@ const AddPaymentPopup = ({ taxInvoices, onClose }) => {
     invoiceNumber: taxInvoices.length === 1 ? taxInvoices[0].invoiceNumber : "",
     paymentDate: new Date().toISOString().split("T")[0],
     amountPaid: "",
-    paymentMode: "RTGS",
+    paymentMode: "CASH",
     transactionId: "",
     remarks: "",
   });
