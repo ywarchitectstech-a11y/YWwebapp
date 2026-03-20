@@ -23,8 +23,13 @@ export const getClientById = (id) =>
 // DELETE CLIENT
 export const deleteClient = (id) =>
   axiosInstance.delete(`/clients/deleteclient/${id}`);
-export const updateClient = (data) =>
-  api.put("/clients/updateclient", data);
+/* ===============================
+   UPDATE CLIENT
+=============================== */
+export const updateClient = (id, data) =>
+  api.put("/clients/updateclient", data, {
+    params: { id },
+  });
 // ── GET CLIENT PROFILE ─────────────────────────
 export const getClientProfile = () => {
   return api.get("/clients/getclient");

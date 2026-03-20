@@ -52,11 +52,15 @@ export const useDeleteClient = () => {
     },
   });
 };
+/* ===============================
+   UPDATE CLIENT
+=============================== */
 export const useUpdateClient = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (data) => clientApi.updateClient(data),
+    mutationFn: ({ id, data }) =>
+      clientApi.updateClient(id, data),
 
     onSuccess: () => {
       queryClient.invalidateQueries(["clients"]);

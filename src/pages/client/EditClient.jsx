@@ -90,17 +90,22 @@ const EditClient = () => {
 
     mutate(
       {
-        id: formData.id,
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        address: formData.address,
-        GSTCertificate: formData.GSTCertificate,
-        PAN: formData.PAN,
+        id: formData.id, // ✅ param
+        data: {
+          clientName: formData.name, // ⚠️ match backend DTO
+          email: formData.email,
+          phone: formData.phone,
+          address: formData.address,
+          GSTCertificate: formData.GSTCertificate,
+          PAN: formData.PAN,
+        },
       },
       {
         onSuccess: () => {
           navigate("/clients/allclients");
+        },
+        onError: (err) => {
+          console.error("Update failed:", err);
         },
       },
     );
