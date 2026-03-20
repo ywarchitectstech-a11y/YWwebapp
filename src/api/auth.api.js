@@ -43,3 +43,16 @@ export const logout = (refreshToken) => {
     refreshToken,
   });
 };
+
+// ── CLIENT LOGIN ─────────────────────────────
+export const clientLogin = (email, password) => {
+  const params = new URLSearchParams();
+  params.append("email", email);
+  params.append("password", password);
+
+  return api.post("/auth/clientlogin", params, {
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+  });
+};

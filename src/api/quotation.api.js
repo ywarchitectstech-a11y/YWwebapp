@@ -36,14 +36,21 @@ export const markQuotationSent = (id) => {
   return api.patch(`/quotations/${id}/send`);
 };
 
-// ── MARK AS ACCEPTED ─────────────────────────────
-// PATCH /api/quotations/{id}/accept
-export const markQuotationAccepted = (id) => {
+
+/* ===============================
+   MARK QUOTATION AS ACCEPTED
+   PATCH /api/quotations/{id}/accept
+================================ */
+
+export const acceptQuotation = (id) => {
   return api.patch(`/quotations/${id}/accept`);
 };
 
-// ── DELETE QUOTATION ─────────────────────────────
-// DELETE /api/quotations/{id}
+/* ===============================
+   DELETE QUOTATION
+   DELETE /api/quotations/{id}
+================================ */
+
 export const deleteQuotation = (id) => {
   return api.delete(`/quotations/${id}`);
 };

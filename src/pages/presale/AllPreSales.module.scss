@@ -1644,3 +1644,200 @@
     box-shadow: none;
   }
 }
+
+// ── Quotation Card (redesigned) ───────────────────────────────────────────────
+.quotCard {
+  position: relative;
+  display: flex;
+  background: #fff;
+  border: 1.5px solid $color-gray-200;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    box-shadow 0.15s,
+    transform 0.12s,
+    border-color 0.15s;
+
+  &:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    border-color: $color-primary;
+  }
+}
+
+.quotCardAccepted {
+  border-color: #22c55e !important;
+  background: #f0fdf4;
+}
+
+// Left accent line
+.quotCardAccent {
+  width: 4px;
+  flex-shrink: 0;
+  border-radius: 14px 0 0 14px;
+}
+
+// Body beside the accent
+.quotCardBody {
+  flex: 1;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+// Row 1 — number + status badge
+.quotCardRow1 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.quotCardLeft {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.quotCardIndex {
+  font-size: 11px;
+  font-weight: 700;
+  background: $color-gray-100;
+  color: $color-gray-500;
+  padding: 2px 7px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.quotCardNumber {
+  font-size: 14px;
+  font-weight: 700;
+  color: $color-gray-900;
+  font-family: monospace;
+  letter-spacing: 0.02em;
+}
+
+.quotCardDetails {
+  font-size: 12px;
+  color: $color-gray-500;
+  margin-top: 3px;
+  line-height: 1.4;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+// Status badge
+.quotStatusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.quotStatusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+// Meta chips row
+.quotCardMeta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.quotMetaChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: $color-gray-100;
+  color: $color-gray-600;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+// Actions row
+.quotCardActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 6px;
+  border-top: 1px solid $color-gray-100;
+  flex-wrap: wrap;
+}
+
+.quotViewBtn {
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1.5px solid $color-gray-200;
+  background: #fff;
+  color: $color-gray-700;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+
+  &:hover {
+    border-color: $color-primary;
+    color: $color-primary;
+    background: rgba($color-primary, 0.04);
+  }
+}
+
+.quotAcceptBtn {
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1.5px solid #86efac;
+  background: #f0fdf4;
+  color: #14532d;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+
+  &:hover {
+    background: #dcfce7;
+    border-color: #22c55e;
+  }
+}
+
+.quotDeleteBtn {
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1.5px solid #fecaca;
+  background: #fff5f5;
+  color: #b91c1c;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+
+  &:hover {
+    background: #fee2e2;
+    border-color: #f87171;
+  }
+}

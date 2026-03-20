@@ -14,3 +14,10 @@ export const useAdminLogin = () => {
       authApi.adminLogin(email, password),
   });
 };
+
+export const useClientLogin = () => {
+  return useMutation({
+    mutationFn: ({ email, password }) =>
+      authApi.clientLogin(email, password),
+  });
+};

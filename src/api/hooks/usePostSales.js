@@ -56,3 +56,19 @@ export const usePostSalesById = (id) => {
     enabled: !!id,
   });
 };
+export const usePostSalesByClient = (
+  clientId,
+  page,
+  size,
+  options = {}
+) => {
+  return useQuery({
+    queryKey: ["postSalesClient", clientId, page, size],
+    queryFn: () =>
+      postSalesApi
+        .getPostSalesByClient(clientId, page, size)
+        .then((res) => res.data.data),
+    enabled: !!clientId,
+    ...options,
+  });
+};

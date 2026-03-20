@@ -1,0 +1,735 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// ── Wrapper ───────────────────────────────────────────────────────────────────
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  animation: fadeUp 0.2s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ── Top Bar ───────────────────────────────────────────────────────────────────
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+}
+
+.topBarLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.sectionTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  margin: 0;
+}
+
+.countChip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: $radius-full;
+  background: rgba($color-primary, 0.1);
+  color: $color-primary;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+}
+
+.addBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-lg;
+  background: $color-primary;
+  color: $color-white;
+  border: none;
+  border-radius: $radius-lg;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+  box-shadow: 0 2px 8px rgba($color-primary, 0.3);
+  white-space: nowrap;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba($color-primary, 0.35);
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+// ── Stats Row ─────────────────────────────────────────────────────────────────
+.statsRow {
+  display: flex;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.statCard {
+  flex: 1;
+  min-width: 100px;
+  background: $color-white;
+  border-radius: $radius-lg;
+  border: 1px solid rgba($color-gray-200, 0.7);
+  box-shadow: $shadow-sm;
+  padding: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+
+  @include sm {
+    min-width: calc(50% - #{$spacing-xs});
+  }
+}
+
+.statGreen {
+  border-color: rgba(#22c55e, 0.2);
+  background: rgba(#dcfce7, 0.35);
+}
+.statBlue {
+  border-color: rgba(#0369a1, 0.2);
+  background: rgba(#e0f2fe, 0.35);
+}
+.statRed {
+  border-color: rgba(#dc2626, 0.2);
+  background: rgba(#fee2e2, 0.35);
+}
+
+.statVal {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  line-height: 1;
+
+  @include sm {
+    font-size: $font-size-base;
+  }
+}
+
+.statLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+// ── Mode Breakdown ────────────────────────────────────────────────────────────
+.modeBreakdown {
+  display: flex;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.modeChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+}
+
+.modeChipMode {
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.modeChipAmt {
+  font-weight: $font-weight-semibold;
+  font-family: $font-family-heading;
+}
+
+// ── Filter Bar ────────────────────────────────────────────────────────────────
+.filterBar {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  background: $color-white;
+  border-radius: $radius-lg;
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid rgba($color-gray-200, 0.6);
+  box-shadow: $shadow-sm;
+  flex-wrap: wrap;
+}
+
+.filterLabel {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-400;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.filterChips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.filterChip {
+  padding: 4px 12px;
+  border-radius: $radius-full;
+  border: 1.5px solid $color-gray-200;
+  background: $color-white;
+  color: $color-gray-500;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  transition: all $transition-fast;
+  white-space: nowrap;
+  font-family: monospace;
+
+  &:hover {
+    border-color: $color-primary;
+    color: $color-primary;
+  }
+}
+
+.filterChipActive {
+  background: $color-primary !important;
+  color: $color-white !important;
+  border-color: $color-primary !important;
+  font-family: $font-family-primary;
+}
+
+// ── Empty State ───────────────────────────────────────────────────────────────
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-3xl $spacing-xl;
+  background: $color-white;
+  border-radius: $radius-xl;
+  border: 1.5px dashed $color-gray-200;
+  text-align: center;
+  min-height: 240px;
+}
+
+.emptyIcon {
+  font-size: 3rem;
+  display: block;
+}
+.emptyTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-600;
+  margin: 0;
+}
+.emptyHint {
+  font-size: $font-size-sm;
+  color: $color-gray-400;
+  margin: 0;
+}
+
+// ── Payment List ──────────────────────────────────────────────────────────────
+.paymentList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+// ── Payment Card ──────────────────────────────────────────────────────────────
+.paymentCard {
+  display: flex;
+  background: $color-white;
+  border-radius: $radius-xl;
+  border: 1.5px solid rgba($color-gray-200, 0.7);
+  box-shadow: $shadow-sm;
+  overflow: hidden;
+  transition:
+    box-shadow $transition-fast,
+    transform $transition-fast;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-1px);
+  }
+}
+
+.paymentAccent {
+  width: 4px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.paymentCardBody {
+  flex: 1;
+  padding: $spacing-md $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  min-width: 0;
+}
+
+// Row 1 — amount + mode badge + date
+.paymentCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+}
+
+.paymentCardLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.paymentAmount {
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.modeBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.paymentDate {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-gray-500;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+// Row 2 — meta items
+.paymentCardMeta {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  flex-wrap: wrap;
+
+  @include sm {
+    gap: $spacing-sm;
+  }
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.metaItemLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.metaItemCode {
+  font-family: monospace;
+  font-size: $font-size-xs;
+  color: $color-gray-700;
+  background: $color-gray-100;
+  padding: 2px 7px;
+  border-radius: $radius-sm;
+  letter-spacing: 0.04em;
+}
+
+.metaItemText {
+  font-size: $font-size-xs;
+  color: $color-gray-600;
+  font-style: italic;
+}
+
+// ── Total Row ─────────────────────────────────────────────────────────────────
+.totalRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-md $spacing-lg;
+  background: $color-white;
+  border-radius: $radius-lg;
+  border: 1px solid $color-gray-200;
+  font-size: $font-size-sm;
+  color: $color-gray-500;
+}
+
+.totalAmt {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+}
+
+// ── Overlay & Popup ───────────────────────────────────────────────────────────
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 14, 26, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: $z-modal;
+  padding: $spacing-md;
+  animation: overlayIn 0.15s ease;
+
+  @include sm {
+    padding: $spacing-xs;
+    align-items: flex-end;
+  }
+}
+
+@keyframes overlayIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.popup {
+  background: $color-white;
+  border-radius: $radius-2xl;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+  animation: popupIn 0.22s cubic-bezier(0.34, 1.5, 0.64, 1);
+  overflow: hidden;
+
+  @include sm {
+    border-radius: $radius-2xl $radius-2xl 0 0;
+    max-height: 96vh;
+  }
+}
+
+@keyframes popupIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// ── Popup Header ──────────────────────────────────────────────────────────────
+.popupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  padding: $spacing-lg $spacing-xl;
+  background: linear-gradient(135deg, $color-gray-800 0%, $color-gray-900 100%);
+  flex-shrink: 0;
+
+  @include sm {
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+.popupHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.popupHeaderIcon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.popupTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  margin: 0 0 2px;
+}
+
+.popupSub {
+  font-size: $font-size-xs;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.closeBtn {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  border-radius: $radius-lg;
+  color: $color-white;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background $transition-fast;
+  flex-shrink: 0;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
+}
+
+// ── Popup Body ────────────────────────────────────────────────────────────────
+.popupBody {
+  overflow-y: auto;
+  flex: 1;
+  padding: $spacing-xl;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+
+  @include sm {
+    padding: $spacing-md;
+  }
+  @include custom-scrollbar;
+}
+
+// ── Form Sections ─────────────────────────────────────────────────────────────
+.formSection {
+  background: $color-gray-50;
+  border-radius: $radius-xl;
+  border: 1px solid $color-gray-100;
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.formSectionTitle {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  color: $color-gray-500;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  padding-bottom: $spacing-sm;
+  border-bottom: 1px solid $color-gray-200;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+
+  @include sm {
+    grid-template-columns: 1fr;
+  }
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.formGroupFull {
+  grid-column: 1 / -1;
+}
+
+.label {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.req {
+  color: $color-danger;
+}
+
+.input {
+  @include input-base;
+}
+
+.select {
+  @include input-base;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+// ── Invoice Summary Strip ─────────────────────────────────────────────────────
+.invoiceSummary {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: $color-white;
+  border: 1.5px solid $color-gray-200;
+  border-radius: $radius-lg;
+  overflow: hidden;
+}
+
+.invoiceSummaryItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  flex: 1;
+  padding: $spacing-sm $spacing-md;
+  text-align: center;
+}
+
+.invoiceSummaryDivider {
+  width: 1px;
+  align-self: stretch;
+  background: $color-gray-100;
+  flex-shrink: 0;
+}
+
+.invoiceSummaryLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.invoiceSummaryVal {
+  font-family: $font-family-heading;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  line-height: 1;
+}
+
+// ── No Invoices Note ──────────────────────────────────────────────────────────
+.noInvoicesNote {
+  padding: $spacing-sm $spacing-md;
+  background: rgba($color-warning, 0.08);
+  border: 1px solid rgba($color-warning, 0.25);
+  border-radius: $radius-lg;
+  font-size: $font-size-sm;
+  color: darken($color-warning, 25%);
+  font-weight: $font-weight-medium;
+}
+
+// ── Popup Footer ──────────────────────────────────────────────────────────────
+.popupFooter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-xl;
+  background: $color-gray-50;
+  border-top: 1px solid $color-gray-100;
+  flex-shrink: 0;
+
+  @include sm {
+    padding: $spacing-sm $spacing-md;
+  }
+}
+
+.cancelBtn {
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-lg;
+  border: 1.5px solid $color-gray-200;
+  background: $color-white;
+  color: $color-gray-600;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: $color-gray-50;
+    border-color: $color-gray-300;
+  }
+}
+
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-xl;
+  border-radius: $radius-lg;
+  border: none;
+  background: $color-primary;
+  color: $color-white;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+  box-shadow: 0 2px 8px rgba($color-primary, 0.3);
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.btnSpinner {
+  width: 13px;
+  height: 13px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: $color-white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

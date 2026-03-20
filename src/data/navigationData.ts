@@ -146,10 +146,20 @@ const NAV_PERMISSIONS: Record<string, UserRole[] | "ALL"> = {
     "SR_ARCHITECT",
     "JR_ARCHITECT",
     "SR_ENGINEER",
+    "DRAFTSMAN",
+    "LIAISON_MANAGER",
+    "LIAISON_OFFICER",
+    "LIAISON_ASSISTANT",
     "HR",
   ],
   "add-project": ["ADMIN", "CO_FOUNDER", "SR_ARCHITECT"],
-  "all-quotations": ["ADMIN", "CO_FOUNDER", "SR_ARCHITECT", "JR_ARCHITECT"],
+  "all-quotations": [
+    "ADMIN",
+    "CO_FOUNDER",
+    "SR_ARCHITECT",
+    "JR_ARCHITECT",
+    "CLIENT",
+  ],
 
   // Pre Sales
   "presales-new": [
@@ -168,6 +178,7 @@ const NAV_PERMISSIONS: Record<string, UserRole[] | "ALL"> = {
     "LIAISON_MANAGER",
     "LIAISON_OFFICER",
     "HR",
+    "CLIENT",
   ],
 
   // Post Sales
@@ -178,6 +189,7 @@ const NAV_PERMISSIONS: Record<string, UserRole[] | "ALL"> = {
     "SR_ARCHITECT",
     "JR_ARCHITECT",
     "HR",
+    "CLIENT",
   ],
   "postsales-invoices": ["ADMIN", "CO_FOUNDER", "HR"],
 

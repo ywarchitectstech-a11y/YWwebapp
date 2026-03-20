@@ -16,3 +16,9 @@ export const getAllPostSales = (page = 0, size = 10) =>
 
 export const getPostSalesById = (id) =>
   axiosInstance.get(`/postsales/${id}`);
+
+export const getPostSalesByClient = (clientId, page = 0, size = 10) => {
+  return axiosInstance.get(`/postsales/client/${clientId}`, {
+    params: { page, size },
+  });
+};

@@ -1,0 +1,991 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// ── Wrapper ───────────────────────────────────────────────────────────────────
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  animation: fadeUp 0.2s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ── Top Bar ───────────────────────────────────────────────────────────────────
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+}
+
+.topBarLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.sectionTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  margin: 0;
+}
+
+.countChip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: $radius-full;
+  background: rgba($color-primary, 0.1);
+  color: $color-primary;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+}
+
+.addBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-lg;
+  background: $color-primary;
+  color: $color-white;
+  border: none;
+  border-radius: $radius-lg;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+  box-shadow: 0 2px 8px rgba($color-primary, 0.3);
+  white-space: nowrap;
+
+  &:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba($color-primary, 0.35);
+  }
+}
+
+// ── Stats Row ─────────────────────────────────────────────────────────────────
+.statsRow {
+  display: flex;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.statCard {
+  flex: 1;
+  min-width: 90px;
+  background: $color-white;
+  border-radius: $radius-lg;
+  border: 1px solid rgba($color-gray-200, 0.7);
+  box-shadow: $shadow-sm;
+  padding: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+
+  @include sm {
+    min-width: calc(50% - #{$spacing-xs});
+  }
+}
+
+.statGreen {
+  border-color: rgba(#16a34a, 0.2);
+  background: rgba(#dcfce7, 0.35);
+}
+.statAmber {
+  border-color: rgba(#ca8a04, 0.2);
+  background: rgba(#fef9c3, 0.35);
+}
+.statBlue {
+  border-color: rgba(#0369a1, 0.2);
+  background: rgba(#e0f2fe, 0.35);
+}
+
+.statVal {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+// ── Empty State ───────────────────────────────────────────────────────────────
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-3xl $spacing-xl;
+  background: $color-white;
+  border-radius: $radius-xl;
+  border: 1.5px dashed $color-gray-200;
+  text-align: center;
+  min-height: 240px;
+}
+
+.emptyIcon {
+  font-size: 3rem;
+  display: block;
+  opacity: 0.4;
+}
+.emptyTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-600;
+  margin: 0;
+}
+.emptyHint {
+  font-size: $font-size-sm;
+  color: $color-gray-400;
+  margin: 0;
+}
+
+// ── Card List ─────────────────────────────────────────────────────────────────
+.cardList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+// ── Invoice Card ──────────────────────────────────────────────────────────────
+.card {
+  display: flex;
+  background: $color-white;
+  border-radius: $radius-xl;
+  border: 1.5px solid rgba($color-gray-200, 0.7);
+  box-shadow: $shadow-sm;
+  overflow: hidden;
+  transition:
+    box-shadow $transition-fast,
+    transform $transition-fast;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}
+
+.cardExpanded {
+  box-shadow: $shadow-lg !important;
+  border-color: rgba($color-primary, 0.25) !important;
+}
+
+.cardPaid {
+  border-color: rgba(#22c55e, 0.25) !important;
+  background: rgba(#f0fdf4, 0.5);
+}
+
+.cardConverted {
+  border-color: rgba(#7c3aed, 0.2) !important;
+  background: rgba(#faf5ff, 0.5);
+}
+
+.cardAccent {
+  width: 4px;
+  flex-shrink: 0;
+}
+
+.cardInner {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+// ── Card Top (always visible, clickable) ──────────────────────────────────────
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  padding: $spacing-md $spacing-lg;
+  cursor: pointer;
+  user-select: none;
+  transition: background $transition-fast;
+
+  &:hover {
+    background: $color-gray-50;
+  }
+
+  @include sm {
+    flex-wrap: wrap;
+  }
+}
+
+.cardTopLeft {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.cardIndex {
+  font-size: 11px;
+  font-weight: $font-weight-bold;
+  background: $color-gray-100;
+  color: $color-gray-500;
+  padding: 2px 7px;
+  border-radius: $radius-sm;
+  flex-shrink: 0;
+}
+
+.cardNumber {
+  font-family: monospace;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-800;
+  letter-spacing: 0.04em;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 9px;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.statusDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.notifiedBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: $radius-full;
+  background: rgba($color-info, 0.1);
+  color: darken($color-info, 10%);
+  font-size: 11px;
+  font-weight: $font-weight-medium;
+  white-space: nowrap;
+}
+
+.convertedBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: $radius-full;
+  background: rgba(#7c3aed, 0.1);
+  color: #4c1d95;
+  font-size: 11px;
+  font-weight: $font-weight-semibold;
+  white-space: nowrap;
+}
+
+.cardTopRight {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  flex-shrink: 0;
+}
+
+.grossAmount {
+  font-family: $font-family-heading;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  letter-spacing: -0.01em;
+}
+
+.chevron {
+  font-size: 18px;
+  color: $color-gray-400;
+  transition: transform $transition-fast;
+  line-height: 1;
+  font-weight: $font-weight-bold;
+  display: inline-block;
+}
+
+.chevronOpen {
+  transform: rotate(90deg);
+}
+
+// ── Meta chips ────────────────────────────────────────────────────────────────
+.cardMeta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 0 $spacing-lg $spacing-sm;
+}
+
+.metaChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 8px;
+  border-radius: $radius-full;
+  background: $color-gray-100;
+  color: $color-gray-500;
+  font-size: 11px;
+  font-weight: $font-weight-medium;
+  white-space: nowrap;
+}
+
+// ── Card Body (expanded) ──────────────────────────────────────────────────────
+.cardBody {
+  padding: $spacing-lg;
+  border-top: 1px solid $color-gray-100;
+  background: $color-gray-50;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  animation: fadeUp 0.15s ease;
+}
+
+// ── Amount Breakdown ──────────────────────────────────────────────────────────
+.breakdown {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  background: $color-white;
+  border: 1px solid $color-gray-200;
+  border-radius: $radius-lg;
+  padding: $spacing-md $spacing-lg;
+  flex-wrap: wrap;
+
+  @include sm {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.breakdownItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  min-width: 70px;
+  text-align: center;
+}
+
+.breakdownLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: $font-weight-medium;
+}
+
+.breakdownVal {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-800;
+  font-family: $font-family-heading;
+}
+
+.breakdownOp {
+  font-size: $font-size-base;
+  color: $color-gray-300;
+  font-weight: $font-weight-bold;
+  flex-shrink: 0;
+}
+
+.breakdownItemTotal {
+  background: rgba($color-primary, 0.07);
+  border: 1px solid rgba($color-primary, 0.15);
+  border-radius: $radius-md;
+  padding: $spacing-xs $spacing-sm;
+
+  .breakdownVal {
+    color: $color-primary;
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
+  }
+}
+
+// ── Detail Grid ───────────────────────────────────────────────────────────────
+.detailGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+
+  @include sm {
+    grid-template-columns: 1fr;
+  }
+}
+
+.detailSection {
+  background: $color-white;
+  border: 1px solid $color-gray-200;
+  border-radius: $radius-lg;
+  overflow: hidden;
+}
+
+.detailSectionTitle {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  color: $color-gray-500;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  padding: $spacing-xs $spacing-md;
+  background: $color-gray-50;
+  border-bottom: 1px solid $color-gray-100;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: $spacing-xs $spacing-md;
+  border-bottom: 1px solid $color-gray-50;
+  gap: $spacing-sm;
+  font-size: $font-size-sm;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  span:first-child {
+    color: $color-gray-400;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+    min-width: 70px;
+  }
+
+  span:last-child {
+    color: $color-gray-800;
+    font-weight: $font-weight-medium;
+    text-align: right;
+    word-break: break-word;
+  }
+}
+
+// ── Amount in words ───────────────────────────────────────────────────────────
+.amountWords {
+  padding: $spacing-sm $spacing-md;
+  background: $color-white;
+  border-radius: $radius-lg;
+  border: 1px solid $color-gray-200;
+  font-size: $font-size-xs;
+  color: $color-gray-600;
+  line-height: $line-height-relaxed;
+}
+
+.amountWordsLabel {
+  font-weight: $font-weight-semibold;
+  color: $color-gray-500;
+  margin-right: 6px;
+}
+
+// ── Workflow Action Bar ───────────────────────────────────────────────────────
+.workflowBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  padding-top: $spacing-md;
+  border-top: 1px solid $color-gray-200;
+  flex-wrap: wrap;
+}
+
+.workflowSteps {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+}
+
+.workflowStep {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.workflowArrow {
+  color: $color-gray-300;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  flex-shrink: 0;
+  padding: 0 2px;
+}
+
+// ── Card Actions ──────────────────────────────────────────────────────────────
+.cardActions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding-top: $spacing-sm;
+  border-top: 1px solid $color-gray-200;
+  flex-wrap: wrap;
+}
+
+%actionBase {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border-radius: $radius-lg;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  border: 1.5px solid;
+  transition: all $transition-fast;
+  white-space: nowrap;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+// Completed state — step already done
+.actionBtnDone {
+  opacity: 0.55 !important;
+  cursor: default !important;
+  pointer-events: none;
+}
+
+.actionBtnBlue {
+  @extend %actionBase;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-color: #bfdbfe;
+  &:hover:not(:disabled) {
+    background: #dbeafe;
+    border-color: #93c5fd;
+  }
+}
+
+.actionBtnGreen {
+  @extend %actionBase;
+  background: #f0fdf4;
+  color: #15803d;
+  border-color: #86efac;
+  &:hover:not(:disabled) {
+    background: #dcfce7;
+    border-color: #4ade80;
+  }
+}
+
+.actionBtnPurple {
+  @extend %actionBase;
+  background: #faf5ff;
+  color: #6d28d9;
+  border-color: #c4b5fd;
+  &:hover:not(:disabled) {
+    background: #ede9fe;
+    border-color: #a78bfa;
+  }
+}
+
+.actionBtnDelete {
+  @extend %actionBase;
+  background: #fff5f5;
+  color: #b91c1c;
+  border-color: #fecaca;
+  &:hover:not(:disabled) {
+    background: #fee2e2;
+    border-color: #f87171;
+  }
+}
+
+// ── Popup Overlay ─────────────────────────────────────────────────────────────
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 14, 26, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: $z-modal;
+  padding: $spacing-md;
+  animation: overlayIn 0.15s ease;
+
+  @include sm {
+    padding: $spacing-xs;
+    align-items: flex-end;
+  }
+}
+
+@keyframes overlayIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.popup {
+  background: $color-white;
+  border-radius: $radius-2xl;
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+  animation: popupIn 0.22s cubic-bezier(0.34, 1.5, 0.64, 1);
+  overflow: hidden;
+
+  @include sm {
+    border-radius: $radius-2xl $radius-2xl 0 0;
+    max-height: 96vh;
+  }
+}
+
+@keyframes popupIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// ── Popup Header ──────────────────────────────────────────────────────────────
+.popupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  padding: $spacing-lg $spacing-xl;
+  background: linear-gradient(
+    135deg,
+    $color-primary 0%,
+    darken($color-primary, 10%) 100%
+  );
+  flex-shrink: 0;
+
+  @include sm {
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+.popupHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.popupHeaderIcon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.popupTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  margin: 0 0 2px;
+}
+
+.popupSub {
+  font-size: $font-size-xs;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0;
+}
+
+.closeBtn {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: $radius-lg;
+  color: $color-white;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background $transition-fast;
+  flex-shrink: 0;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.28);
+  }
+}
+
+// ── Popup Body ────────────────────────────────────────────────────────────────
+.popupBody {
+  overflow-y: auto;
+  flex: 1;
+  padding: $spacing-xl;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+
+  @include sm {
+    padding: $spacing-md;
+  }
+  @include custom-scrollbar;
+}
+
+// ── Form Sections ─────────────────────────────────────────────────────────────
+.formSection {
+  background: $color-gray-50;
+  border-radius: $radius-xl;
+  border: 1px solid $color-gray-100;
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.formSectionTitle {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  color: $color-gray-500;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  padding-bottom: $spacing-sm;
+  border-bottom: 1px solid $color-gray-200;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.autoCalcNote {
+  margin-left: auto;
+  font-size: 11px;
+  color: $color-success;
+  font-weight: $font-weight-medium;
+  text-transform: none;
+  letter-spacing: 0;
+  background: rgba($color-success, 0.1);
+  padding: 2px 8px;
+  border-radius: $radius-full;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+
+  @include sm {
+    grid-template-columns: 1fr;
+  }
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.formGroupFull {
+  grid-column: 1 / -1;
+}
+
+.label {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.req {
+  color: $color-danger;
+}
+
+.input {
+  @include input-base;
+}
+
+.inputHighlight {
+  border-color: rgba($color-primary, 0.4);
+  background: rgba($color-primary, 0.03);
+  font-weight: $font-weight-semibold;
+  color: $color-primary;
+
+  &:focus {
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+  }
+}
+
+.textarea {
+  @include input-base;
+  resize: vertical;
+  min-height: 60px;
+  line-height: $line-height-relaxed;
+}
+
+// ── Amount Preview ────────────────────────────────────────────────────────────
+.amountPreview {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-md;
+  background: $color-white;
+  border-radius: $radius-lg;
+  border: 1px solid $color-gray-200;
+  flex-wrap: wrap;
+}
+
+.amountPreviewItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  min-width: 60px;
+  text-align: center;
+}
+
+.amountPreviewLabel {
+  font-size: 10px;
+  color: $color-gray-400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: $font-weight-medium;
+}
+
+.amountPreviewVal {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-800;
+  font-family: $font-family-heading;
+}
+
+.amountPreviewOp {
+  color: $color-gray-300;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-base;
+}
+
+.amountPreviewTotal {
+  background: rgba($color-primary, 0.06);
+  border: 1px solid rgba($color-primary, 0.15);
+  border-radius: $radius-md;
+  padding: 4px 8px;
+
+  .amountPreviewVal {
+    color: $color-primary;
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
+  }
+}
+
+// ── Popup Footer ──────────────────────────────────────────────────────────────
+.popupFooter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-xl;
+  background: $color-gray-50;
+  border-top: 1px solid $color-gray-100;
+  flex-shrink: 0;
+
+  @include sm {
+    padding: $spacing-sm $spacing-md;
+  }
+}
+
+.cancelBtn {
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-lg;
+  border: 1.5px solid $color-gray-200;
+  background: $color-white;
+  color: $color-gray-600;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: $color-gray-50;
+    border-color: $color-gray-300;
+  }
+}
+
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-xl;
+  border-radius: $radius-lg;
+  border: none;
+  background: $color-primary;
+  color: $color-white;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+  box-shadow: 0 2px 8px rgba($color-primary, 0.3);
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.btnSpinner {
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: $color-white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+// // Spinner inside non-white buttons (blue/green/purple use currentColor)
+// .actionBtnBlue .btnSpinner,
+// .actionBtnGreen .btnSpinner,
+// .actionBtnPurple .btnSpinner,
+// .actionBtnDelete .btnSpinner {
+//   border-color: rgba(currentColor, 0.3);
+//   border-top-color: currentColor;
+// }
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

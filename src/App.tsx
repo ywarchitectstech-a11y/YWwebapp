@@ -3,11 +3,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import Layout from "./components/Layout/Layout";
 import ProtectedRoute from "./components/ProtectedRoute";
-
+import ClientLoginPage from "./pages/Auth/ClientLogin";
 import LoginPage from "./pages/Auth/Login";
 import AdminLoginPage from "./pages/Auth/AdminLogin.jsx";
-
+import { canManage } from "./hooks/roleCheck";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import ClientDashboard from "./pages/Dashboard/ClientDashbaoard.jsx";
+import EmployeeDashboard from "./pages/Dashboard/EmployeeDashboard";
 import ManageProjects from "./pages/Projects/ManageProjects";
 import ViewProject from "./pages/Projects/ViewProject";
 import ProjectsAvailability from "./pages/Projects/ProjectsAvailability";
@@ -24,12 +26,14 @@ import ViewPostSale from "./pages/postsale/ViewPostSale.jsx";
 import AddPresale from "./pages/presale/AddPresale.jsx";
 import AllPreSales from "./pages/presale/AllPresale.jsx";
 import EditPreSales from "./pages/presale/EditPreSales.jsx";
+import QuotationDetailPage from "./pages/presale/Quotationdetailpage.jsx";
 
 import AddClient from "./pages/client/AddCleint.jsx";
 import UpdateClient from "./pages/client/EditClient.jsx";
 import AllClient from "./pages/client/AllClients.jsx";
-
+import InvoicePage from "./pages/postsale/Invoice.jsx";
 import AddEmployee from "./pages/Employee/AddEmployee.jsx";
+import ProfilePage from "./pages/Employee/ProfilePage.jsx";
 import AllEmployees from "./pages/Employee/AllEmployees.jsx";
 import EditEmployee from "./pages/Employee/EditEmployee.jsx";
 import AllActiveEmployee from "./pages/Employee/AllActiveEmployee.jsx";
@@ -49,6 +53,8 @@ const App = () => (
           {/* PUBLIC ROUTE */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/adminlogin" element={<AdminLoginPage />} />
+          <Route path="/clientlogin" element={<ClientLoginPage />} />
+          {/* <Route path="/client" element={<ClientDashboard />} /> */}
 
           {/* PROTECTED ROUTES */}
           <Route
@@ -59,8 +65,20 @@ const App = () => (
               </ProtectedRoute>
             }
           >
-            <Route index element={<Dashboard />} />
-
+            {/* <Route index element={<Dashboard />} /> */}
+            <Route
+              index
+              element={
+                canManage() ? (
+                  <Dashboard />
+                ) : JSON.parse(localStorage.getItem("user"))?.role ===
+                  "CLIENT" ? (
+                  <ClientDashboard />
+                ) : (
+                  <EmployeeDashboard />
+                )
+              }
+            />
             {/* Projects */}
             <Route path="projects/manage" element={<ManageProjects />} />
             <Route
@@ -85,12 +103,16 @@ const App = () => (
             <Route path="presales/new" element={<AddPresale />} />
             <Route path="presales/allpresales" element={<AllPreSales />} />
             <Route path="presales/edit/:srNumber" element={<EditPreSales />} />
-
+            <Route path="/quotations/:id" element={<QuotationDetailPage />} />
             {/* Post Sales */}
             <Route path="postsales/*" element={<Postsale />} />
             <Route path="postsales/all" element={<AllPostSales />} />
             <Route path="postsales/view/:id" element={<ViewPostSale />} />
 
+            <Route
+              path="/postsales/:postSalesId/invoice/:type"
+              element={<InvoicePage />}
+            />
             {/* Clients */}
             <Route path="clients/add" element={<AddClient />} />
             <Route path="clients/update/:id" element={<UpdateClient />} />
@@ -101,6 +123,8 @@ const App = () => (
             <Route path="employees/all" element={<AllEmployees />} />
             <Route path="employees/active" element={<AllActiveEmployee />} />
             <Route path="employees/edit/:id" element={<EditEmployee />} />
+
+            <Route path="/profile" element={<ProfilePage />} />
 
             {/* Other */}
             <Route path="reports/*" element={<PlaceholderPage />} />

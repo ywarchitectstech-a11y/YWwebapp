@@ -149,3 +149,13 @@ export const setProjectDates = (
 export const addUsersToProject = (projectId, userIds) => {
   return api.put(`/projects/addusers/${projectId}`, userIds);
 };
+
+// ── GET MY PROJECTS ─────────────────────────────
+export const getMyProjects = (page = 0, size = 10) => {
+  return api.get("/employees/getmyprojects", {
+    params: {
+      page,
+      size,
+    },
+  });
+};

@@ -1,0 +1,377 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.page {
+  padding: $spacing-xl $spacing-2xl;
+  min-height: 100vh;
+  background: $gradient-background;
+  border-radius: $radius-xl;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+
+  @include md {
+    padding: $spacing-lg $spacing-md;
+  }
+  @include sm {
+    padding: $spacing-md $spacing-sm;
+  }
+}
+
+// ── Loading / Error ───────────────────────────────────────────────────────────
+.loadingWrap,
+.errorWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+  gap: $spacing-md;
+  color: $color-gray-400;
+  font-size: $font-size-sm;
+  text-align: center;
+}
+
+.spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid $color-gray-200;
+  border-top-color: $color-primary;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// ── Hero Card ─────────────────────────────────────────────────────────────────
+.heroCard {
+  background: $color-white;
+  border-radius: $radius-2xl;
+  box-shadow: $shadow-card;
+  border: 1px solid rgba($color-gray-200, 0.6);
+  overflow: hidden;
+}
+
+.heroAccent {
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    $color-primary,
+    $color-secondary,
+    $color-info
+  );
+}
+
+.heroContent {
+  padding: $spacing-xl;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-lg;
+  flex-wrap: wrap;
+
+  @include sm {
+    padding: $spacing-md;
+    flex-direction: column;
+  }
+}
+
+.heroLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  flex: 1;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.backBtn {
+  padding: $spacing-xs $spacing-md;
+  border-radius: $radius-lg;
+  border: 1.5px solid $color-gray-200;
+  background: $color-white;
+  color: $color-gray-600;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all $transition-fast;
+  flex-shrink: 0;
+
+  &:hover {
+    background: $color-gray-50;
+    border-color: $color-gray-300;
+  }
+}
+
+.heroIcon {
+  font-size: 2.2rem;
+  flex-shrink: 0;
+}
+
+.heroTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  margin: 0 0 $spacing-xs;
+  font-family: monospace;
+  letter-spacing: 0.03em;
+
+  @include sm {
+    font-size: $font-size-lg;
+  }
+}
+
+.heroBadges {
+  display: flex;
+  gap: $spacing-xs;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.03em;
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.sentBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+}
+
+.acceptedBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: $radius-full;
+  background: #dcfce7;
+  color: #14532d;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+}
+
+// ── Hero Actions ──────────────────────────────────────────────────────────────
+.heroActions {
+  display: flex;
+  gap: $spacing-sm;
+  align-items: center;
+  flex-shrink: 0;
+
+  @include sm {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+.acceptBtn {
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-lg;
+  border: none;
+  background: $color-success;
+  color: $color-white;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  white-space: nowrap;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.deleteBtn {
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-lg;
+  border: 1.5px solid #fecaca;
+  background: #fff5f5;
+  color: #b91c1c;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+  white-space: nowrap;
+
+  &:hover:not(:disabled) {
+    background: #fee2e2;
+    border-color: #f87171;
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// ── Content Grid ──────────────────────────────────────────────────────────────
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-lg;
+  align-items: start;
+
+  @include md {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ── Card ──────────────────────────────────────────────────────────────────────
+.card {
+  background: $color-white;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-card;
+  border: 1px solid rgba($color-gray-200, 0.6);
+  overflow: hidden;
+}
+
+.cardFull {
+  grid-column: 1 / -1;
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-lg;
+  background: $color-gray-50;
+  border-bottom: 1px solid $color-gray-100;
+}
+
+.cardIcon {
+  font-size: 1.1rem;
+}
+
+.cardTitle {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-700;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: $font-family-heading;
+}
+
+.cardBody {
+  padding: $spacing-sm 0;
+}
+
+// ── Info Row ──────────────────────────────────────────────────────────────────
+.infoRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-sm $spacing-lg;
+  border-bottom: 1px solid $color-gray-50;
+  gap: $spacing-md;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.infoLabel {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.infoValue {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-gray-800;
+  text-align: right;
+}
+
+.infoValueHL {
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+}
+
+// ── Status Grid ───────────────────────────────────────────────────────────────
+.statusGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+}
+
+.statusTile {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-md;
+  border-radius: $radius-lg;
+  background: $color-gray-50;
+  border: 1.5px solid $color-gray-100;
+}
+
+.statusTileActive {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.statusTileAccepted {
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+
+.statusTileIcon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.statusTileLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.statusTileVal {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  color: $color-gray-800;
+  margin-top: 2px;
+}
+
+// ── Details Text ──────────────────────────────────────────────────────────────
+.detailsText {
+  padding: $spacing-md $spacing-lg;
+  font-size: $font-size-sm;
+  color: $color-gray-700;
+  line-height: $line-height-relaxed;
+  margin: 0;
+  white-space: pre-wrap;
+}

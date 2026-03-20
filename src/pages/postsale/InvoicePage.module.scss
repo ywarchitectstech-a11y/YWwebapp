@@ -1,0 +1,719 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// ─── Page Shell (screen only) ─────────────────────────────────────────────────
+.pageShell {
+  min-height: 100vh;
+  background: $color-gray-100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: $spacing-3xl;
+}
+
+// ─── Toolbar (hidden on print) ────────────────────────────────────────────────
+.toolbar {
+  width: 100%;
+  max-width: 860px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-md $spacing-lg;
+  gap: $spacing-md;
+
+  @include sm {
+    flex-wrap: wrap;
+    padding: $spacing-sm;
+  }
+}
+
+.backBtn {
+  padding: $spacing-xs $spacing-md;
+  border-radius: $radius-lg;
+  border: 1.5px solid $color-gray-300;
+  background: $color-white;
+  color: $color-gray-600;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: $color-gray-50;
+    border-color: $color-gray-400;
+  }
+}
+
+.toolbarRight {
+  display: flex;
+  gap: $spacing-sm;
+}
+
+.toolBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-lg;
+  border: 1.5px solid $color-gray-300;
+  background: $color-white;
+  color: $color-gray-700;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: $color-gray-50;
+    border-color: $color-gray-400;
+  }
+}
+
+.toolBtnPrimary {
+  background: $color-primary;
+  color: $color-white;
+  border-color: $color-primary;
+  box-shadow: 0 2px 8px rgba($color-primary, 0.3);
+
+  &:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    border-color: $color-primary;
+  }
+}
+
+// ─── A4 Wrapper ───────────────────────────────────────────────────────────────
+.a4Wrap {
+  width: 100%;
+  max-width: 860px;
+  padding: 0 $spacing-md;
+
+  @include sm {
+    padding: 0 $spacing-xs;
+  }
+}
+
+// ─── Invoice Sheet ────────────────────────────────────────────────────────────
+.invoiceSheet {
+  background: $color-white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-lg;
+  padding: 36px 40px;
+  font-family: "Cambria", "Times New Roman", Georgia, serif;
+  font-size: 13px;
+  color: #1a1a1a;
+  line-height: 1.5;
+
+  @include md {
+    padding: 28px 28px;
+  }
+  @include sm {
+    padding: 20px 16px;
+    font-size: 12px;
+  }
+}
+
+// ─── Loading / Error ──────────────────────────────────────────────────────────
+.loadingPage,
+.errorPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: $spacing-md;
+  color: $color-gray-400;
+  font-family: $font-family-primary;
+
+  button {
+    padding: $spacing-sm $spacing-lg;
+    border-radius: $radius-lg;
+    border: 1.5px solid $color-gray-300;
+    background: $color-white;
+    cursor: pointer;
+    font-size: $font-size-sm;
+    color: $color-gray-700;
+
+    &:hover {
+      background: $color-gray-50;
+    }
+  }
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid $color-gray-200;
+  border-top-color: $color-primary;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// ─── HEADER ───────────────────────────────────────────────────────────────────
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  padding-bottom: 12px;
+
+  @include sm {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.headerLeft {
+  flex: 1;
+  min-width: 0;
+}
+
+.companyName {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  font-family: "Cambria", serif;
+}
+
+.companyAddress {
+  font-size: 11.5px;
+  color: #444;
+  line-height: 1.5;
+  margin-bottom: 2px;
+}
+
+.companyContact {
+  font-size: 11.5px;
+  color: #444;
+}
+
+.headerRight {
+  flex-shrink: 0;
+  text-align: right;
+  min-width: 220px;
+
+  @include sm {
+    text-align: left;
+    width: 100%;
+  }
+}
+
+.invoiceTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  text-align: right;
+
+  @include sm {
+    text-align: left;
+  }
+}
+
+.metaTable {
+  border-collapse: collapse;
+  width: 100%;
+
+  td {
+    padding: 2px 0;
+  }
+}
+
+.metaLabel {
+  font-size: 11.5px;
+  color: #555;
+  font-weight: 600;
+  white-space: nowrap;
+  padding-right: 10px;
+  text-align: right;
+
+  @include sm {
+    text-align: left;
+  }
+}
+
+.metaValue {
+  font-size: 11.5px;
+  color: #1a1a1a;
+  font-weight: 500;
+  text-align: right;
+
+  @include sm {
+    text-align: left;
+  }
+}
+
+.statusPill {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-family: $font-family-primary;
+}
+
+// ─── Dividers ─────────────────────────────────────────────────────────────────
+.dividerThick {
+  height: 2.5px;
+  background: #1a1a1a;
+  margin: 8px 0;
+  border-radius: 2px;
+}
+
+.divider {
+  height: 1px;
+  background: #c0c0c0;
+  margin: 8px 0;
+}
+
+// ─── GSTIN ROW ────────────────────────────────────────────────────────────────
+.gstinRow {
+  padding: 4px 0;
+  font-size: 11.5px;
+  color: #333;
+}
+
+// ─── CLIENT SECTION ───────────────────────────────────────────────────────────
+.clientSection {
+  padding: 8px 0;
+}
+
+.clientSectionTitle {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 4px;
+}
+
+.clientGrid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: start;
+
+  @include sm {
+    grid-template-columns: 1fr;
+  }
+}
+
+.clientRow {
+  display: flex;
+  gap: 8px;
+  padding: 2px 0;
+  font-size: 12px;
+}
+
+.clientLabel {
+  font-weight: 600;
+  color: #555;
+  white-space: nowrap;
+  min-width: 70px;
+}
+
+.clientValue {
+  color: #1a1a1a;
+}
+
+.clientGstinBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 180px;
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fafafa;
+  font-size: 12px;
+
+  @include sm {
+    width: 100%;
+  }
+}
+
+// ─── MAIN DESCRIPTION TABLE ───────────────────────────────────────────────────
+.mainTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  border: 1px solid #aaa;
+
+  th,
+  td {
+    border: 1px solid #aaa;
+  }
+}
+
+.thDesc {
+  background: #f0f0f0;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 12px;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  width: 75%;
+}
+
+.thAmt {
+  background: #f0f0f0;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 12px;
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  width: 25%;
+}
+
+.tdDesc {
+  padding: 12px 12px;
+  vertical-align: top;
+  min-height: 80px;
+}
+
+.tdAmt {
+  padding: 12px 12px;
+  vertical-align: top;
+  text-align: right;
+  min-height: 80px;
+}
+
+.descPrimary {
+  font-size: 12.5px;
+  color: #1a1a1a;
+  line-height: 1.6;
+  margin: 0 0 8px;
+}
+
+.descSecondary {
+  font-size: 11.5px;
+  color: #555;
+  margin: 0 0 6px;
+}
+
+.amountInWords {
+  font-size: 11px;
+  color: #555;
+  margin: 8px 0 0;
+  font-style: italic;
+}
+
+// ─── TOTALS TABLE ─────────────────────────────────────────────────────────────
+.totalsTable {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #aaa;
+  border-top: none;
+
+  td {
+    border: 1px solid #aaa;
+  }
+}
+
+.totalsLabel {
+  padding: 6px 12px;
+  font-size: 12px;
+  color: #333;
+  width: 75%;
+}
+
+.totalsValue {
+  padding: 6px 12px;
+  font-size: 12px;
+  color: #1a1a1a;
+  font-weight: 600;
+  text-align: right;
+  width: 25%;
+  font-family: "Cambria", serif;
+}
+
+.totalsGrandRow {
+  background: #f5f5f5;
+}
+
+.totalsGrandLabel {
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  width: 75%;
+}
+
+.totalsGrandValue {
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-align: right;
+  width: 25%;
+  font-family: "Cambria", serif;
+  letter-spacing: 0.01em;
+}
+
+.totalsWordsRow {
+  padding: 5px 12px;
+  font-size: 11px;
+  color: #555;
+  font-style: italic;
+  background: #fafafa;
+}
+
+// ─── PAYMENTS SECTION ─────────────────────────────────────────────────────────
+.paymentsSection {
+  padding: 6px 0;
+}
+
+.paymentsSectionTitle {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+}
+
+.paymentsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11.5px;
+
+  th {
+    background: #f0f0f0;
+    padding: 5px 8px;
+    text-align: left;
+    font-weight: 700;
+    border: 1px solid #bbb;
+    text-transform: uppercase;
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+  }
+
+  td {
+    padding: 4px 8px;
+    border: 1px solid #bbb;
+    vertical-align: middle;
+
+    code {
+      font-family: "Courier New", monospace;
+      font-size: 10.5px;
+      background: #f5f5f5;
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+  }
+
+  tr:hover td {
+    background: #f9f9f9;
+  }
+}
+
+.paymentsTotalRow {
+  background: #f5f5f5;
+  font-weight: 700;
+}
+
+// ─── BOTTOM SECTION ───────────────────────────────────────────────────────────
+.bottomSection {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  padding-top: 12px;
+  align-items: end;
+
+  @include sm {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.bankBlock {
+  flex: 1;
+  min-width: 0;
+}
+
+.blockTitle {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 4px;
+}
+
+.bankRow {
+  font-size: 12px;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.bankChequeName {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 4px 0 8px;
+  font-style: italic;
+}
+
+.bankSubTitle {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+}
+
+.bankTable {
+  border-collapse: collapse;
+  font-size: 11.5px;
+
+  td {
+    padding: 3px 8px 3px 0;
+    vertical-align: top;
+
+    &:first-child {
+      font-weight: 600;
+      color: #555;
+      white-space: nowrap;
+      min-width: 110px;
+      padding-right: 10px;
+
+      &::after {
+        content: " :";
+      }
+    }
+
+    &:last-child {
+      color: #1a1a1a;
+      font-weight: 500;
+    }
+  }
+}
+
+// ─── Signatory Block ──────────────────────────────────────────────────────────
+.signatoryBlock {
+  text-align: center;
+  min-width: 160px;
+  flex-shrink: 0;
+
+  @include sm {
+    text-align: left;
+  }
+}
+
+.signatoryLine {
+  height: 1px;
+  background: #1a1a1a;
+  width: 140px;
+  margin: 0 auto 6px;
+
+  @include sm {
+    margin: 0 0 6px;
+  }
+}
+
+.signatoryName {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.signatoryTitle {
+  font-size: 11px;
+  color: #555;
+  margin-top: 2px;
+}
+
+// ─── FOOTER ───────────────────────────────────────────────────────────────────
+.footer {
+  text-align: center;
+  padding-top: 14px;
+  border-top: 2px solid #1a1a1a;
+  margin-top: 16px;
+}
+
+.footerThankYou {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+
+.footerContact {
+  font-size: 11px;
+  color: #555;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// PRINT STYLES — hides everything except the invoice sheet
+// ═══════════════════════════════════════════════════════════════════════════════
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 12mm 12mm 12mm;
+  }
+
+  // Hide the browser chrome and our toolbar
+  body * {
+    visibility: hidden;
+  }
+
+  // Show only the invoice sheet
+  .invoiceSheet,
+  .invoiceSheet * {
+    visibility: visible !important;
+  }
+
+  .invoiceSheet {
+    position: absolute;
+    inset: 0;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    font-size: 11pt;
+    background: white;
+  }
+
+  // Remove toolbar from print
+  .toolbar {
+    display: none !important;
+  }
+
+  // Ensure tables don't break mid-row
+  table {
+    page-break-inside: avoid;
+  }
+  tr {
+    page-break-inside: avoid;
+  }
+
+  .mainTable,
+  .totalsTable,
+  .paymentsTable,
+  .bankTable {
+    page-break-inside: avoid;
+  }
+}

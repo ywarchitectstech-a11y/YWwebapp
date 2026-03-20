@@ -20,6 +20,7 @@ const AddClient = () => {
     address: "",
     GSTCertificate: "",
     PAN: "",
+    password: "",
   });
 
   const handleChange = (field, value) => {
@@ -76,7 +77,15 @@ const AddClient = () => {
               onChange={(e) => handleChange("email", e.target.value)}
             />
           </div>
-
+          <div className={styles.formGroup}>
+            <label className={styles.label}>Password</label>
+            <input
+              className={styles.input}
+              type="text"
+              value={formData.password}
+              onChange={(e) => handleChange("password", e.target.value)}
+            />
+          </div>
           <div className={styles.formGroup}>
             <label className={styles.label}>Phone</label>
             <input

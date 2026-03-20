@@ -80,7 +80,7 @@ export const useMarkQuotationAccepted = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (id) => quotationApi.markQuotationAccepted(id),
+    mutationFn: (id) => quotationApi.acceptQuotation(id),
 
     onSuccess: () => {
       queryClient.invalidateQueries([QUERY_KEY]);

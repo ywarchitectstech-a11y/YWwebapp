@@ -1,8 +1,8 @@
-@use 'variables' as *;
-@use 'mixins' as *;
+@use "variables" as *;
+@use "mixins" as *;
 
 // Import Google Fonts
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
 
 // CSS Reset and Base Styles
 *,
@@ -16,11 +16,11 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
-  
+
   @include md {
     font-size: 15px;
   }
-  
+
   @include sm {
     font-size: 14px;
   }
@@ -42,7 +42,12 @@ body {
 }
 
 // Typography
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $font-family-heading;
   font-weight: $font-weight-semibold;
   line-height: $line-height-tight;
@@ -75,7 +80,7 @@ h6 {
 
 p {
   margin-bottom: $spacing-md;
-  
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -85,14 +90,15 @@ a {
   color: $color-primary;
   text-decoration: none;
   transition: color $transition-fast;
-  
+
   &:hover {
     color: $color-primary-dark;
   }
 }
 
 // Lists
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -109,14 +115,16 @@ button {
   cursor: pointer;
   border: none;
   background: none;
-  
+
   &:focus {
     outline: none;
   }
 }
 
 // Inputs
-input, textarea, select {
+input,
+textarea,
+select {
   font-family: inherit;
   font-size: inherit;
 }

@@ -1,0 +1,684 @@
+// @use "../../styles/variables" as *;
+// @use "../../styles/mixins" as *;
+
+// .dashboard {
+//   display: flex;
+//   flex-direction: column;
+//   gap: $spacing-xl;
+//   padding-bottom: $spacing-2xl;
+// }
+
+// // Welcome
+// .welcomeCard {
+//   background: linear-gradient(
+//     135deg,
+//     rgba($color-primary, 0.06),
+//     rgba($color-secondary, 0.06)
+//   );
+//   border: 1px solid rgba($color-primary, 0.12);
+//   border-radius: $radius-2xl;
+//   padding: $spacing-xl;
+// }
+
+// .welcomeText {
+//   font-size: $font-size-xl;
+//   font-weight: $font-weight-bold;
+// }
+
+// .welcomeSub {
+//   font-size: $font-size-sm;
+//   color: $color-gray-500;
+// }
+
+// // Stats
+// .statCards {
+//   display: grid;
+//   grid-template-columns: repeat(3, 1fr);
+//   gap: $spacing-md;
+
+//   @include sm {
+//     grid-template-columns: 1fr;
+//   }
+// }
+
+// .statCard {
+//   @include card-base;
+//   padding: $spacing-lg;
+// }
+
+// .statValue {
+//   font-size: $font-size-2xl;
+//   font-weight: $font-weight-bold;
+// }
+
+// .statLabel {
+//   font-size: $font-size-sm;
+//   color: $color-gray-500;
+// }
+
+// // Section
+// .sectionCard {
+//   @include card-base;
+//   padding: $spacing-lg;
+// }
+
+// .sectionHead {
+//   margin-bottom: $spacing-md;
+// }
+
+// .sectionTitle {
+//   font-weight: $font-weight-semibold;
+// }
+
+// // Charts
+// .chartsRow {
+//   display: grid;
+//   grid-template-columns: 2fr 1fr;
+//   gap: $spacing-lg;
+
+//   @include lg {
+//     grid-template-columns: 1fr;
+//   }
+// }
+
+// // Table
+// .recentSection {
+//   @include card-base;
+// }
+
+// .tableRow {
+//   display: grid;
+//   grid-template-columns: 2fr 1fr 1fr;
+//   padding: $spacing-sm $spacing-lg;
+//   border-top: 1px solid $color-gray-100;
+// }
+
+// .tableHead {
+//   background: $color-gray-50;
+
+//   span {
+//     font-size: $font-size-xs;
+//     color: $color-gray-400;
+//     text-transform: uppercase;
+//   }
+// }
+
+// .projectName {
+//   font-weight: $font-weight-semibold;
+// }
+
+// // Status pill (NEW)
+// .statusPill {
+//   display: inline-block;
+//   padding: 4px 8px;
+//   border-radius: $radius-full;
+//   font-size: $font-size-xs;
+//   background: rgba($color-primary, 0.1);
+// }
+
+// // Empty
+// .emptyState {
+//   padding: $spacing-xl;
+//   text-align: center;
+//   color: $color-gray-400;
+// }
+
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// ─── Page Shell ────────────────────────────────────────────────────────────────
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+  padding-bottom: $spacing-2xl;
+  font-family: $font-family-primary;
+}
+
+// ─── Welcome Card ──────────────────────────────────────────────────────────────
+.welcomeCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-lg;
+  background: linear-gradient(
+    135deg,
+    rgba($color-primary, 0.06) 0%,
+    rgba($color-secondary, 0.06) 100%
+  );
+  border: 1px solid rgba($color-primary, 0.12);
+  border-radius: $radius-2xl;
+  padding: $spacing-xl $spacing-2xl;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(
+      180deg,
+      $color-primary 0%,
+      $color-secondary 100%
+    );
+    border-radius: $radius-xl 0 0 $radius-xl;
+  }
+
+  @include sm {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: $spacing-lg $spacing-md;
+  }
+}
+
+.welcomeLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.welcomeGreeting {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-gray-400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.welcomeText {
+  font-family: $font-family-heading;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  letter-spacing: -0.02em;
+}
+
+.welcomeSub {
+  font-size: $font-size-sm;
+  color: $color-gray-500;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.roleBadge {
+  display: inline-block;
+  background: rgba($color-primary, 0.1);
+  color: $color-primary;
+  padding: 2px 8px;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+}
+
+.divider {
+  color: $color-gray-300;
+}
+
+.welcomeRight {
+  flex-shrink: 0;
+  @include sm {
+    display: none;
+  }
+}
+
+.welcomeDate {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-gray-500;
+  background: $color-white;
+  border: 1px solid $color-gray-200;
+  border-radius: $radius-lg;
+  padding: $spacing-xs $spacing-md;
+  white-space: nowrap;
+}
+
+// ─── Stat Cards ────────────────────────────────────────────────────────────────
+.statCards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-md;
+
+  @include lg {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include sm {
+    grid-template-columns: 1fr;
+  }
+}
+
+.statCard {
+  @include card-base;
+  @include card-hover;
+  padding: $spacing-lg;
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.statIconWrap {
+  width: 48px;
+  height: 48px;
+  border-radius: $radius-lg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.statContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.statValue {
+  font-family: $font-family-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  line-height: 1.1;
+}
+
+.statLabel {
+  font-size: $font-size-sm;
+  color: $color-gray-500;
+  margin-top: 4px;
+  font-weight: $font-weight-medium;
+}
+
+.statSub {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  margin-top: 2px;
+}
+
+// ─── Section Card ──────────────────────────────────────────────────────────────
+.sectionCard {
+  @include card-base;
+  padding: $spacing-lg $spacing-xl;
+
+  @include sm {
+    padding: $spacing-md;
+  }
+}
+
+.sectionHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-lg;
+  gap: $spacing-md;
+}
+
+.sectionTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-800;
+  letter-spacing: -0.01em;
+}
+
+.sectionAction {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-primary;
+  background: rgba($color-primary, 0.08);
+  border: none;
+  border-radius: $radius-md;
+  padding: 4px $spacing-sm;
+  cursor: pointer;
+  transition: background $transition-fast;
+  &:hover {
+    background: rgba($color-primary, 0.14);
+  }
+}
+
+// ─── Charts Layout ─────────────────────────────────────────────────────────────
+.chartsRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: $spacing-lg;
+
+  @include lg {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chartWide {
+}
+.chartNarrow {
+}
+
+.emptyChart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: $color-gray-400;
+  font-size: $font-size-sm;
+  text-align: center;
+  padding: 0 $spacing-lg;
+}
+
+// ─── Donut / Pie ───────────────────────────────────────────────────────────────
+.donutWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.pieLegend {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pieLegendItem {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  font-size: $font-size-xs;
+}
+
+.pieDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.pieName {
+  flex: 1;
+  color: $color-gray-600;
+  font-weight: $font-weight-medium;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: capitalize;
+}
+
+.pieCount {
+  font-weight: $font-weight-bold;
+  color: $color-gray-800;
+  font-size: $font-size-xs;
+}
+
+// ─── Tooltip ───────────────────────────────────────────────────────────────────
+.tooltip {
+  background: $color-white;
+  border: 1px solid $color-gray-200;
+  border-radius: $radius-lg;
+  padding: $spacing-sm $spacing-md;
+  box-shadow: $shadow-md;
+  font-size: $font-size-xs;
+  min-width: 110px;
+}
+
+.tooltipLabel {
+  font-weight: $font-weight-semibold;
+  color: $color-gray-700;
+  margin-bottom: 4px;
+  font-size: $font-size-xs;
+  border-bottom: 1px solid $color-gray-100;
+  padding-bottom: 4px;
+}
+
+.tooltipRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: $color-gray-600;
+  strong {
+    color: $color-gray-900;
+  }
+}
+
+.tooltipDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+// ─── Active Projects Section ───────────────────────────────────────────────────
+.projectList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.projectListItem {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md $spacing-lg;
+  border: 1px solid $color-gray-100;
+  border-radius: $radius-lg;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba($color-primary, 0.02);
+    border-color: rgba($color-primary, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  @include sm {
+    grid-template-columns: 1fr auto;
+    gap: $spacing-sm;
+
+    & > :nth-child(2),
+    & > :nth-child(3) {
+      display: none;
+    }
+  }
+}
+
+.projectInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.projectTitle {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-800;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projectMeta {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+}
+
+.projectCode {
+  display: inline-block;
+  background: rgba($color-primary, 0.08);
+  color: $color-primary;
+  border-radius: $radius-full;
+  padding: 2px $spacing-xs;
+  font-weight: $font-weight-semibold;
+  font-family: monospace;
+  white-space: nowrap;
+}
+
+.projectCity {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projectStatus {
+  display: flex;
+  align-items: center;
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: $radius-full;
+  padding: 3px 9px;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.projectDate {
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+  white-space: nowrap;
+  text-align: right;
+
+  @include sm {
+    display: none;
+  }
+}
+
+.projectAction {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-primary;
+  background: rgba($color-primary, 0.08);
+  border: none;
+  border-radius: $radius-md;
+  padding: 4px $spacing-sm;
+  cursor: pointer;
+  transition: all $transition-fast;
+  white-space: nowrap;
+  &:hover {
+    background: rgba($color-primary, 0.15);
+    transform: translateY(-1px);
+  }
+}
+
+.projectListSkeleton {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.projectListRow {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 60px;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md $spacing-lg;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-2xl;
+  text-align: center;
+  color: $color-gray-400;
+
+  p {
+    font-size: $font-size-sm;
+    color: $color-gray-600;
+    margin-top: $spacing-md;
+    font-weight: $font-weight-medium;
+  }
+
+  small {
+    font-size: $font-size-xs;
+    color: $color-gray-400;
+    display: block;
+    margin-top: 4px;
+  }
+}
+
+.emptyIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba($color-warning, 0.1);
+  border-radius: $radius-lg;
+  color: $color-warning;
+}
+
+// ─── Performance Summary ───────────────────────────────────────────────────────
+.performanceGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-lg;
+}
+
+.performanceContent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-lg;
+
+  @include sm {
+    grid-template-columns: 1fr;
+  }
+}
+
+.perfItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: $spacing-lg;
+  background: $color-gray-50;
+  border-radius: $radius-lg;
+  border: 1px solid $color-gray-100;
+}
+
+.perfLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.perfValue {
+  font-family: $font-family-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+}
+
+// ─── Skeleton Pulse ────────────────────────────────────────────────────────────
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.pulse {
+  display: block;
+  background: $color-gray-200;
+  animation: pulse 1.4s ease-in-out infinite;
+  border-radius: $radius-md;
+}

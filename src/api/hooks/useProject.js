@@ -103,3 +103,13 @@ export const useAddUsersToProject = () => {
     },
   });
 };
+
+
+// ── GET MY PROJECTS ─────────────────────────────
+export const useMyProjects = (page, size) => {
+  return useQuery({
+    queryKey: ["myProjects", page, size],
+    queryFn: () =>
+      projectApi.getMyProjects(page, size).then((res) => res.data.data),
+  });
+};

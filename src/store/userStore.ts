@@ -1,15 +1,15 @@
 // import { create } from 'zustand';
 
-// export type UserRole = 
-//   | 'admin' 
-//   | 'principal' 
-//   | 'project_head' 
-//   | 'architect' 
-//   | 'planner' 
-//   | 'draftsman' 
-//   | 'noc_officer' 
-//   | 'site_coordinator' 
-//   | 'accountant' 
+// export type UserRole =
+//   | 'admin'
+//   | 'principal'
+//   | 'project_head'
+//   | 'architect'
+//   | 'planner'
+//   | 'draftsman'
+//   | 'noc_officer'
+//   | 'site_coordinator'
+//   | 'accountant'
 //   | 'client';
 
 // interface User {
@@ -41,26 +41,26 @@
 // export const useUserStore = create<UserState>((set) => ({
 //   user: mockUser,
 //   isAuthenticated: true,
-  
+
 //   setUser: (user: User) => set({ user, isAuthenticated: true }),
-  
+
 //   logout: () => set({ user: null, isAuthenticated: false }),
 // }));
 
-import { create } from 'zustand';
+import { create } from "zustand";
 
 // ── Must match backend exactly ────────────────────────────────
-export type UserRole =
-  | 'ADMIN'
-  | 'CO_FOUNDER'
-  | 'SR_ARCHITECT'
-  | 'JR_ARCHITECT'
-  | 'SR_ENGINEER'
-  | 'DRAFTSMAN'
-  | 'LIAISON_MANAGER'
-  | 'LIAISON_OFFICER'
-  | 'LIAISON_ASSISTANT'
-  | 'HR';
+export type UserRole = "ADMIN";
+("CO_FOUNDER");
+("SR_ARCHITECT");
+("JR_ARCHITECT");
+("SR_ENGINEER");
+("DRAFTSMAN");
+("LIAISON_MANAGER");
+("LIAISON_OFFICER");
+("LIAISON_ASSISTANT");
+("HR");
+("CLIENT");
 
 export interface User {
   userId: number;
@@ -80,7 +80,7 @@ interface UserState {
 
 function readFromStorage(): User | null {
   try {
-    const raw = localStorage.getItem('user');
+    const raw = localStorage.getItem("user");
     if (!raw) return null;
     return JSON.parse(raw) as User;
   } catch {
@@ -93,7 +93,7 @@ export const useUserStore = create<UserState>((set) => ({
   isAuthenticated: !!readFromStorage(),
 
   setUser: (user: User) => {
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem("user", JSON.stringify(user));
     set({ user, isAuthenticated: true });
   },
 
@@ -103,7 +103,7 @@ export const useUserStore = create<UserState>((set) => ({
   },
 
   logout: () => {
-    localStorage.removeItem('user');
+    localStorage.removeItem("user");
     set({ user: null, isAuthenticated: false });
   },
 }));

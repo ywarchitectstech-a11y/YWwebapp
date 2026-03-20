@@ -1289,6 +1289,7 @@ import { useProjectById } from "../../api/hooks/useProject";
 import { useReraByProject } from "../../api/hooks/useRera";
 import styles from "./ViewProject.module.scss";
 import AddDocumentPopup from "./AddDocumentPopup";
+import MeetingsTab from "./MeetingTab";
 import StructureViewerPopup from "../Structure/StructureViewerPopup";
 import AddSiteVisitPopup from "./AddSiteVisitPopup";
 import EditSiteVisitPopup from "./EditSiteVisitPopup";
@@ -1296,6 +1297,7 @@ import AddEmployeeToProjectPopup from "./AddEmployeeToProjectPopup";
 import { useEmployeeList } from "../../api/hooks/useEmployees";
 import AddReraPopup from "./AddReraPopup";
 import ReraTab from "./ReraTab";
+import { canManage } from "../../hooks/roleCheck";
 // import { useReraByProject } from "../../api/hooks/useRera"; // your existing hook
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 const fmt = (dt) => {
@@ -1954,13 +1956,14 @@ const EmployeesTab = ({ employees, projectId, allEmployees }) => {
     <div>
       <div className={styles.sectionHeader}>
         <h3>Employees</h3>
-
-        <button
-          className={styles.primaryBtn}
-          onClick={() => setShowPopup(true)}
-        >
-          + Add Employee
-        </button>
+        {canManage() && (
+          <button
+            className={styles.primaryBtn}
+            onClick={() => setShowPopup(true)}
+          >
+            + Add Employee
+          </button>
+        )}
       </div>
 
       <div className={styles.empGrid}>
@@ -1999,12 +2002,14 @@ const SiteVisitsTab = ({ siteVisits, projectId, onOpenGallery }) => {
       <div className={styles.emptyState}>
         <span>🏠</span>
         <p>No site visits recorded for this project yet.</p>
-        <button
-          className={styles.primaryBtn}
-          onClick={() => setShowPopup(true)}
-        >
-          + Add Site Visit
-        </button>
+        {canManage() && (
+          <button
+            className={styles.primaryBtn}
+            onClick={() => setShowPopup(true)}
+          >
+            + Add Site Visit
+          </button>
+        )}
         {showEditPopup && selectedVisit && (
           <EditSiteVisitPopup
             visit={selectedVisit}
@@ -2025,12 +2030,14 @@ const SiteVisitsTab = ({ siteVisits, projectId, onOpenGallery }) => {
     <div>
       <div className={styles.sectionHeader}>
         <h3>Site Visits</h3>
-        <button
-          className={styles.primaryBtn}
-          onClick={() => setShowPopup(true)}
-        >
-          + Add Site Visit
-        </button>
+        {canManage() && (
+          <button
+            className={styles.primaryBtn}
+            onClick={() => setShowPopup(true)}
+          >
+            + Add Site Visit
+          </button>
+        )}
       </div>
 
       <div className={styles.svList}>
@@ -2062,15 +2069,17 @@ const SiteVisitsTab = ({ siteVisits, projectId, onOpenGallery }) => {
                     {fmtTime(sv.visitDateTime)}
                   </span>
 
-                  <button
-                    className={styles.editBtn}
-                    onClick={() => {
-                      setSelectedVisit(sv);
-                      setEditPopup(true);
-                    }}
-                  >
-                    ✏ Edit
-                  </button>
+                  {canManage() && (
+                    <button
+                      className={styles.editBtn}
+                      onClick={() => {
+                        setSelectedVisit(sv);
+                        setEditPopup(true);
+                      }}
+                    >
+                      ✏ Edit
+                    </button>
+                  )}
                 </div>
               </div>
 
@@ -2145,12 +2154,14 @@ const StructuresTab = ({ structures, navigate, projectId }) => {
       <div className={styles.emptyState}>
         <span>🏢</span>
         <p>No structures defined for this project yet.</p>
-        <button
-          className={styles.primaryBtn}
-          onClick={() => navigate(`/projects/${projectId}/structure`)}
-        >
-          + Add Structure
-        </button>
+        {canManage() && (
+          <button
+            className={styles.primaryBtn}
+            onClick={() => navigate(`/projects/${projectId}/structure`)}
+          >
+            + Add Structure
+          </button>
+        )}
       </div>
     );
   }
@@ -2159,12 +2170,14 @@ const StructuresTab = ({ structures, navigate, projectId }) => {
     <div className={styles.structList}>
       <div className={styles.sectionHeader}>
         <br />
-        <button
-          className={styles.primaryBtn}
-          onClick={() => navigate(`/projects/${projectId}/structure`)}
-        >
-          + Add Structure
-        </button>
+        {canManage() && (
+          <button
+            className={styles.primaryBtn}
+            onClick={() => navigate(`/projects/${projectId}/structure`)}
+          >
+            + Add Structure
+          </button>
+        )}
       </div>
       <br />
       <div className={styles.structGrid}>
@@ -2525,12 +2538,14 @@ export default function ViewProject() {
         <div className={styles.heroRight}>
           <StatusBadge status={p.projectStatus} />
           <div className={styles.heroDate}>
-            <button
-              className={styles.primaryBtn}
-              onClick={() => navigate(`/projects/edit/${p.projectId}`)}
-            >
-              ⬡ Edit Site
-            </button>
+            {canManage() && (
+              <button
+                className={styles.primaryBtn}
+                onClick={() => navigate(`/projects/edit/${p.projectId}`)}
+              >
+                ⬡ Edit Site
+              </button>
+            )}
             <strong>{fmt(p.projectCreatedDateTime)}</strong>
           </div>
           {p.projectStartDateTime && (
@@ -2614,7 +2629,10 @@ export default function ViewProject() {
           />
         )}
         {activeTab === "meetings" && (
-          <StructuresTab structures={p.structures} navigate={navigate} />
+          <MeetingsTab
+            projectId={p.projectId}
+            project={p} // passes projectName, client etc. for MOM templates
+          />
         )}
         {activeTab === "rera" && (
           <ReraTab

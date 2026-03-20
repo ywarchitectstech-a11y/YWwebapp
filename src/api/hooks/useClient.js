@@ -63,3 +63,12 @@ export const useUpdateClient = () => {
     },
   });
 };
+
+
+export const useClientProfile = () => {
+  return useQuery({
+    queryKey: ["clientProfile"],
+    queryFn: () =>
+      clientApi.getClientProfile().then((res) => res.data.data),
+  });
+};
