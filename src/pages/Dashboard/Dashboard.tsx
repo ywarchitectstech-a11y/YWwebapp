@@ -193,7 +193,7 @@
 
 // export default Dashboard;
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   AreaChart,
@@ -402,7 +402,16 @@ const IconSales = () => (
 export default function Dashboard() {
   const navigate = useNavigate();
   const [recentTab, setRecentTab] = useState("projects");
+  useEffect(() => {
+    if (!window.location.hash.includes("reloaded")) {
+      console.log(
+        "refresh---------------------------------------------------------------",
+      );
 
+      window.location.hash = "reloaded";
+      window.location.reload();
+    }
+  }, []);
   const { data: me, isLoading: loadingMe } = useEmployeeData();
   const { data: projects, isLoading: loadingProj } = useProjectList();
   const { data: employees, isLoading: loadingEmp } = useEmployeeList();
