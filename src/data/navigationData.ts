@@ -339,12 +339,12 @@ export const navigationData: NavItem[] = [
         path: "/postsales/all",
         icon: "folder",
       },
-      {
-        id: "postsales-invoices",
-        label: "Invoices",
-        path: "/postsales/invoices",
-        icon: "invoice",
-      },
+      // {
+      //   id: "postsales-invoices",
+      //   label: "Invoices",
+      //   path: "/postsales/invoices",
+      //   icon: "invoice",
+      // },
     ],
   },
 
