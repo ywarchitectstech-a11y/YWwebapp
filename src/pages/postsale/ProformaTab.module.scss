@@ -989,3 +989,21 @@
     transform: rotate(360deg);
   }
 }
+.taxInputRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* The "= ₹ 9000.00" computed amount shown beside the % input */
+.taxComputedAmt {
+  white-space: nowrap;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1e40af; /* blue — stands out as a computed value */
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 6px;
+  padding: 3px 8px;
+  flex-shrink: 0;
+}
