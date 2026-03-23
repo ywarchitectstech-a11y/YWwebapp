@@ -94,9 +94,18 @@ const AllProjects = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const role = user?.role;
 
-  const isAdminAccess = ["ADMIN", "CO_FOUNDER", "HR", "SR_ARCHITECT"].includes(
-    role,
-  );
+  const isAdminAccess = [
+    "ADMIN",
+    "CO_FOUNDER",
+    "HR",
+    "SR_ARCHITECT",
+    "JR_ARCHITECT",
+    "SR_ENGINEER",
+    "DRAFTSMAN",
+    "LIAISON_MANAGER",
+    "LIAISON_OFFICER",
+    "LIAISON_ASSISTANT",
+  ].includes(role);
 
   // Fetch based on role
   const {
