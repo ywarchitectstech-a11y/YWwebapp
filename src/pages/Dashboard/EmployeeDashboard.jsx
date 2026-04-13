@@ -628,7 +628,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useEmployeeData } from "../../api/hooks/useEmployees";
-import { useMyProjects } from "../../api/hooks/useProject";
+import { useProjectList } from "../../api/hooks/useProject";
 import {
   useMyMonthlyAttendance,
   useMyCheckIn,
@@ -925,7 +925,7 @@ export default function EmployeeDashboard() {
 
   // ── Data hooks ────────────────────────────────────────────────────────────
   const { data: me, isLoading: loadingMe } = useEmployeeData();
-  const { data: myProjects, isLoading: loadingProjects } = useMyProjects();
+  const { data: myProjects, isLoading: loadingProjects } = useProjectList();
 
   // Attendance for current month → drives 4 stat cards + check-in/out
   const now = new Date();

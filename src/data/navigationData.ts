@@ -268,20 +268,38 @@ const NAV_PERMISSIONS: Record<string, UserRole[] | "ALL"> = {
   "presales-all": ["ADMIN", "CO_FOUNDER", "HR"],
 
   // Projects (PostSales)
-  "postsales-new": ["ADMIN", "CO_FOUNDER", "HR", "SR_ARCHITECT"],
+  "postsales-new": [
+    "ADMIN",
+    "CO_FOUNDER",
+    "HR",
+    "SR_ARCHITECT",
+    "JR_ARCHITECT",
+    "SR_ENGINEER",
+    "DRAFTSMAN",
+    "LIAISON_MANAGER",
+    "LIAISON_OFFICER",
+    "LIAISON_ASSISTANT",
+  ],
   "postsales-all": [
     "ADMIN",
     "CO_FOUNDER",
     "HR",
+    "SR_ARCHITECT",
+    "JR_ARCHITECT",
+    "SR_ENGINEER",
+    "DRAFTSMAN",
+    "LIAISON_MANAGER",
+    "LIAISON_OFFICER",
+    "LIAISON_ASSISTANT",
     "CLIENT",
-    "SR_ARCHITECT", // 👈 client can see their projects
   ],
   "postsales-invoices": ["ADMIN", "CO_FOUNDER", "HR"],
 
   // Clients
   "manage-clients": ["ADMIN", "CO_FOUNDER", "HR", "SR_ARCHITECT"],
   "add-new-client": ["ADMIN", "CO_FOUNDER", "HR", "SR_ARCHITECT"],
-
+  "manage-website": ["ADMIN", "CO_FOUNDER", "HR", "SR_ARCHITECT"],
+  "add-webproject": ["ADMIN", "CO_FOUNDER", "HR", "SR_ARCHITECT"],
   // Accounts
   "payment-receipts": ["ADMIN", "CO_FOUNDER", "HR"],
   "payment-vouchers": ["ADMIN", "CO_FOUNDER", "HR"],
@@ -437,6 +455,25 @@ export const navigationData: NavItem[] = [
         label: "My Attendance",
         path: "employees/myattendance",
         icon: "userPlus",
+      },
+    ],
+  },
+  {
+    id: "website",
+    label: "Website",
+    icon: "hr",
+    children: [
+      {
+        id: "manage-website",
+        label: "Manage Website",
+        path: "website/projects",
+        icon: "hr",
+      },
+      {
+        id: "add-webproject",
+        label: "Add Project",
+        path: "website/projects/add",
+        icon: "hr",
       },
     ],
   },

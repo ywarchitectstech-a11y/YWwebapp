@@ -1,0 +1,787 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+  padding-bottom: 60px;
+  font-family: $font-family-primary;
+}
+
+// ─── Page Header ──────────────────────────────────────────────────────────────
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-lg;
+  flex-wrap: wrap;
+
+  @include sm {
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+}
+
+.pageHeaderLeft {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-lg;
+
+  @include sm {
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-xs $spacing-md;
+  border: 1.5px solid $color-gray-200;
+  border-radius: $radius-lg;
+  background: $color-white;
+  color: $color-gray-600;
+  font-family: $font-family-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all $transition-fast;
+  flex-shrink: 0;
+  margin-top: 4px;
+
+  &:hover {
+    background: $color-gray-50;
+    border-color: $color-gray-300;
+  }
+}
+
+.breadcrumb {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  margin-bottom: 4px;
+
+  span {
+    color: $color-gray-600;
+    font-weight: $font-weight-medium;
+  }
+}
+
+.pageTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-gray-900;
+  margin: 0 0 6px;
+  letter-spacing: -0.02em;
+
+  @include sm {
+    font-size: $font-size-xl;
+  }
+}
+
+.pageMeta {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.slugBadge {
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+  background: $color-gray-100;
+  padding: 2px $spacing-sm;
+  border-radius: $radius-md;
+  font-family: monospace;
+}
+
+.srBadge {
+  font-size: $font-size-xs;
+  color: $color-gray-500;
+  font-weight: $font-weight-semibold;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 3px $spacing-sm;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  white-space: nowrap;
+}
+
+.status_completed {
+  background: #dcfce7;
+  color: #166534;
+}
+.status_inprogress {
+  background: #fef9c3;
+  color: #854d0e;
+}
+.status_upcoming {
+  background: #dbeafe;
+  color: #1e40af;
+}
+.status_default {
+  background: $color-gray-100;
+  color: $color-gray-500;
+}
+
+// ─── Buttons ──────────────────────────────────────────────────────────────────
+.editBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-lg;
+  border: 1.5px solid $color-gray-200;
+  background: $color-white;
+  color: $color-gray-700;
+  font-family: $font-family-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &:hover {
+    background: $color-gray-50;
+    border-color: $color-gray-400;
+  }
+}
+
+.ghostBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-lg;
+  border: 1.5px solid $color-gray-200;
+  background: $color-white;
+  color: $color-gray-600;
+  font-family: $font-family-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: $color-gray-50;
+    border-color: $color-gray-300;
+  }
+}
+
+// ─── Two-column Layout ────────────────────────────────────────────────────────
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: $spacing-xl;
+  align-items: start;
+
+  @include lg {
+    grid-template-columns: 1fr 320px;
+  }
+  @include md {
+    grid-template-columns: 1fr;
+  }
+}
+
+.colMain {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.colSide {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+// ─── Card ─────────────────────────────────────────────────────────────────────
+.card {
+  @include card-base;
+  overflow: hidden;
+  position: relative;
+}
+
+.cardAccent::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, $color-primary 0%, $color-secondary 100%);
+  border-radius: $radius-xl 0 0 $radius-xl;
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-lg;
+  background: $color-gray-50;
+  border-bottom: 1px solid $color-gray-100;
+}
+
+.cardIcon {
+  font-size: 1rem;
+  line-height: 1;
+}
+.cardTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-700;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cardBody {
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+// ─── Stats ────────────────────────────────────────────────────────────────────
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+
+  @include sm {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stat {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-md;
+  background: $color-gray-50;
+  border-radius: $radius-lg;
+  border: 1px solid $color-gray-100;
+}
+
+.statIcon {
+  font-size: 1rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.statLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+.statValue {
+  font-size: $font-size-sm;
+  color: $color-gray-800;
+  font-weight: $font-weight-medium;
+  line-height: 1.3;
+}
+
+// ─── Size ─────────────────────────────────────────────────────────────────────
+.sizeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-md;
+
+  @include sm {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.sizeTile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: $spacing-md $spacing-sm;
+  background: $color-gray-50;
+  border-radius: $radius-lg;
+  border: 1px solid $color-gray-100;
+  text-align: center;
+}
+
+.sizeTileLabel {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sizeTileValue {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+  font-family: $font-family-heading;
+  line-height: 1.1;
+}
+
+.sizeTileUnit {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+}
+
+// ─── Description ──────────────────────────────────────────────────────────────
+.descList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+.descPara {
+  font-size: $font-size-sm;
+  color: $color-gray-700;
+  line-height: $line-height-relaxed;
+  margin: 0;
+  padding: $spacing-sm $spacing-md;
+  border-left: 3px solid $color-gray-200;
+  background: $color-gray-50;
+  border-radius: 0 $radius-md $radius-md 0;
+}
+
+// ─── Services ─────────────────────────────────────────────────────────────────
+.servicesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}
+.serviceTag {
+  display: inline-block;
+  padding: $spacing-xs $spacing-md;
+  background: rgba($color-primary, 0.07);
+  color: $color-primary;
+  border: 1px solid rgba($color-primary, 0.18);
+  border-radius: $radius-full;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+}
+
+// ─── Image note ───────────────────────────────────────────────────────────────
+.imageNote {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+  font-weight: $font-weight-medium;
+  margin: 0;
+  line-height: $line-height-relaxed;
+  padding: $spacing-xs $spacing-sm;
+  background: $color-gray-50;
+  border-radius: $radius-md;
+  border-left: 3px solid $color-gray-200;
+}
+
+// ─── Image Slot ───────────────────────────────────────────────────────────────
+.imageSlot {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+// Header row
+.imageSlotHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 22px;
+}
+
+.imageSlotLabel {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.replaceBtnInline {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px $spacing-sm;
+  border-radius: $radius-md;
+  border: 1.5px solid $color-gray-200;
+  background: $color-white;
+  color: $color-gray-600;
+  font-family: $font-family-primary;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+  white-space: nowrap;
+
+  &:hover:not(:disabled) {
+    background: rgba($color-primary, 0.06);
+    border-color: $color-primary;
+    color: $color-primary;
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// ── Filled: image renders at proper aspect ratio, no cropping distortion ──────
+.imageSlotFilled {
+  border-radius: $radius-xl;
+  overflow: hidden;
+  border: 1px solid $color-gray-200;
+  background: $color-gray-900;
+  line-height: 0;
+}
+
+// Base img tag — width 100%, height auto so aspect ratio is always natural
+.slotImg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+// ── variant: hero — fix a 16:9 container, cover-crop the image ───────────────
+.imageSlot_hero {
+  .imageSlotFilled {
+    aspect-ratio: 16 / 9;
+    .slotImg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .imageSlotEmpty {
+    aspect-ratio: 16 / 9;
+    min-height: unset;
+  }
+}
+
+// ── variant: full — ultra-wide cinematic strip ────────────────────────────────
+.imageSlot_full {
+  .imageSlotFilled {
+    aspect-ratio: 21 / 9;
+    .slotImg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .imageSlotEmpty {
+    aspect-ratio: 21 / 9;
+    min-height: unset;
+  }
+}
+
+// ── variant: panel — square-ish panels (left / right) ────────────────────────
+.imageSlot_panel {
+  .imageSlotFilled {
+    aspect-ratio: 4 / 3;
+    .slotImg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .imageSlotEmpty {
+    aspect-ratio: 4 / 3;
+    min-height: unset;
+  }
+}
+
+// ── Empty upload card ─────────────────────────────────────────────────────────
+.imageSlotEmpty {
+  border: 2px dashed $color-gray-200;
+  border-radius: $radius-xl;
+  background: $color-gray-50;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all $transition-fast;
+  padding: $spacing-lg;
+  text-align: center;
+
+  &:hover {
+    border-color: $color-primary;
+    background: rgba($color-primary, 0.03);
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.08);
+  }
+}
+
+.slotEmptyIcon {
+  font-size: 1.75rem;
+}
+.slotEmptyTitle {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-600;
+}
+.slotEmptyHint {
+  font-size: $font-size-xs;
+  color: $color-gray-400;
+}
+
+// ─── Layout image stacking ────────────────────────────────────────────────────
+.layoutSlots {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.splitSlots {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+
+  @include sm {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ─── Gallery grid ─────────────────────────────────────────────────────────────
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-sm;
+
+  @include md {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @include sm {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.galleryCard {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  border: 1px solid $color-gray-100;
+  background: $color-gray-100;
+  transition: opacity $transition-fast;
+
+  &:hover .galleryCardOverlay {
+    opacity: 1;
+  }
+}
+
+.galleryCardDeleting {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.galleryCardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.galleryCardOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.42);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity $transition-fast;
+}
+
+.galleryDeleteBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid $color-white;
+  background: $color-danger;
+  color: $color-white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform $transition-fast;
+
+  &:hover:not(:disabled) {
+    transform: scale(1.1);
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.galleryCardOrder {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  background: rgba(0, 0, 0, 0.55);
+  color: $color-white;
+  font-size: 0.6rem;
+  font-weight: $font-weight-bold;
+  width: 18px;
+  height: 18px;
+  border-radius: $radius-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// ─── Gallery Add Card ─────────────────────────────────────────────────────────
+.galleryAddCard {
+  position: relative;
+  aspect-ratio: 1;
+  border: 2px dashed $color-gray-200;
+  border-radius: $radius-lg;
+  background: $color-gray-50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all $transition-fast;
+  text-align: center;
+  padding: $spacing-sm;
+
+  &:hover {
+    border-color: $color-primary;
+    background: rgba($color-primary, 0.04);
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.08);
+  }
+}
+
+.galleryAddCardDrag {
+  border-color: $color-primary !important;
+  background: rgba($color-primary, 0.06) !important;
+  box-shadow: 0 0 0 4px rgba($color-primary, 0.12) !important;
+}
+
+.galleryAddIcon {
+  font-size: 1.5rem;
+  color: $color-primary;
+  font-weight: $font-weight-bold;
+  line-height: 1;
+}
+.galleryAddText {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-600;
+}
+.galleryAddHint {
+  font-size: 0.62rem;
+  color: $color-gray-400;
+}
+
+// ─── Hidden file input ────────────────────────────────────────────────────────
+.hiddenInput {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+// ─── Spinners ─────────────────────────────────────────────────────────────────
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinnerSm {
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba($color-white, 0.35);
+  border-top-color: $color-white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+.spinnerPrimary {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba($color-primary, 0.2);
+  border-top-color: $color-primary;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+.spinnerWhite {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba($color-white, 0.3);
+  border-top-color: $color-white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+// ─── Loading skeletons ────────────────────────────────────────────────────────
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeletonHeader {
+  height: 80px;
+  border-radius: $radius-xl;
+  background: linear-gradient(
+    90deg,
+    $color-gray-100 25%,
+    $color-gray-50 50%,
+    $color-gray-100 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton {
+  border-radius: $radius-xl;
+  background: linear-gradient(
+    90deg,
+    $color-gray-100 25%,
+    $color-gray-50 50%,
+    $color-gray-100 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+// ─── Error state ──────────────────────────────────────────────────────────────
+.errorState {
+  @include card-base;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-md;
+  padding: $spacing-3xl $spacing-xl;
+  text-align: center;
+
+  span {
+    font-size: 2rem;
+  }
+  p {
+    font-size: $font-size-sm;
+    color: $color-gray-500;
+    margin: 0;
+  }
+}

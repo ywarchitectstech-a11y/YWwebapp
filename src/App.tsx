@@ -166,6 +166,10 @@ import EditProject from "./pages/Projects/Editproject";
 import Structure from "./pages/Projects/Structure";
 import ViewStructure from "./pages/Projects/ViewStructure";
 import Documents from "./pages/Projects/Documents";
+import AddWebProject from "./pages/Website/AddWebProject";
+import Manageprojects from "./pages/Website/Manageprojects ";
+import EditWebproject from "./pages/Website/Editproject";
+import Viewproject from "./pages/Website/Viewproject";
 
 import Postsale from "./pages/postsale/Createpostsales.jsx";
 import AllPostSales from "./pages/postsale/AllPostsales.jsx";
@@ -291,6 +295,14 @@ const App = () => (
 
             <Route path="/profile" element={<ProfilePage />} />
 
+            {/* website */}
+            <Route path="website/projects/add" element={<AddWebProject />} />
+            <Route path="website/projects" element={<Manageprojects />} />
+            <Route path="website/projects/:id" element={<Viewproject />} />
+            <Route
+              path="/website/projects/edit/:id"
+              element={<EditWebproject />}
+            />
             {/* Other */}
             <Route path="reports/*" element={<PlaceholderPage />} />
             <Route path="accounts/*" element={<PlaceholderPage />} />
